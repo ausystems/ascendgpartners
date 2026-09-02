@@ -619,7 +619,11 @@ a { color: inherit; text-decoration: none; }
 .ship-c2 .ship-bigstat strong,
 .ship-c2 .ship-mini-col strong,
 .ship-c4 .ship-words div {
-  -webkit-text-stroke: 1px rgba(15, 21, 53, 0.6);
+  /* stroke paints beneath the fill (paint-order), so only the outer half of
+     the 2px stroke is visible: a clean 1px contour strictly OUTSIDE each
+     letter, never touching the fill */
+  -webkit-text-stroke: 2px rgba(15, 21, 53, 0.6);
+  paint-order: stroke fill;
 }
 
 /* card internals: shared Neo-Swiss system */
