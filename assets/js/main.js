@@ -91,17 +91,9 @@ document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.obs
 window.addEventListener('scroll', () => {
   const s = window.scrollY;
   const hero = document.querySelector('.hero-content');
-  const indicator = document.querySelector('.scroll-indicator');
   if (s < window.innerHeight) {
     hero.style.transform = `translateY(${s * 0.25}px)`;
     hero.style.opacity = 1 - (s / window.innerHeight) * 0.7;
-    if (indicator && s > 0) {
-      // ride the same parallax as the content (constant gap) and fade out
-      // early; clear the entrance animation so its fill can't pin transform
-      indicator.style.animation = 'none';
-      indicator.style.transform = `translateX(-50%) translateY(${s * 0.25}px)`;
-      indicator.style.opacity = Math.max(0, 1 - (s / window.innerHeight) * 1.6);
-    }
   }
 });
 

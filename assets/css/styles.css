@@ -237,6 +237,7 @@ a { color: inherit; text-decoration: none; }
     radial-gradient(70% 55% at 50% 118%, rgba(36, 66, 214, 0.10) 0%, rgba(0, 0, 0, 0) 60%),
     linear-gradient(168deg, #0a0f2e 0%, #070a21 38%, #030514 68%, #000 100%);
   padding: 5rem 0 8.5rem;
+  min-height: calc(100vh + 24px);
 }
 .hero-canvas {
   position: absolute; inset: 0; width: 100%; height: 100%; display: block;
@@ -304,30 +305,6 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(30px);
 }
 
-/* Animated scroll indicator - circular like the Ascend screenshot */
-.scroll-indicator {
-  position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
-  width: 80px; height: 80px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
-  display: flex; align-items: center; justify-content: center; flex-direction: column;
-  opacity: 0; animation: fadeInUp 0.8s var(--ease-out-expo) 2.5s forwards;
-  cursor: pointer; transition: border-color 0.3s;
-}
-.scroll-indicator:hover { border-color: rgba(255,255,255,0.4); }
-.scroll-indicator .arrow-down {
-  width: 20px; height: 20px; animation: bounceDown 2s ease-in-out infinite;
-}
-.scroll-text {
-  position: absolute; width: 100%; height: 100%;
-  animation: spinText 10s linear infinite;
-}
-.scroll-text text {
-  font-size: 3.2px; fill: rgba(255,255,255,0.4); letter-spacing: 0.15em; text-transform: uppercase;
-  font-family: var(--font-primary); font-weight: 500;
-}
-@keyframes bounceDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
-@keyframes spinText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-@keyframes fadeInUp { from { opacity: 0; transform: translate(-50%, 20px); } to { opacity: 1; transform: translate(-50%, 0); } }
-
 /* ticker keyframes kept for the awards ticker in the Difference section */
 @keyframes tickerLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 @keyframes tickerRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
@@ -391,9 +368,6 @@ a { color: inherit; text-decoration: none; }
   border-color: rgba(255,255,255,0.7);
   background: rgba(255,255,255,0.05);
   transform: translateY(-2px);
-}
-.strat-trust {
-  margin-top: 2rem; font-size: 0.88rem; color: rgba(255,255,255,0.45); font-weight: 500;
 }
 /* right: two columns of logo cards, opposite directions, clipped with fades.
    Columns are absolutely positioned so their tracks never drive layout height:
@@ -1021,50 +995,6 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 1024px) { .hero-h1-text { font-size: 4.05rem; max-width: 900px; } }
 @media (max-width: 768px) { .hero-h1-text { font-size: 2.8rem; max-width: 580px; } .hero-sub { font-size: 1.08rem; max-width: 580px; } }
 @media (max-width: 480px) { .hero-h1-text { font-size: 2.3rem; max-width: 390px; } }
-
-/* HERO SCROLL INDICATOR PATCH */
-.scroll-indicator {
-  width: 96px !important;
-  height: 96px !important;
-  color: var(--white);
-  text-decoration: none;
-  gap: 0.22rem;
-  background: rgba(255,255,255,0.035);
-  -webkit-tap-highlight-color: transparent;
-}
-.scroll-indicator:hover,
-.scroll-indicator:focus-visible {
-  border-color: rgba(255,255,255,0.55);
-  background: rgba(255,255,255,0.07);
-  outline: none;
-}
-.scroll-indicator:focus-visible {
-  box-shadow: 0 0 0 4px rgba(232,97,60,0.25);
-}
-.scroll-caption {
-  display: block;
-  font-size: 0.72rem;
-  line-height: 1;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.88);
-}
-.scroll-indicator .arrow-down {
-  width: 22px !important;
-  height: 22px !important;
-}
-.scroll-text {
-  display: none !important;
-}
-@media (max-width: 480px) {
-  .scroll-indicator {
-    width: 84px !important;
-    height: 84px !important;
-    bottom: 2.75rem !important;
-  }
-  .scroll-indicator .arrow-down { width: 18px !important; height: 18px !important; }
-}
 
 /* ============================================
    STATIC CASE NAV MATCH (second style block — cascade order preserved)
