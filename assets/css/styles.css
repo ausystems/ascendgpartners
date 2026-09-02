@@ -609,6 +609,11 @@ a { color: inherit; text-decoration: none; }
 .ship-c2 { background: var(--accent); }
 .ship-c3 { background: var(--navy); }
 .ship-c4 { background: var(--accent); }
+/* dark ink on the orange cards for strong contrast */
+.ship-c2, .ship-c4 {
+  color: var(--navy);
+  --line: rgba(15, 21, 53, 0.32);
+}
 
 /* card internals: shared Neo-Swiss system */
 .ship-card { --line: rgba(255, 255, 255, 0.26); }
@@ -710,6 +715,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700; line-height: 1; letter-spacing: -0.035em;
   padding: clamp(0.5rem, 1.4vh, 0.9rem) 0; border-top: 1px solid var(--line);
 }
+.ship-words div:first-child { border-top: 0; padding-top: 0; }
 .ship-c4 .ship-desc { flex: none; max-width: 40ch; margin-top: auto; padding-top: 1.2rem; }
 .ship-foot {
   margin-top: 1.4rem; font-size: 0.7rem; font-weight: 600;
@@ -717,7 +723,8 @@ a { color: inherit; text-decoration: none; }
 }
 .ship-work { display: flex; flex-direction: column; min-height: 0; margin: 0; }
 .ship-work img {
-  flex: 1; min-height: 0; width: 100%; object-fit: cover;
+  flex: 1; min-height: 0; width: 100%; object-fit: contain;
+  background: #ebe5da;
   border-radius: 12px;
 }
 .ship-work figcaption {
@@ -785,32 +792,6 @@ a { color: inherit; text-decoration: none; }
   padding: 6rem 3rem;
   border-radius: 24px 24px 0 0;
   position: relative; z-index: 1; margin-top: -24px;
-}
-.difference-header {
-  text-align: center; margin-bottom: 4rem;
-}
-.difference-header h2 {
-  font-family: var(--font-primary); font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 600; line-height: 1.1; letter-spacing: -0.02em;
-}
-.difference-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
-  max-width: 1100px; margin: 0 auto;
-}
-.diff-card {
-  text-align: center; padding: 2.5rem 2rem;
-}
-.diff-icon {
-  width: 64px; height: 64px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 1.5rem;
-}
-.diff-icon svg { width: 28px; height: 28px; }
-.diff-title {
-  font-family: var(--font-primary); font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.8rem;
-}
-.diff-desc {
-  font-size: 0.92rem; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 400;
 }
 
 /* Awards ticker */
@@ -962,7 +943,6 @@ a { color: inherit; text-decoration: none; }
   .logo-card { height: 132px; border-radius: 14px; }
   .logo-card img { height: 46px; }
   .logo-card-word { font-size: 1rem; }
-  .difference-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .cases-bento { gap: 1rem; }
   .bento-card { border-radius: 14px; aspect-ratio: 16 / 11; }

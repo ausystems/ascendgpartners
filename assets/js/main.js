@@ -126,3 +126,28 @@ function animateNum(el, end) {
   requestAnimationFrame(step);
 }
 
+// SMOOTH WHEEL SCROLL (desktop pointers; touch keeps native momentum)
+if (window.matchMedia('(pointer: fine)').matches) {
+  let smoothTarget = 0;
+  let smoothCurrent = 0;
+  let smoothActive = false;
+  const maxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
+  window.addEventListener('wheel', (e) => {
+    if (e.ctrlKey || e.metaKey) return; // keep zoom gestures native
+    e.preventDefault();
+    const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+    if (!smoothActive) { smoothTarget = window.scrollY; smoothCurrent = window.scrollY; }
+    smoothTarget = Math.max(0, Math.min(smoothTarget + delta, maxScroll()));
+    if (!smoothActive) { smoothActive = true; requestAnimationFrame(smoothStep); }
+  }, { passive: false });
+  function smoothStep() {
+    smoothCurrent += (smoothTarget - smoothCurrent) * 0.11;
+    if (Math.abs(smoothTarget - smoothCurrent) < 0.6) {
+      window.scrollTo({ top: smoothTarget, behavior: 'instant' });
+      smoothActive = false;
+      return;
+    }
+    window.scrollTo({ top: smoothCurrent, behavior: 'instant' });
+    requestAnimationFrame(smoothStep);
+  }
+}
