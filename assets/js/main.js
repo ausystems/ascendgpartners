@@ -126,6 +126,61 @@ function animateNum(el, end) {
   requestAnimationFrame(step);
 }
 
+// WORD-MASK REVEALS — display headings rise word by word behind clip masks,
+// once, when scrolled into view. The hero headline cascades after the
+// preloader instead, in step with its block animation.
+(function () {
+  var els = document.querySelectorAll('.rv-words');
+  if (!els.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  els.forEach(function (el) {
+    var idx = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 3) {
+          var parts = child.textContent.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+            var w = document.createElement('span'); w.className = 'rv-w';
+            var wi = document.createElement('span'); wi.className = 'rv-wi';
+            wi.textContent = p;
+            wi.style.transitionDelay = (idx++ * 0.055) + 's';
+            w.appendChild(wi); frag.appendChild(w);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1 && child.tagName !== 'BR') {
+          walk(child);
+        }
+      });
+    })(el);
+  });
+
+  function arm(el) {
+    el.classList.add('rv-on');
+    setTimeout(function () { el.classList.add('rv-done'); }, 2100);
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { arm(en.target); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
+
+  var hero = null;
+  els.forEach(function (el) {
+    if (el.closest('.hero')) { hero = el; } else { io.observe(el); }
+  });
+  // hero cascade fires as the preloader lifts (load + 3000ms + wordmark's 200ms)
+  if (hero) {
+    window.addEventListener('load', function () {
+      setTimeout(function () { arm(hero); }, 3250);
+    });
+  }
+})();
+
 // FOOTER TYPEWRITER — the giant lockup types in letter by letter, once,
 // the first time it scrolls into view; static forever after.
 (function () {
