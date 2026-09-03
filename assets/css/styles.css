@@ -931,6 +931,13 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700; letter-spacing: -0.035em; line-height: 1;
   color: #F7F8F8; white-space: nowrap;
 }
+/* lockup typewriter: letters hidden once JS splits them, typed in on first reveal */
+.footer-giant .ft-letter { font-style: normal; display: inline-block; }
+.footer-giant.type-ready .ft-letter {
+  opacity: 0; transform: translateY(0.32em); filter: blur(7px);
+  transition: opacity 0.26s var(--ease-out-expo), transform 0.4s var(--ease-out-expo), filter 0.32s ease-out;
+}
+.footer-giant.type-ready .ft-letter.on { opacity: 1; transform: translateY(0); filter: blur(0); }
 
 /* bottom bar: copyright / legal / social on one hairline */
 .footer-bar {

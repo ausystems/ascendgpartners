@@ -126,6 +126,36 @@ function animateNum(el, end) {
   requestAnimationFrame(step);
 }
 
+// FOOTER TYPEWRITER — the giant lockup types in letter by letter, once,
+// the first time it scrolls into view; static forever after.
+(function () {
+  var giant = document.querySelector('.footer-giant');
+  if (!giant) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var span = giant.querySelector('span');
+  var text = span.textContent;
+  span.textContent = '';
+  var letters = [];
+  for (var i = 0; i < text.length; i++) {
+    var l = document.createElement('i');
+    l.className = 'ft-letter';
+    l.textContent = text[i] === ' ' ? ' ' : text[i];
+    span.appendChild(l);
+    letters.push(l);
+  }
+  giant.classList.add('type-ready');
+  var played = false;
+  var io = new IntersectionObserver(function (entries) {
+    if (played || !entries[0].isIntersecting) return;
+    played = true;
+    io.disconnect();
+    letters.forEach(function (el, idx) {
+      setTimeout(function () { el.classList.add('on'); }, 100 + idx * 26);
+    });
+  }, { threshold: 0.35 });
+  io.observe(giant);
+})();
+
 // SMOOTH WHEEL SCROLL (desktop pointers; touch keeps native momentum)
 if (window.matchMedia('(pointer: fine)').matches) {
   let smoothTarget = 0;
