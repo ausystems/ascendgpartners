@@ -456,7 +456,7 @@ a { color: inherit; text-decoration: none; }
   z-index: 2;
 }
 .cases-top {
-  max-width: 1240px; margin: 0 auto 3.5rem;
+  max-width: 1020px; margin: 0 auto 3rem;
   display: flex; justify-content: space-between; align-items: flex-end;
   gap: 3rem;
 }
@@ -483,12 +483,12 @@ a { color: inherit; text-decoration: none; }
 
 /* bento: one tall card left, two stacked right */
 .cases-bento {
-  max-width: 1240px; margin: 0 auto;
+  max-width: 1020px; margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-  height: clamp(600px, 88vh, 820px);
+  gap: 1.25rem;
+  height: clamp(460px, 64vh, 600px);
 }
 .bento-card {
   position: relative; display: block; overflow: hidden;
