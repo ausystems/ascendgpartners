@@ -12,24 +12,60 @@ function animateHero() {
   const sub = document.querySelector('.hero-sub');
   const ctaRow = document.querySelector('.hero-cta-row');
 
-  setTimeout(() => {
-    wordmark.style.transition = 'opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo)';
-    wordmark.style.opacity = '1';
-    wordmark.style.transform = 'translateY(0)';
-  }, 200);
+  // the headline letter sweep starts the moment the lifting preloader turns
+  // transparent (expo fade is mostly clear by ~320ms), so the full sweep is
+  // seen with no perceived delay; the block itself appears immediately
+  wordmark.style.transition = 'opacity 0.5s ease-out, transform 0.9s var(--ease-out-expo)';
+  wordmark.style.opacity = '1';
+  wordmark.style.transform = 'translateY(0)';
+  const h1 = document.querySelector('.hero-h1-text');
+  if (h1) setTimeout(() => h1.classList.add('hl-on'), 320);
 
   if (sub) setTimeout(() => {
     sub.style.transition = 'opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo)';
     sub.style.opacity = '1';
     sub.style.transform = 'translateY(0)';
-  }, 500);
+  }, 550);
 
   if (ctaRow) setTimeout(() => {
     ctaRow.style.transition = 'opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo)';
     ctaRow.style.opacity = '1';
     ctaRow.style.transform = 'translateY(0)';
-  }, 750);
+  }, 800);
 }
+
+// HERO LETTER SWEEP — split the headline into word-bound letters up front
+// (runs once at parse time, so the load-time animation costs nothing)
+(function () {
+  const h1 = document.querySelector('.hero-h1-text');
+  if (!h1) return;
+  const heading = h1.closest('h1');
+  if (heading) heading.setAttribute('aria-label', h1.textContent);
+  h1.setAttribute('aria-hidden', 'true');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let idx = 0;
+  (function walk(node) {
+    Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+      if (child.nodeType === 3) {
+        const parts = child.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        parts.forEach(function (p) {
+          if (!p) return;
+          if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
+          const w = document.createElement('span'); w.className = 'hl-w';
+          for (let i = 0; i < p.length; i++) {
+            const l = document.createElement('span'); l.className = 'hl-l';
+            l.textContent = p[i];
+            l.style.transitionDelay = (idx++ * 0.012) + 's';
+            w.appendChild(l);
+          }
+          frag.appendChild(w);
+        });
+        node.replaceChild(frag, child);
+      } else if (child.nodeType === 1) walk(child);
+    });
+  })(h1);
+})();
 
 // CUSTOM CURSOR
 const cursor = document.getElementById('cursor');
