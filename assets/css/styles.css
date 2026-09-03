@@ -501,7 +501,7 @@ a { color: inherit; text-decoration: none; }
 }
 .bento-card:hover img { transform: scale(1.04); }
 .bento-chip {
-  position: absolute; top: 1.1rem; left: 1.1rem;
+  position: absolute; bottom: 1.1rem; left: 1.1rem;
   display: inline-flex; align-items: center; gap: 0.7rem;
   background: rgba(250, 249, 247, 0.94);
   color: var(--navy);
@@ -1042,7 +1042,7 @@ a { color: inherit; text-decoration: none; }
   .cases-bento { gap: 1rem; }
   .bento-card { border-radius: 14px; aspect-ratio: 16 / 11; }
   .bento-tall { aspect-ratio: 4 / 4.8; }
-  .bento-chip { top: 0.8rem; left: 0.8rem; padding: 0.45rem 0.7rem; gap: 0.55rem; }
+  .bento-chip { bottom: 0.8rem; left: 0.8rem; padding: 0.45rem 0.7rem; gap: 0.55rem; }
   .bento-chip strong { font-size: 0.72rem; }
   .bento-go { display: none; }
   .cta-section { padding-top: 5rem; padding-bottom: 6rem; }
