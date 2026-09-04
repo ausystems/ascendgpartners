@@ -29,6 +29,22 @@ Note: `logos/clearstem.png` as served by the live site is a fully transparent
 PNG (blank). The logo-card columns render Clearstem as a styled wordmark
 instead; the horizontal ticker keeps the original (blank) asset for fidelity.
 
+## Full site
+
+Every interior page of ascendgpartners.com is recreated one-to-one as static
+HTML alongside the redesigned homepage: 11 service pages (+ coming-soon), the
+case-studies hub and its three studies, the blog and its four posts, company
+about/press/reviews, contact, storefront, and both legal pages. Each page
+embeds the live site's desktop and mobile renderings (the live site serves
+different DOM per viewport, switched here at 768px), styled by the captured
+CSS bundle plus Plus Jakarta Sans, with a small vanilla shim
+(`assets/site/shim.js`) providing the nav scroll state, hover dropdowns,
+mobile drawer/accordions (recorded open/closed style pairs), and form posts
+to the live `/api/forms/submit` endpoint. Five sitemap URLs that 404 on the
+live site (one blog post, four unpublished case studies) are intentionally
+not recreated; nothing on the live site links to them. `/services` (a 404
+upstream, though linked from the live nav) redirects to `services/seo/`.
+
 ## Structure
 
 ```
