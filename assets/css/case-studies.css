@@ -102,7 +102,6 @@ figure.ed-fig {
   object-fit: cover; will-change: transform;
 }
 .ed-ch--wide .ed-fig { aspect-ratio: 21 / 9; margin-bottom: clamp(2.2rem, 4vw, 3.6rem); }
-.ed-ch--wide .ed-fig img { object-position: 50% 14%; } /* keeps the face in the wide crop */
 .ed-ch--right .ed-fig, .ed-ch--left .ed-fig { aspect-ratio: 4 / 3; }
 
 .ed-body { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
