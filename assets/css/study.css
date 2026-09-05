@@ -1,5 +1,5 @@
 /* ============================================
-   BKFC CASE STUDY — "The Main Event"
+   CASE STUDY SYSTEM — shared by the BKFC ("The Main Event") and Dr. Harrison Lee ("The Profile") pages
    ============================================ */
 .bk-page {
   --font-serif-text: 'Instrument Serif', Georgia, serif;
@@ -211,4 +211,56 @@ figure.bk-fig {
   .bk-tape { grid-template-columns: 1fr; }
   .bk-tape > div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--hair); }
   .bk-cta-card { border-radius: 22px; }
+}
+
+/* --- profile cover (Dr. Harrison Lee) --- */
+.hl-cover-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 6rem); align-items: end; }
+.hl-dossier {
+  display: flex; flex-direction: column; gap: 0.55rem; margin: 1.8rem 0 0;
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.hl-dossier .hl-loc { white-space: nowrap; color: rgba(255, 255, 255, 0.8); }
+.hl-dossier .hl-loc i { font-style: normal; color: var(--accent); margin: 0 0.5rem; }
+.hl-deck { margin-top: 2rem; }
+figure.hl-portrait {
+  margin: 0; position: relative; overflow: hidden;
+  border-radius: 24px; background: var(--navy-light); aspect-ratio: 4 / 5;
+}
+.hl-portrait img { object-position: 50% 30%; } /* inherits the oversized .bk-fig img for parallax */
+.bk-tape.hl-tape { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* publication wall */
+.hl-press { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--hair-dark); margin-bottom: clamp(2rem, 4vh, 3.2rem); }
+.hl-press > div {
+  padding: 1.7rem 1.5rem 1.7rem 0; border-bottom: 1px solid var(--hair-dark);
+  font-family: var(--font-primary); font-weight: 600;
+  font-size: clamp(1.6rem, 2.9vw, 2.9rem); letter-spacing: -0.04em; line-height: 1; color: var(--navy);
+  transition: color 0.35s;
+}
+.hl-press > div:hover { color: var(--accent); }
+.hl-press > div:nth-child(3n+2), .hl-press > div:nth-child(3n) { border-left: 1px solid var(--hair-dark); padding-left: 1.5rem; }
+
+/* numbered rows (examples / results) */
+.hl-rows { border-top: 1px solid var(--hair-dark); }
+.hl-rows > div { display: grid; grid-template-columns: 3.2rem 1fr; gap: 1.2rem; padding: 1.7rem 0; border-bottom: 1px solid var(--hair-dark); }
+.hl-rows .num { font-family: var(--font-editorial); font-style: italic; font-size: 1.6rem; line-height: 1; color: var(--accent); padding-top: 0.2rem; }
+.hl-rows p { margin: 0; font-size: clamp(1.05rem, 1.3vw, 1.25rem); line-height: 1.55; color: var(--navy); }
+.bk-deck-navy .hl-rows { border-top-color: var(--hair); }
+.bk-deck-navy .hl-rows > div { border-bottom-color: var(--hair); }
+.bk-deck-navy .hl-rows p { color: #F7F8F8; }
+
+/* takeaways as serif statements */
+.hl-take { border-top: 1px solid var(--hair-dark); }
+.hl-take > div { display: grid; grid-template-columns: 3.5rem 1fr; gap: 1.4rem; padding: 2.1rem 0; border-bottom: 1px solid var(--hair-dark); }
+.hl-take .num { font-family: var(--font-editorial); font-style: italic; font-size: 1.8rem; line-height: 1; color: var(--accent); padding-top: 0.3rem; }
+.hl-take h3 { font-family: var(--font-serif-text); font-weight: 400; font-size: clamp(1.4rem, 2.15vw, 2.05rem); line-height: 1.3; letter-spacing: 0.002em; color: var(--navy); margin: 0; max-width: 34ch; }
+
+@media (max-width: 1024px) {
+  .hl-cover-grid { grid-template-columns: 1fr; }
+  figure.hl-portrait { aspect-ratio: 4 / 3; }
+  .hl-press { grid-template-columns: 1fr; }
+  .hl-press > div:nth-child(3n+2), .hl-press > div:nth-child(3n) { border-left: 0; padding-left: 0; }
+  .bk-tape.hl-tape { grid-template-columns: 1fr; }
+  .bk-tape.hl-tape > div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--hair); }
 }

@@ -1,4 +1,4 @@
-// BKFC case study: reading progress, hero parallax, tale-of-the-tape count-ups.
+// Case study pages: reading progress, hero parallax, stat count-ups.
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasGsap = typeof window.gsap !== 'undefined';
