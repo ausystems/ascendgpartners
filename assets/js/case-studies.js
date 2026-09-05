@@ -87,155 +87,108 @@ var rvReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   els.forEach(function (el) { io.observe(el); });
 })();
 
-// FEATURED SLIDER — split-panel hero cycles the three studies (GSAP)
+// CHAPTERS — image reveals, parallax, contents scroll-spy, chapter rail, filters
 (function () {
-  var STUDIES = [
-    {
-      title: 'How Ascend Growth Partners Built David Feldman and BKFC Into a Globally Recognized Combat Sports Authority',
-      date: 'Jun 6, 2026',
-      desc: 'Relentless press and PR that turned David Feldman and BKFC into a globally recognized combat sports authority.',
-      img: '../uploads/bkfc-feldman-stage.webp',
-      alt: 'David Feldman, founder of BKFC, at ringside under arena lights',
-      href: 'https://ascendgpartners.com/case-studies/bare-knuckle-fc'
-    },
-    {
-      title: "How Ascend Built Dr. Harrison Lee's Media Authority Across Beauty, Lifestyle, and Mainstream Press",
-      date: 'May 4, 2026',
-      desc: 'Beauty, lifestyle, and mainstream press coverage that established Dr. Harrison Lee as a household media authority.',
-      img: '../uploads/dr-harrison-lee-1.webp',
-      alt: 'Dr. Harrison Lee in a blue suit beside a red Ferrari',
-      href: 'https://ascendgpartners.com/case-studies/dr-harrison-lee'
-    },
-    {
-      title: 'How Ascend Growth Partners Helped Jason Wojo Build Media Authority and Automate $856K in Pipeline',
-      date: 'Feb 26, 2026',
-      desc: 'Media authority paired with AI-automated outreach that generated $856K in qualified pipeline for Jason Wojo.',
-      img: '../uploads/dr-harrison-lee-2.webp',
-      alt: 'Jason Wojo presenting at a whiteboard',
-      href: 'https://ascendgpartners.com/case-studies/jason-wojo'
-    }
-  ];
-  var title = document.getElementById('csxTitle');
-  var date = document.getElementById('csxDate');
-  var desc = document.getElementById('csxDesc');
-  var read = document.getElementById('csxRead');
-  var img = document.getElementById('csxImg');
-  var thumbs = Array.prototype.slice.call(document.querySelectorAll('.csx-thumb'));
-  if (!title || !img) return;
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.ed-ch'));
+  if (!chapters.length) return;
+  var hasGsap = typeof window.gsap !== 'undefined';
+  var figs = Array.prototype.slice.call(document.querySelectorAll('.ed-fig'));
+  var indexLinks = Array.prototype.slice.call(document.querySelectorAll('.ed-index a, .ed-rail a'));
+  var rail = document.getElementById('edRail');
+  var deck = document.getElementById('edDeck');
 
-  STUDIES.forEach(function (s) { var i = new Image(); i.src = s.img; });
-
-  var hasGsap = typeof window.gsap !== 'undefined' && !rvReduce;
-  var current = 0;
-  var animating = false;
-
-  function split(el) {
-    var text = el.textContent;
-    el.textContent = '';
-    text.split(/(\s+)/).forEach(function (p) {
-      if (!p) return;
-      if (/^\s+$/.test(p)) { el.appendChild(document.createTextNode(p)); return; }
-      var w = document.createElement('span'); w.className = 'csx-w';
-      var wi = document.createElement('span'); wi.className = 'csx-wi';
-      wi.textContent = p;
-      w.appendChild(wi); el.appendChild(w);
-    });
-    return el.querySelectorAll('.csx-wi');
-  }
-
-  // second stacked image layer for seamless crossfades
-  var imgB = img.cloneNode();
-  imgB.removeAttribute('id');
-  imgB.style.opacity = '0';
-  imgB.alt = '';
-  img.parentElement.appendChild(imgB);
-
-  function setText(i) {
-    var s = STUDIES[i];
-    title.textContent = s.title;
-    date.textContent = s.date;
-    desc.textContent = s.desc;
-    read.href = s.href;
-  }
-
-  function markActive(i) {
-    thumbs.forEach(function (t, k) { t.classList.toggle('active', k === i); });
-  }
-
-  function goTo(i) {
-    if (animating || i === current) return;
-    current = i;
-    markActive(i);
-    if (!hasGsap) {
-      setText(i);
-      img.src = STUDIES[i].img; img.alt = STUDIES[i].alt;
-      return;
-    }
-    animating = true;
-    var s = STUDIES[i];
-    // image: true crossfade on the stacked layer, never a blank frame
-    imgB.src = s.img;
-    gsap.fromTo(imgB, { opacity: 0, scale: 1.06 }, {
-      opacity: 1, scale: 1, duration: 0.75, ease: 'expo.out',
-      onComplete: function () {
-        img.src = s.img; img.alt = s.alt;
-        gsap.set(imgB, { opacity: 0, scale: 1 });
+  // image reveal: a slow clip wipe + settle, once, as each figure arrives
+  var revealIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var fig = en.target;
+      revealIo.unobserve(fig);
+      if (hasGsap && !rvReduce) {
+        gsap.fromTo(fig, { clipPath: 'inset(7% 0 0 0)', opacity: 0 },
+          { clipPath: 'inset(0% 0 0 0)', opacity: 1, duration: 1.15, ease: 'expo.out', clearProps: 'clip-path' });
+        gsap.fromTo(fig.querySelector('img'), { scale: 1.08 }, { scale: 1, duration: 1.4, ease: 'expo.out' });
+      } else {
+        fig.style.opacity = '1';
       }
     });
-    // text: quick exit, immediate re-entrance in the homepage word-mask style
-    var oldWords = title.querySelectorAll('.csx-wi');
-    var tl = gsap.timeline({ onComplete: function () { animating = false; } });
-    tl.to(oldWords, { yPercent: 135, duration: 0.26, stagger: 0.01, ease: 'power2.in' }, 0);
-    tl.to([date, desc, read], { opacity: 0, y: 10, duration: 0.22, ease: 'power2.in' }, 0);
-    tl.add(function () {
-      setText(i);
-      var words = split(title);
-      gsap.set(words, { yPercent: 140, rotate: 3 });
-      gsap.set([date, desc, read], { opacity: 0, y: 12 });
-      gsap.to(words, { yPercent: 0, rotate: 0, duration: 0.7, stagger: 0.045, ease: 'expo.out' });
-      gsap.to([date, desc, read], { opacity: 1, y: 0, duration: 0.55, stagger: 0.06, ease: 'expo.out', delay: 0.05 });
-    }, 0.27);
-    tl.to({}, { duration: 0.62 }); // release once the entrance has landed
-  }
+  }, { threshold: 0.18 });
+  figs.forEach(function (f) { revealIo.observe(f); });
 
-  document.getElementById('csxPrev').addEventListener('click', function () {
-    goTo((current + STUDIES.length - 1) % STUDIES.length);
-  });
-  document.getElementById('csxNext').addEventListener('click', function () {
-    goTo((current + 1) % STUDIES.length);
-  });
-  thumbs.forEach(function (t) {
-    t.addEventListener('click', function () { goTo(parseInt(t.getAttribute('data-i'), 10)); });
-  });
-
-  // entrance: same word-mask rise as the homepage headings
-  if (hasGsap) {
-    var words = split(title);
-    gsap.set(words, { yPercent: 140, rotate: 3 });
-    gsap.set([date, desc, read], { opacity: 0, y: 12 });
-    gsap.to(words, { yPercent: 0, rotate: 0, duration: 0.85, stagger: 0.05, ease: 'expo.out', delay: 0.25 });
-    gsap.to([date, desc, read], { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'expo.out', delay: 0.4 });
-    gsap.fromTo(img, { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.9, ease: 'expo.out', delay: 0.2 });
-  }
-})();
-
-// CASE STUDY FILTERS
-(function () {
-  const pills = document.querySelectorAll('.cs-filter');
-  const cards = document.querySelectorAll('[data-tags]');
-  const featured = document.getElementById('csFeatured');
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      pills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      const f = pill.getAttribute('data-filter');
-      let featVisible = 0;
-      cards.forEach(card => {
-        const show = f === 'all' || card.getAttribute('data-tags').split(' ').indexOf(f) !== -1;
-        card.classList.toggle('cs-hidden', !show);
-        if (show && card.classList.contains('cs-mini')) featVisible++;
+  // parallax: figures drift a few percent against scroll while on screen
+  if (!rvReduce) {
+    var visible = new Set();
+    var pxIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.isIntersecting ? visible.add(en.target) : visible.delete(en.target); });
+    });
+    figs.forEach(function (f) { pxIo.observe(f); });
+    var ticking = false;
+    function drift() {
+      ticking = false;
+      var vh = window.innerHeight;
+      visible.forEach(function (fig) {
+        var r = fig.getBoundingClientRect();
+        var p = (r.top + r.height / 2 - vh / 2) / vh; // -1 .. 1
+        fig.querySelector('img').style.translate = '0 ' + (p * 6).toFixed(2) + '%';
       });
-      if (featured) featured.classList.toggle('cs-hidden', featVisible === 0);
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(drift); }
+    }, { passive: true });
+    drift();
+  }
+
+  // scroll-spy: highlight the current chapter in the contents and the rail
+  function setActive(id) {
+    indexLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-ch') === id); });
+  }
+  var spyIo = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) setActive(en.target.id.replace('ch-', ''));
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  chapters.forEach(function (c) { spyIo.observe(c); });
+
+  // rail only lives while the pages deck is on screen
+  if (rail && deck) {
+    var railIo = new IntersectionObserver(function (entries) {
+      rail.classList.toggle('show', entries[0].isIntersecting);
+    }, { rootMargin: '-15% 0px -15% 0px' });
+    railIo.observe(deck);
+  }
+
+  // filters: chapters outside the category fold away, contents rows dim
+  var pills = document.querySelectorAll('.cs-filter');
+  var empty = document.getElementById('edEmpty');
+  var filtering = false;
+  pills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      if (filtering) return;
+      pills.forEach(function (p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+      var f = pill.getAttribute('data-filter');
+      var shown = 0;
+      filtering = true;
+      chapters.forEach(function (ch) {
+        var match = f === 'all' || ch.getAttribute('data-tags').split(' ').indexOf(f) !== -1;
+        var id = ch.id.replace('ch-', '');
+        document.querySelectorAll('.ed-index a[data-ch="' + id + '"], .ed-rail a[data-ch="' + id + '"]')
+          .forEach(function (a) { a.classList.toggle('dim', !match); });
+        if (match) shown++;
+        if (hasGsap && !rvReduce) {
+          if (match && ch.classList.contains('is-hidden')) {
+            ch.classList.remove('is-hidden');
+            gsap.fromTo(ch, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.55, ease: 'expo.out', clearProps: 'all' });
+          } else if (!match && !ch.classList.contains('is-hidden')) {
+            gsap.to(ch, { autoAlpha: 0, duration: 0.22, ease: 'power2.in', onComplete: function () {
+              ch.classList.add('is-hidden'); gsap.set(ch, { clearProps: 'all' });
+            } });
+          }
+        } else {
+          ch.classList.toggle('is-hidden', !match);
+        }
+      });
+      if (empty) empty.hidden = shown > 0;
+      setTimeout(function () { filtering = false; }, 320);
     });
   });
 })();
