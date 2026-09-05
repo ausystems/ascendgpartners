@@ -154,23 +154,31 @@
   </div>
 </nav>
 
-<!-- FEATURED HERO -->
+<!-- FEATURED HERO — split-panel slider -->
 <header class="cs-wide">
-  <div class="cs-hero reveal">
-    <div>
-      <span class="cs-eyebrow">Featured</span>
-      <svg class="cs-trend" width="52" height="26" viewBox="0 0 52 26" fill="none" aria-hidden="true">
-        <path d="M2 22L14 10l8 8L40 4" stroke="#e8613c" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M30 4h10v10" stroke="#e8613c" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <h1>How Ascend Growth Partners Built David Feldman and BKFC Into a Globally Recognized Combat Sports Authority</h1>
-      <span class="cs-chip">Press &amp; PR</span>
-      <br>
-      <a class="cs-hero-read" href="https://ascendgpartners.com/case-studies/bare-knuckle-fc">Read Case Study &#8594;</a>
+  <div class="csx-hero" id="csxHero">
+    <div class="csx-panel">
+      <div>
+        <span class="csx-date" id="csxDate">Jun 6, 2026</span>
+        <h1 class="csx-title" id="csxTitle">How Ascend Growth Partners Built David Feldman and BKFC Into a Globally Recognized Combat Sports Authority</h1>
+        <a class="csx-read" id="csxRead" href="https://ascendgpartners.com/case-studies/bare-knuckle-fc">Read Case Study &#8594;</a>
+      </div>
+      <p class="csx-desc" id="csxDesc">Relentless press and PR that turned David Feldman and BKFC into a globally recognized combat sports authority.</p>
     </div>
-    <div class="cs-hero-media">
-      <img src="../uploads/bkfc-feldman-stage.webp" width="1536" height="1023" alt="David Feldman, founder of BKFC, at ringside under arena lights" decoding="async">
+    <div class="csx-media">
+      <img src="../uploads/bkfc-feldman-stage.webp" width="1536" height="1023" alt="Featured case study" decoding="async" id="csxImg">
     </div>
+    <button class="csx-arrow csx-prev" id="csxPrev" aria-label="Previous case study">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M9.5 2.5L4.5 7.5l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="csx-arrow csx-next" id="csxNext" aria-label="Next case study">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M5.5 2.5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="csx-strip" id="csxStrip" role="tablist" aria-label="Featured case studies">
+    <button class="csx-thumb active" data-i="0" aria-label="David Feldman and BKFC"><img src="../uploads/bkfc-feldman-stage.webp" alt=""></button>
+    <button class="csx-thumb" data-i="1" aria-label="Dr. Harrison Lee"><img src="../uploads/dr-harrison-lee-1.webp" alt=""></button>
+    <button class="csx-thumb" data-i="2" aria-label="Jason Wojo"><img src="../uploads/dr-harrison-lee-2.webp" alt=""></button>
   </div>
 </header>
 
@@ -185,7 +193,7 @@
 
   <!-- FEATURED CASE STUDIES -->
   <section id="csFeatured" aria-label="Featured case studies">
-    <h2 class="cs-sec-title reveal">Featured Case Studies</h2>
+    <h2 class="cs-sec-title rv-words">Featured Case Studies</h2>
     <div class="cs-feat-grid">
       <a class="cs-mini reveal" data-tags="press" href="https://ascendgpartners.com/case-studies/bare-knuckle-fc">
         <span class="cs-mini-thumb"><img loading="lazy" decoding="async" src="../uploads/bkfc-feldman-stage.webp" alt="David Feldman of BKFC ringside"></span>
@@ -208,7 +216,7 @@
 
   <!-- ALL CASE STUDIES -->
   <section aria-label="All case studies">
-    <h2 class="cs-sec-title reveal">All Case Studies</h2>
+    <h2 class="cs-sec-title rv-words">All Case Studies</h2>
     <div class="cs-all-grid">
       <a class="cs-card-v reveal" data-tags="press" href="https://ascendgpartners.com/case-studies/bare-knuckle-fc">
         <span class="cs-card-img"><img loading="lazy" decoding="async" src="../uploads/bkfc-feldman-stage.webp" alt="David Feldman of BKFC ringside under arena lights"></span>
@@ -289,6 +297,7 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="../assets/js/case-studies.js"></script>
 </body>
 </html>
