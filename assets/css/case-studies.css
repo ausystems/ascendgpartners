@@ -1,0 +1,99 @@
+/* ============================================
+   CASE STUDIES PAGE (from client screen-recording reference)
+   ============================================ */
+.cs-page { --font-serif-text: 'Instrument Serif', Georgia, serif; }
+
+.cs-wide { max-width: 1220px; margin: 0 auto; padding: 0 3rem; }
+.cs-main { max-width: 1140px; margin: 0 auto; padding: 0 3rem; }
+
+/* hero: featured study */
+.cs-hero {
+  display: grid; grid-template-columns: 1fr 1.14fr;
+  gap: clamp(2.5rem, 5vw, 5.5rem); align-items: center;
+  /* top padding clears the fixed nav */
+  padding: 9.5rem 0 3.5rem;
+}
+.cs-eyebrow {
+  display: block; color: var(--accent);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.cs-trend { display: block; margin: 0.8rem 0 2.1rem; color: var(--accent); }
+.cs-hero h1 {
+  font-family: var(--font-serif-text); font-style: normal; font-weight: 400;
+  font-size: clamp(2.1rem, 3.4vw, 3.1rem); line-height: 1.2; letter-spacing: 0.002em;
+  color: #F4F2ED; max-width: 21ch; margin: 0 0 1.7rem;
+}
+.cs-chip {
+  display: inline-block; background: var(--accent); color: #fff;
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.36rem 0.75rem; border-radius: 6px; line-height: 1.2;
+}
+.cs-hero-read {
+  display: inline-block; margin-top: 1.9rem;
+  color: #fff; font-size: 0.92rem; font-weight: 600;
+  text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px;
+}
+.cs-hero-media { border-radius: 16px; overflow: hidden; }
+.cs-hero-media img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* filter pills */
+.cs-filters { display: flex; flex-wrap: wrap; gap: 0.65rem; padding: 2.6rem 0 0.4rem; }
+.cs-filter {
+  font-family: var(--font-primary);
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #fff; background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 8px;
+  padding: 0.58rem 1.1rem; cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, color 0.25s;
+}
+.cs-filter:hover { border-color: rgba(255, 255, 255, 0.55); }
+.cs-filter.active { background: #F7F8F8; color: var(--navy); border-color: #F7F8F8; }
+
+/* section headings */
+.cs-sec-title {
+  font-family: var(--font-editorial); font-style: italic; font-weight: 400;
+  font-size: clamp(1.9rem, 2.7vw, 2.55rem); letter-spacing: 0.01em;
+  color: #F4F2ED; margin: 4.3rem 0 2.5rem;
+}
+
+/* featured: two horizontal mini cards */
+.cs-feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.8rem, 3vw, 2.8rem); }
+.cs-mini { display: grid; grid-template-columns: 158px 1fr; gap: 1.15rem; align-items: start; }
+.cs-mini-thumb { border-radius: 10px; overflow: hidden; aspect-ratio: 1; }
+.cs-mini-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cs-mini h3 {
+  font-family: var(--font-serif-text); font-weight: 400;
+  font-size: 1.17rem; line-height: 1.38; color: #F4F2ED;
+  margin: 0.7rem 0 0.55rem;
+}
+.cs-meta { color: rgba(255, 255, 255, 0.38); font-size: 0.76rem; }
+
+/* all case studies: three vertical cards */
+.cs-all-grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.6rem, 2.6vw, 2.3rem);
+  padding-bottom: 7.5rem;
+}
+.cs-card-v { display: block; }
+.cs-card-img { border-radius: 12px; overflow: hidden; aspect-ratio: 4 / 3; margin-bottom: 1rem; }
+.cs-card-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cs-chips-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.75rem; }
+.cs-card-v h3 {
+  font-family: var(--font-serif-text); font-weight: 400;
+  font-size: 1.22rem; line-height: 1.38; color: #F4F2ED;
+  margin: 0 0 0.55rem;
+}
+.cs-hidden { display: none !important; }
+
+@media (max-width: 900px) {
+  .cs-hero { grid-template-columns: 1fr; padding-top: 7.5rem; }
+  .cs-hero h1 { max-width: none; }
+  .cs-feat-grid { grid-template-columns: 1fr; }
+  .cs-all-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .cs-wide, .cs-main { padding: 0 1.5rem; }
+  .cs-mini { grid-template-columns: 120px 1fr; gap: 0.9rem; }
+  .cs-sec-title { margin: 3.2rem 0 1.8rem; }
+  .cs-all-grid { padding-bottom: 5rem; }
+}
