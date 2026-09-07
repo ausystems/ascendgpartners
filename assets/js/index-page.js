@@ -121,7 +121,9 @@
   if (content) {
     var cimgs = Array.prototype.slice.call(content.querySelectorAll('.ix-content-stage .ix-plate img'));
     var stateB = content.querySelector('.ix-content-state b');
-    var states = ['Hundreds of unrelated pages', 'Clusters emerge', 'One topic, fully supported'];
+    // each page supplies its own stage labels; the SEO page's remain the default
+    var states = ((stateB && stateB.parentNode.getAttribute('data-states')) ||
+      'Hundreds of unrelated pages|Clusters emerge|One topic, fully supported').split('|');
     function setContent(p) { var x = p * 2; cimgs.forEach(function (img, i) { img.style.opacity = i === 0 ? 1 : Math.max(0, 1 - Math.abs(x - i)); }); if (stateB) stateB.textContent = states[Math.min(2, Math.floor(p * 3))]; }
     if (reduce || mobile || !hasST) { if (cimgs[2]) { cimgs[2].style.opacity = 1; } if (stateB) stateB.textContent = states[2]; }
     else ScrollTrigger.create({ trigger: content.querySelector('.ix-content-track'), start: 'top top', end: 'bottom bottom', scrub: 0.5, onUpdate: function (st) { setContent(st.progress); } });
@@ -139,9 +141,11 @@
   var auth = document.querySelector('.ix-auth');
   if (auth) {
     var word = auth.querySelector('.word'), aimgs = Array.prototype.slice.call(auth.querySelectorAll('.ix-auth-visual .ix-plate img'));
+    var drift = ((word && word.getAttribute('data-drift')) || '-6,-20').split(',').map(parseFloat);
+    var dFrom = drift[0], dTo = drift[1];
     if (reduce || !hasST) { if (aimgs[1]) aimgs[1].style.opacity = 1; }
     else {
-      ScrollTrigger.create({ trigger: auth, start: 'top bottom', end: 'bottom top', scrub: 0.6, onUpdate: function (st) { gsap.set(word, { xPercent: -6 - st.progress * 14 }); } });
+      ScrollTrigger.create({ trigger: auth, start: 'top bottom', end: 'bottom top', scrub: 0.6, onUpdate: function (st) { gsap.set(word, { xPercent: dFrom + st.progress * (dTo - dFrom) }); } });
       ScrollTrigger.create({ trigger: auth.querySelector('.ix-auth-visual'), start: 'top 80%', end: 'bottom 40%', scrub: 0.5, onUpdate: function (st) {
         if (aimgs[1]) aimgs[1].style.opacity = Math.max(0, Math.min(1, (st.progress - 0.2) / 0.5));
       } });

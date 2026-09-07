@@ -1,0 +1,44 @@
+/* ============================================================
+   LINK BUILDING — the few rules that differ from the SEO page.
+   Everything else is inherited from index-page.css unchanged.
+   ============================================================ */
+
+/* The hero artwork is a drawing, not a photograph: the vignette that softened
+   the SEO page's render would eat this diagram's outermost publications.
+   This headline is far longer than the SEO page's two short lines, so the
+   network sits in the lower right, clear of the type rather than under it. */
+.lb-page .ix-hero-monolith {
+  -webkit-mask-image: none; mask-image: none;
+  top: auto; bottom: 3%; right: -3%; width: 50%;
+}
+
+/* This headline is two long lines, so the second one steps in rather than across. */
+.lb-page .ix-hero-h { font-size: clamp(2.9rem, 7.4vw, 8.2rem); }
+.lb-page .ix-hero-h .l2 { padding-left: clamp(0px, 8vw, 7rem); }
+
+/* The step-02 asset must read at full strength, so the scrim under the
+   headline stops lower than it does on the SEO page. */
+.lb-page .ix-content-scrim {
+  background: linear-gradient(to top, rgba(243, 243, 239, 0.94) 0%, rgba(243, 243, 239, 0.55) 24%, rgba(243, 243, 239, 0) 48%);
+}
+
+/* "EARNED" is six letters where "AUTHORITY" was nine. */
+.lb-page .ix-auth .word { font-size: clamp(4.4rem, 20vw, 21rem); }
+
+/* "+180%" is five glyphs where the SEO page's lead figure was three. */
+.lb-page .ix-bigstat.s1 .num { font-size: clamp(4.6rem, 13vw, 13.5rem); }
+
+/* The closing network sits to the right of the CTA scrim, so the phone crop
+   follows it across instead of holding the centre. */
+@media (max-width: 600px) {
+  .lb-page .ix-final .ix-plate img { object-position: 70% 50%; }
+}
+
+@media (max-width: 1024px) {
+  .lb-page .ix-hero-monolith { width: 74%; right: -6%; bottom: 2%; }
+}
+@media (max-width: 600px) {
+  .lb-page .ix-hero-h { font-size: clamp(2.5rem, 10vw, 4rem); }
+  .lb-page .ix-hero-h .l2 { padding-left: 5vw; }
+  .lb-page .ix-hero-monolith { position: relative; width: 108%; right: auto; left: -4%; top: auto; margin-top: 2rem; }
+}
