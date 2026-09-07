@@ -50,7 +50,8 @@
 .ix-link:hover::after { transform: scaleX(0.55); transform-origin: 0 50%; }
 
 /* image plates: stacked states, crossfaded by scroll */
-.ix-plate { position: relative; overflow: hidden; background: var(--paper-2); }
+/* each diagram carries its own ground, so the plate itself stays transparent */
+.ix-plate { position: relative; overflow: hidden; background: transparent; }
 .ix-plate img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .ix-plate img + img { opacity: 0; }
 
@@ -62,8 +63,8 @@
 .ix-hero-h .l1, .ix-hero-h .l2 { display: block; }
 .ix-hero-h .l2 { padding-left: clamp(0px, 24vw, 22rem); }
 /* the object sits in the page, not in a photograph: the studio dissolves into the paper */
-.ix-hero-monolith { position: absolute; right: -4%; top: 4%; width: 56%; aspect-ratio: 3 / 2; z-index: 2; opacity: 0; filter: blur(14px); transform: scale(1.04); background: none; overflow: visible;
-  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 52%, rgba(0, 0, 0, 0) 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 52%, rgba(0, 0, 0, 0) 100%); }
+/* the hero art is a drawn search-results board, so it keeps its own edges: no photographic mask */
+.ix-hero-monolith { position: absolute; right: -4%; top: 4%; width: 56%; aspect-ratio: 3 / 2; z-index: 2; opacity: 0; filter: blur(14px); transform: scale(1.04); background: none; overflow: visible; }
 .ix-hero-monolith img { object-fit: contain; }
 .ix-hero-foot { position: relative; z-index: 3; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: end; margin-top: clamp(4rem, 10vh, 8rem); }
 .ix-hero-copy { grid-column: 1 / 4; grid-row: 1; max-width: 340px; opacity: 0; }
@@ -165,7 +166,7 @@
 .ix-auth-grid .ix-label { grid-column: 1 / 3; }
 .ix-auth-grid .sub { grid-column: 3 / 8; font-size: clamp(1.1rem, 1.5vw, 1.4rem); line-height: 1.35; letter-spacing: -0.02em; color: var(--on-dark); margin: 0; }
 .ix-auth-visual { margin-top: clamp(3rem, 7vh, 5.5rem); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: end; }
-.ix-auth-visual .ix-plate { grid-column: 1 / 9; aspect-ratio: 16 / 9; background: var(--graphite-2); }
+.ix-auth-visual .ix-plate { grid-column: 1 / 9; aspect-ratio: 16 / 9; }
 .ix-auth-text { grid-column: 9 / 13; padding-bottom: 1rem; }
 .ix-auth-text .ix-link { margin-top: 1.6rem; }
 
@@ -192,6 +193,7 @@
 .ix-inst-mobile { display: none; }
 .ix-inst-mobile .chap { padding: 2.5rem 0 3rem; border-top: 1px solid var(--hair); }
 .ix-inst-mobile .chap .ix-plate { aspect-ratio: 4 / 5; margin: 1.4rem 0; }
+.ix-inst-mobile .chap .ix-plate img { object-fit: contain; }
 .ix-inst-mobile .chap b { display: block; font-size: clamp(3.4rem, 18vw, 5rem); font-weight: 600; letter-spacing: -0.06em; line-height: 0.9; margin-bottom: 0.4rem; }
 .ix-inst-mobile .chap h3 { font-family: var(--font-primary); font-size: clamp(1.5rem, 6vw, 2rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 0.8rem; }
 .ix-inst-mobile .chap p { margin: 0; color: var(--ink-2); line-height: 1.55; }
@@ -245,6 +247,7 @@
   .ix-engine-stage { grid-template-columns: 1fr; align-content: start; row-gap: 1rem; }
   .ix-engine-copy, .ix-engine-plate, .ix-engine-index { grid-column: 1 / -1; }
   .ix-engine-plate { aspect-ratio: 4 / 3; }
+  .ix-engine-plate img { object-fit: contain; }
   .ix-engine-index { align-self: start; padding-bottom: 0; }
   .ix-bigstat.s1 .fig, .ix-bigstat.s2 .fig, .ix-bigstat.s3 .fig { grid-column: 1 / -1; }
   .ix-bigstat .cap { grid-column: 1 / 10 !important; padding: 0.6rem 0 0; }
@@ -278,7 +281,7 @@
 @media (max-width: 600px) {
   .ix-hero { padding-top: 6.5rem; }
   .ix-hero-h .l2 { padding-left: 8vw; }
-  .ix-hero-monolith { position: relative; width: 112%; right: auto; left: -6%; top: auto; margin-top: 2rem; -webkit-mask-image: none; mask-image: none; }
+  .ix-hero-monolith { position: relative; width: 112%; right: auto; left: -6%; top: auto; margin-top: 2rem; }
   .ix-hero-foot { margin-top: 2.5rem; row-gap: 2rem; }
   .ix-hero-copy, .ix-hero-cta { grid-column: 1 / -1; }
   .ix-btn { font-size: 0.64rem; letter-spacing: 0.12em; gap: 0.8rem; padding: 0.85rem 1.05rem 0.85rem 0.95rem; }
@@ -296,6 +299,7 @@
   .ix-content-track { height: auto; }
   .ix-content-stage { position: relative; height: auto; }
   .ix-content-stage .ix-plate { position: relative; aspect-ratio: 4 / 5; }
+  .ix-content-stage .ix-plate img { object-fit: contain; }
   .ix-content-scrim { display: none; }
   .ix-content-type { position: relative; padding: 2rem var(--margin) 0; }
   .ix-content-type .ix-label { padding-top: 0; }
@@ -305,7 +309,7 @@
   .ix-q .n { display: none; }
   .ix-final { display: block; min-height: 0; padding-bottom: clamp(4rem, 9vh, 6rem); }
   .ix-final .ix-plate { position: relative; inset: auto; aspect-ratio: 4 / 5; margin-bottom: 2.5rem; }
-  .ix-final .ix-plate img { object-position: 55% 50%; }
+  .ix-final .ix-plate img { object-fit: contain; object-position: 50% 50%; }
   .ix-final .ix-plate::after { display: none; }
 }
 /* reduced motion: every state is shown at rest, nothing pins */
