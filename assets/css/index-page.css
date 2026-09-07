@@ -193,7 +193,6 @@
 .ix-inst-mobile { display: none; }
 .ix-inst-mobile .chap { padding: 2.5rem 0 3rem; border-top: 1px solid var(--hair); }
 .ix-inst-mobile .chap .ix-plate { aspect-ratio: 4 / 5; margin: 1.4rem 0; }
-.ix-inst-mobile .chap .ix-plate img { object-fit: contain; }
 .ix-inst-mobile .chap b { display: block; font-size: clamp(3.4rem, 18vw, 5rem); font-weight: 600; letter-spacing: -0.06em; line-height: 0.9; margin-bottom: 0.4rem; }
 .ix-inst-mobile .chap h3 { font-family: var(--font-primary); font-size: clamp(1.5rem, 6vw, 2rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; margin: 0 0 0.8rem; }
 .ix-inst-mobile .chap p { margin: 0; color: var(--ink-2); line-height: 1.55; }
