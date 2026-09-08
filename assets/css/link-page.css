@@ -34,9 +34,6 @@
   .lb-page .ix-final .ix-plate img { object-position: 70% 50%; }
 }
 
-@media (max-width: 1024px) {
-  .lb-page .ix-hero-monolith { width: 74%; right: -6%; bottom: 2%; }
-}
 @media (max-width: 600px) {
   .lb-page .ix-hero-h { font-size: clamp(2.5rem, 10vw, 4rem); }
   .lb-page .ix-hero-h .l2 { padding-left: 5vw; }

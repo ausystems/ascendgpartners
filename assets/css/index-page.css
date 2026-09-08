@@ -239,7 +239,10 @@
 /* ---------- responsive: mobile is art-directed, not stacked ---------- */
 @media (max-width: 1024px) {
   .ix-hero-h .l2 { padding-left: 12vw; }
-  .ix-hero-monolith { width: 68%; right: -6%; top: 12%; }
+  /* Below the desktop grid the hero artwork joins the flow instead of floating
+     over the headline, which it otherwise collides with on landscape tablets. */
+  .ix-hero-monolith { position: relative; width: 100%; right: auto; left: auto; top: auto; bottom: auto;
+    margin: clamp(1.5rem, 4vh, 3rem) 0 0; }
   .ix-hero-copy { grid-column: 1 / 8; grid-row: 1; }
   .ix-hero-cta { grid-column: 1 / 8; grid-row: 2; }
   .ix-hero-foot { row-gap: 1.8rem; }

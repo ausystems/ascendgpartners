@@ -33,9 +33,6 @@
   .geo-page .ix-final .ix-plate img { object-position: 70% 50%; }
 }
 
-@media (max-width: 1024px) {
-  .geo-page .ix-hero-monolith { width: 76%; right: -6%; bottom: 2%; }
-}
 @media (max-width: 600px) {
   .geo-page .ix-hero-h { font-size: clamp(2.4rem, 9.6vw, 3.9rem); }
   .geo-page .ix-hero-h .l2 { padding-left: 5vw; }
