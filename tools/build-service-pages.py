@@ -16,6 +16,7 @@ ART = {
  'geo':              ('geo',     'geo-hero-3',   ['geo-vis-2', 'geo-field-3', 'geo-attrib-2'], 2),
  'content-creation': ('content', 'cc-hero-3',    ['cc-demand-2', 'cc-field-3', 'cc-pipe-2'], 2),
  'email-marketing':  ('email',   'em-hero-3',    ['em-rev-2', 'em-field-3', 'em-sms', 'em-creators'], 2),
+ 'paid-social':      ('social',  'ps-hero',      ['ps-creative', 'ps-funnel', 'ps-scale'], 2),
 }
 ALT = {
  'hero-active': 'The index complete: every layer aligned and the strongest at the top',
@@ -39,14 +40,20 @@ ALT = {
  'em-field-3': 'One list resolved into segments, each receiving its own message',
  'em-sms': 'A month of email, and the two moments that earned a text',
  'em-creators': 'An issue landing on the same day, and the list it builds',
+ 'ps-hero': 'One ad unit, and the return it produced',
+ 'ps-creative': 'Five variants of the same ad, and the one that carried',
+ 'ps-funnel': 'Prospecting, retargeting and retention, each speaking to a smaller audience',
+ 'ps-scale': 'Spend climbing while efficiency is held level, with creative refreshed along the way',
 }
 NAV_SELF = {
  'seo': 'SEO', 'link-building': 'Link Building', 'geo': 'GEO',
  'content-creation': 'Content Creation', 'email-marketing': 'Email &amp; SMS',
+ 'paid-social': 'Paid Social',
 }
 SIBLING_HREF = {
  'SEO': '../seo/', 'GEO': '../geo/', 'Link Building': '../link-building/',
  'Content Creation': '../content-creation/', 'Email &amp; SMS': '../email-marketing/',
+ 'Paid Social': '../paid-social/',
 }
 E = lambda s: html.escape(s, quote=False).replace('&amp;#', '&#')
 

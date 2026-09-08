@@ -437,5 +437,86 @@
   "canonical": "https://ascendgpartners.com/services/email-marketing",
   "link_label": "See our content services",
   "link_href": "../content-creation/"
+ },
+ "paid-social": {
+  "label": "Paid Social",
+  "h1": "Paid Social That Scales Your Brand.",
+  "lede": "Full-funnel paid social strategy across Meta, TikTok, and beyond - creative-led, data-driven, and built to compound.",
+  "cta": "Get Your Social Strategy",
+  "figures": [
+   {
+    "value": "+215%",
+    "cap": "Average revenue lift"
+   },
+   {
+    "value": "4.1x",
+    "cap": "Average ROAS"
+   },
+   {
+    "value": "-28%",
+    "cap": "Cost per acquisition"
+   }
+  ],
+  "chapters": [
+   {
+    "label": "Step 01",
+    "h2": "Find the message that moves buyers",
+    "body": "We test hooks, offers, angles, and formats until the account has creative that can pull attention and convert it into revenue."
+   },
+   {
+    "label": "Step 02",
+    "h2": "Build a full-funnel media system",
+    "body": "Prospecting, retargeting, retention, and creative sequencing work together so paid social does more than chase cheap clicks."
+   },
+   {
+    "label": "Step 03",
+    "h2": "Scale without breaking efficiency",
+    "body": "We scale budget around winning signals, refresh creative before fatigue sets in, and keep reporting tied to business impact."
+   }
+  ],
+  "list": [
+   {
+    "title": "Creative Strategy",
+    "desc": "Hooks, scripts, angles, and assets built for paid social performance."
+   },
+   {
+    "title": "Meta Ads",
+    "desc": "Campaigns across Facebook and Instagram with clean testing systems."
+   },
+   {
+    "title": "TikTok Ads",
+    "desc": "Native-feeling creative and media buying for TikTok demand."
+   },
+   {
+    "title": "Retargeting",
+    "desc": "Smart remarketing that brings warm audiences back without overpaying."
+   },
+   {
+    "title": "Offer Testing",
+    "desc": "Testing discounts, bundles, lead magnets, and CTAs to find what converts."
+   },
+   {
+    "title": "Performance Reporting",
+    "desc": "Readable reporting across spend, CAC, ROAS, and revenue."
+   }
+  ],
+  "faq": [
+   {
+    "q": "Do you create the ad creative?",
+    "a": "Yes. We can guide, script, brief, and produce creative systems depending on what the account needs."
+   },
+   {
+    "q": "Which platforms do you manage?",
+    "a": "Meta, TikTok, LinkedIn, YouTube, and other paid social channels when they match the audience and offer."
+   },
+   {
+    "q": "Why do paid social accounts stop working?",
+    "a": "Usually creative fatigue, weak offers, poor tracking, or scaling too fast without a testing system."
+   }
+  ],
+  "final_cta": "Get Your Social Strategy",
+  "title": "Paid Social Agency for Meta & TikTok | Ascend Growth Partners",
+  "desc": "Full-funnel paid social strategy across Meta, TikTok, and beyond - creative-led, data-driven, and built to compound.",
+  "canonical": "https://ascendgpartners.com/services/paid-social"
  }
 }
