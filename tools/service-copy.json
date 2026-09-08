@@ -702,5 +702,86 @@
   "title": "Creative That Cuts Through the Noise | Ascend Growth Partners",
   "desc": "Brand storytelling, ad creative, and content assets engineered to stop the scroll and drive action.",
   "canonical": "https://ascendgpartners.com/services/creative"
+ },
+ "ai-solutions": {
+  "label": "AI Solutions",
+  "h1": "AI Solutions Built for Real Business Growth.",
+  "lede": "Custom AI integrations, automation workflows, and intelligent systems that multiply your team’s output.",
+  "cta": "Explore AI Solutions",
+  "figures": [
+   {
+    "value": "200+",
+    "cap": "Hours saved per month"
+   },
+   {
+    "value": "40%",
+    "cap": "Average efficiency gain"
+   },
+   {
+    "value": "10x",
+    "cap": "Output multiplier"
+   }
+  ],
+  "chapters": [
+   {
+    "label": "Step 01",
+    "h2": "Map the work that drains time",
+    "body": "We find the repetitive, expensive, or slow workflows where AI can create immediate leverage without adding chaos."
+   },
+   {
+    "label": "Step 02",
+    "h2": "Build useful AI into the workflow",
+    "body": "We connect AI to the tools your team already uses so it can draft, classify, summarize, route, and support real work."
+   },
+   {
+    "label": "Step 03",
+    "h2": "Measure output and adoption",
+    "body": "AI is only valuable if people use it. We track saved time, quality, adoption, and business outcomes."
+   }
+  ],
+  "list": [
+   {
+    "title": "Workflow Automation",
+    "desc": "AI-assisted systems for repetitive ops, marketing, sales, and support work."
+   },
+   {
+    "title": "Custom Assistants",
+    "desc": "Internal assistants trained around your documents, rules, and processes."
+   },
+   {
+    "title": "Data Routing",
+    "desc": "Classify, enrich, and route leads, tickets, briefs, and requests automatically."
+   },
+   {
+    "title": "Content Systems",
+    "desc": "AI-supported content production workflows with review and brand controls."
+   },
+   {
+    "title": "Tool Integrations",
+    "desc": "Connect AI into CRMs, docs, spreadsheets, Slack, and internal apps."
+   },
+   {
+    "title": "Governance",
+    "desc": "Practical guardrails so teams use AI safely and consistently."
+   }
+  ],
+  "faq": [
+   {
+    "q": "Do we need a custom app?",
+    "a": "Not always. Many wins come from connecting AI into the tools your team already uses."
+   },
+   {
+    "q": "Can AI use our company knowledge?",
+    "a": "Yes. We can structure documents, FAQs, SOPs, and data so assistants can answer with useful context."
+   },
+   {
+    "q": "How do you prevent messy AI output?",
+    "a": "We add templates, guardrails, review steps, and measurement so output stays useful."
+   }
+  ],
+  "final_cta": "Explore AI Solutions",
+  "title": "AI Solutions Built for Real Business Growth | Ascend Growth Partners",
+  "desc": "Custom AI integrations, automation workflows, and intelligent systems that multiply your team’s output.",
+  "canonical": "https://ascendgpartners.com/services/ai-solutions"
  }
 }

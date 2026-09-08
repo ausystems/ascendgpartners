@@ -19,6 +19,7 @@ ART = {
  'paid-social':      ('social',  'ps-hero',      ['ps-creative', 'ps-funnel', 'ps-scale'], 2),
  'google-ads':       ('ads',     None,           ['ga-intent', 'ga-tracking', 'ga-scale', 'ga-buyers'], 2),
  'creative':         ('creative','cr-hero',      ['cr-angle', 'cr-system', 'cr-refresh'], 2),
+ 'ai-solutions':     ('ai',      'ai-hero',      ['ai-drain', 'ai-build', 'ai-adopt'], 2),
 }
 ALT = {
  'hero-active': 'The index complete: every layer aligned and the strongest at the top',
@@ -54,6 +55,10 @@ ALT = {
  'cr-angle': 'The same subject shot four ways, and the attention each angle held',
  'cr-system': 'One concept resolved into five formats, each cut for its own channel',
  'cr-refresh': 'Performance decaying between refreshes, and lifted each time new work lands',
+ 'ai-hero': 'One brief going in, and the work of a team coming back',
+ 'ai-drain': 'Five workflows ranked by the hours each one takes',
+ 'ai-build': 'An AI layer joining the tools the team already works in',
+ 'ai-adopt': 'Output climbing as more of the team picks the system up',
 }
 NAV_SELF = {
  'seo': 'SEO', 'link-building': 'Link Building', 'geo': 'GEO',
@@ -61,6 +66,7 @@ NAV_SELF = {
  'paid-social': 'Paid Social',
  'google-ads': 'Google Ads',
  'creative': 'Creative',
+ 'ai-solutions': 'AI Solutions',
 }
 SIBLING_HREF = {
  'SEO': '../seo/', 'GEO': '../geo/', 'Link Building': '../link-building/',
@@ -68,6 +74,7 @@ SIBLING_HREF = {
  'Paid Social': '../paid-social/',
  'Google Ads': '../google-ads/',
  'Creative': '../creative/',
+ 'AI Solutions': '../ai-solutions/',
 }
 E = lambda s: html.escape(s, quote=False).replace('&amp;#', '&#')
 
