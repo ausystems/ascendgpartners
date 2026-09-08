@@ -620,5 +620,87 @@
   "title": "Google Ads Agency for Brands That Track Revenue, Not Clicks | Ascend Growth Partners",
   "desc": "Search, Shopping, Performance Max, and YouTube campaigns built around revenue and pipeline - not click-through rates. Every dollar in, every dollar out.",
   "canonical": "https://ascendgpartners.com/services/google-ads"
+ },
+ "creative": {
+  "label": "Creative",
+  "h1": "Creative That Cuts Through the Noise.",
+  "lede": "Brand storytelling, ad creative, and content assets engineered to stop the scroll and drive action.",
+  "cta": "See Our Creative Work",
+  "cta_href": "../../case-studies/",
+  "figures": [
+   {
+    "value": "3x",
+    "cap": "Average engagement lift"
+   },
+   {
+    "value": "+140%",
+    "cap": "Ad CTR improvement"
+   },
+   {
+    "value": "24hr",
+    "cap": "Average turnaround"
+   }
+  ],
+  "chapters": [
+   {
+    "label": "Step 01",
+    "h2": "Find the angle",
+    "body": "We uncover the hooks, pain points, proof, and positioning that make people care quickly."
+   },
+   {
+    "label": "Step 02",
+    "h2": "Build creative systems",
+    "body": "We create reusable concepts, scripts, visuals, and formats that can be tested across channels."
+   },
+   {
+    "label": "Step 03",
+    "h2": "Refresh before fatigue hits",
+    "body": "Creative performance decays. We keep new assets moving so campaigns do not run out of oxygen."
+   }
+  ],
+  "list": [
+   {
+    "title": "Ad Creative",
+    "desc": "Static, video, UGC-style, and platform-native concepts."
+   },
+   {
+    "title": "Brand Messaging",
+    "desc": "Sharper positioning, offers, hooks, and proof points."
+   },
+   {
+    "title": "Content Assets",
+    "desc": "Creative for landing pages, email, social, and campaigns."
+   },
+   {
+    "title": "Testing Systems",
+    "desc": "Creative matrices that test angles instead of random assets."
+   },
+   {
+    "title": "Production Direction",
+    "desc": "Briefs, scripts, shot lists, and asset guidance."
+   },
+   {
+    "title": "Performance Learning",
+    "desc": "Turn creative data into the next round of better ideas."
+   }
+  ],
+  "faq": [
+   {
+    "q": "Do you produce video creative?",
+    "a": "Yes. We can script, brief, direct, and produce video assets depending on the campaign need."
+   },
+   {
+    "q": "Is this brand creative or performance creative?",
+    "a": "Both. We make creative that fits the brand and is built to perform."
+   },
+   {
+    "q": "How often do we need new creative?",
+    "a": "It depends on spend and fatigue, but most active paid programs need a steady creative pipeline."
+   }
+  ],
+  "final_cta": "See Our Creative Work",
+  "title": "Creative That Cuts Through the Noise | Ascend Growth Partners",
+  "desc": "Brand storytelling, ad creative, and content assets engineered to stop the scroll and drive action.",
+  "canonical": "https://ascendgpartners.com/services/creative"
  }
 }

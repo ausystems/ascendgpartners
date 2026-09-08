@@ -18,6 +18,7 @@ ART = {
  'email-marketing':  ('email',   'em-hero-3',    ['em-rev-2', 'em-field-3', 'em-sms', 'em-creators'], 2),
  'paid-social':      ('social',  'ps-hero',      ['ps-creative', 'ps-funnel', 'ps-scale'], 2),
  'google-ads':       ('ads',     None,           ['ga-intent', 'ga-tracking', 'ga-scale', 'ga-buyers'], 2),
+ 'creative':         ('creative','cr-hero',      ['cr-angle', 'cr-system', 'cr-refresh'], 2),
 }
 ALT = {
  'hero-active': 'The index complete: every layer aligned and the strongest at the top',
@@ -49,18 +50,24 @@ ALT = {
  'ga-tracking': 'A page, a server, a conversion store, and the value taught back to bidding',
  'ga-scale': 'The spend that converts separated from the spend that does not, then scaled',
  'ga-buyers': 'Five kinds of brand, each needing its own campaign shape',
+ 'cr-hero': 'One asset cutting through a feed the eye would otherwise slide past',
+ 'cr-angle': 'The same subject shot four ways, and the attention each angle held',
+ 'cr-system': 'One concept resolved into five formats, each cut for its own channel',
+ 'cr-refresh': 'Performance decaying between refreshes, and lifted each time new work lands',
 }
 NAV_SELF = {
  'seo': 'SEO', 'link-building': 'Link Building', 'geo': 'GEO',
- 'content-creation': 'Content Creation', 'email-marketing': 'Email &amp; SMS',
+ 'content-creation': 'Content Creation', 'email-marketing': 'Email & SMS',
  'paid-social': 'Paid Social',
  'google-ads': 'Google Ads',
+ 'creative': 'Creative',
 }
 SIBLING_HREF = {
  'SEO': '../seo/', 'GEO': '../geo/', 'Link Building': '../link-building/',
- 'Content Creation': '../content-creation/', 'Email &amp; SMS': '../email-marketing/',
+ 'Content Creation': '../content-creation/', 'Email & SMS': '../email-marketing/',
  'Paid Social': '../paid-social/',
  'Google Ads': '../google-ads/',
+ 'Creative': '../creative/',
 }
 E = lambda s: html.escape(s, quote=False).replace('&amp;#', '&#')
 
@@ -74,6 +81,9 @@ def shared_chrome():
         b = src.index('<main')
         nav = src[a:b]
         foot = src[src.index('</main>') + len('</main>'):src.index('<script src="https://cdnjs')]
+        # the source lost the opening angle bracket of the footer comment, which
+        # leaves its text rendering as a stray line above the footer
+        foot = foot.replace('\n!-- FOOTER', '\n<!-- FOOTER')
         _CHROME = (nav, foot)
     return _CHROME
 
@@ -121,6 +131,7 @@ def chapter(c, folder, img, dark=False):
 
 def build(slug, d):
     folder, hero_img, chap_imgs, dark_at = ART[slug]
+    cta_href = d.get('cta_href', '../../contact/')
     nav, foot = shared_chrome()
     faq = d.get('faq') or []
 
@@ -162,10 +173,10 @@ def build(slug, d):
       '      <span class="sv-label is-accent">%s</span>\n'
       '      <h1 class="sv-h">%s</h1>\n'
       '      <p class="sv-lede">%s</p>\n'
-      '      <a class="sv-btn" href="../../contact/">%s <span aria-hidden="true">&#8594;</span></a>\n'
+      '      <a class="sv-btn" href="%s">%s <span aria-hidden="true">&#8594;</span></a>\n'
       '    </div>\n'
       '  </div>\n  %s\n</section>\n') % (
-        E(d['label']), E(d['h1']), E(d['lede']), E(d['cta']),
+        E(d['label']), E(d['h1']), E(d['lede']), cta_href, E(d['cta']),
         inline_hero(slug) if slug in INLINE_HERO else stage(folder, hero_img, eager=True))
 
     figs = ''.join('<div class="sv-fig"><strong>%s</strong><span>%s</span></div>' % (E(f['value']), E(f['cap']))
@@ -206,8 +217,8 @@ def build(slug, d):
              '    <div class="sv-mid rv">\n'
              '      <span class="sv-label is-accent">Ready?</span>\n'
              '      <h2 class="sv-h" id="svReady">Let’s build the system that grows with you.</h2>\n'
-             '      <a class="sv-btn" href="../../contact/">%s <span aria-hidden="true">&#8594;</span></a>\n'
-             '    </div>\n  </div>\n</section>\n\n</main>\n') % E(d['final_cta'])
+             '      <a class="sv-btn" href="%s">%s <span aria-hidden="true">&#8594;</span></a>\n'
+             '    </div>\n  </div>\n</section>\n\n</main>\n') % (cta_href, E(d['final_cta']))
 
     scripts = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>\n'
                '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>\n'
