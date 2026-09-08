@@ -518,5 +518,107 @@
   "title": "Paid Social Agency for Meta & TikTok | Ascend Growth Partners",
   "desc": "Full-funnel paid social strategy across Meta, TikTok, and beyond - creative-led, data-driven, and built to compound.",
   "canonical": "https://ascendgpartners.com/services/paid-social"
+ },
+ "google-ads": {
+  "label": "Google Ads",
+  "h1": "Google Ads engineered to pay for themselves.",
+  "lede": "Search, Shopping, Performance Max, and YouTube campaigns built around revenue and pipeline — not click-through rates and “engagement.” We track every dollar in, every dollar out, and we don’t hide behind dashboard vanity metrics.",
+  "cta": "Get an ad account audit",
+  "figures": [
+   {
+    "value": "Day 14",
+    "cap": "When you’ll see your first audit findings"
+   },
+   {
+    "value": "5 channels",
+    "cap": "Search, Shopping, Performance Max, YouTube, Demand Gen"
+   },
+   {
+    "value": "Revenue-first",
+    "cap": "Bidding tied to actual sales and pipeline, not form fills"
+   }
+  ],
+  "chapters": [
+   {
+    "label": "Step 01 — High-Intent Demand",
+    "h2": "Win the buyers already typing your offer into Google.",
+    "body": "The single highest-ROI ad spend on the internet is search ads in front of high-intent buyers. The catch is that 80% of accounts blow that budget on broad match terms, low-intent keywords, and search themes Google’s algorithm thinks are “related” but aren’t. We rebuild campaigns around the actual purchase-intent terms — branded, competitor, bottom-funnel category — and structure the account so budget compounds toward the cleanest conversion paths instead of leaking into clicks that never close."
+   },
+   {
+    "label": "Step 02 — Tracking & Attribution",
+    "h2": "Bad data is the reason your ads aren’t working.",
+    "body": "Most “underperforming” ad accounts aren’t actually underperforming — they’re just sending Google bad signals. Broken conversion tracking, missing offline conversion imports, every form fill counted as a “lead” regardless of quality, no GA4 server-side tagging. We rebuild the measurement stack first: clean event tracking, server-side tagging, offline conversion imports, value-based bidding, and revenue feedback loops. Once Google knows what a real conversion looks like in your business, the algorithm starts working for you instead of against you."
+   },
+   {
+    "label": "Step 03 — Scale Without Waste",
+    "h2": "Cut the spend that’s lying to you. Scale the spend that isn’t.",
+    "body": "Every Google Ads account has two budgets running at once: the part that’s actually generating revenue, and the part Google’s auto-bidding has quietly inflated to chase clicks that don’t convert. We separate them. Search term mining, negative keyword sculpting, asset group optimization in Performance Max, audience layering, and landing-page conversion-rate work — all aimed at one thing: more revenue from the same spend, or the same revenue from less. Then we scale the winners hard."
+   },
+   {
+    "label": "Built For Specific Buyers",
+    "h2": "We don’t run Google Ads for everyone. We run them for specific kinds of brands.",
+    "body": "Personal brands launching books, courses, and high-ticket programs. Ecommerce challengers fighting for market share against entrenched competitors. Direct-response businesses where every click has to pay for itself within 30 days. Local market expansions where geographic targeting is the entire game. Founder-led B2B brands selling premium offers that need conversion volume without the Edelman-tier ad agency price tag. The brands we work with — Mel Robbins, Ed Mylett, Tim Grover, Gymshark, BKFC, Keller Williams — span every one of those buckets, which is why our playbooks are built around buyer psychology, not industry verticals."
+   }
+  ],
+  "list": [
+   {
+    "title": "Account Architecture",
+    "desc": "Campaign structures built around buyer intent, margin tier, and funnel stage — not whatever Google Ads “campaign creation flow” suggests when you click the blue button."
+   },
+   {
+    "title": "Conversion Tracking & Server-Side Tagging",
+    "desc": "GA4, GTM server-side, offline conversion imports, enhanced conversions, and value-based bidding. The plumbing every account needs and most accounts don’t have."
+   },
+   {
+    "title": "Keyword & Search Term Strategy",
+    "desc": "Search term mining, negative keyword sculpting, match type control, branded vs. non-branded budget separation, and competitor conquest where it pencils."
+   },
+   {
+    "title": "Landing Page Direction",
+    "desc": "Conversion-rate audits, page-by-page recommendations, and direct collaboration with our web design team to fix the post-click experience that most agencies ignore."
+   },
+   {
+    "title": "Creative & Ad Copy Testing",
+    "desc": "Ad copy variants, RSA asset rotation, video and image testing in Performance Max and YouTube. Every angle tested, every winner doubled down on, no creative shipping without a control."
+   },
+   {
+    "title": "Revenue Reporting & Attribution",
+    "desc": "Dashboards tied to pipeline, sales, and ROAS — not clicks and CTR. Monthly strategy calls walk through what shipped, what moved, and what’s next. No PDFs nobody opens."
+   }
+  ],
+  "faq": [
+   {
+    "q": "How fast does Google Ads start working?",
+    "a": "You’ll see early signal — clicks, impressions, initial conversions — within the first 1–2 weeks. Stable, optimizable performance typically takes 4–6 weeks of data collection, testing, and bid algorithm learning. Anyone promising “results in 7 days” is either lying or burning your budget on broad match to fake the curve. We’d rather build something that compounds than spike a vanity number in week one."
+   },
+   {
+    "q": "Does Ascend manage Shopping and Performance Max campaigns?",
+    "a": "Yes — Ascend manages the full Google Ads stack: Search, Shopping, Performance Max, YouTube, Demand Gen, Discovery, and remarketing. Performance Max in particular has become non-negotiable for most ecommerce accounts, but it’s also the campaign type most agencies run badly because the asset group structure is unforgiving. We’re built for it."
+   },
+   {
+    "q": "Can you fix a Google Ads account that’s wasting spend?",
+    "a": "Yes — and account remediation is one of the most common ways clients start working with us. We audit account structure first, then conversion tracking, then search terms, then bidding strategy, then landing pages, then creative. Most “broken” accounts have 2–3 leaks doing the bulk of the damage, not 30 small ones — finding and patching those quickly is usually where the first ROAS lift comes from."
+   },
+   {
+    "q": "What’s the minimum ad spend Ascend works with?",
+    "a": "Our Google Ads engagements are typically a fit for brands spending $10K/month and up on paid media — that’s the spend level where the work we do (server-side tracking, value-based bidding, dedicated optimization cycles) actually pays for itself. Below that, the management fee outweighs the upside, and we’ll usually point smaller accounts toward DIY resources or different solutions until they’re ready."
+   },
+   {
+    "q": "Do you work with personal brands, course creators, and authors — or only ecommerce?",
+    "a": "Both, and they’re different playbooks. Course launches, book launches, and high-ticket personal-brand offers run on a launch-cycle model with very different bidding strategies than evergreen ecommerce. Ascend has run paid media for some of the largest personal brands in the world alongside our ecommerce clients, and we don’t try to force one playbook onto the other."
+   },
+   {
+    "q": "How does Google Ads fit with Ascend’s other services?",
+    "a": "Tightly. Paid ads at Ascend run alongside SEO, PR, content, and email — which means our Google Ads clients get audience signals (PR-driven brand searches), landing page support (web design), and lifecycle capture (email and SMS) that pure-PPC agencies can’t deliver. Most of our paid clients started with one service and expanded inside six months because the channels compound when they talk to each other."
+   },
+   {
+    "q": "What’s the difference between hiring Ascend vs. a typical PPC agency?",
+    "a": "Three things. One: we lead with measurement — server-side tracking, offline conversions, and revenue-based bidding before we touch a campaign. Two: we run paid as part of an integrated stack with PR, SEO, content, and email, so the channels reinforce each other. Three: we work specifically with founders, personal brands, and challenger companies, so our playbooks are tuned for direct-response and brand-led work — not enterprise lead-gen funnels nobody buys from anyway."
+   }
+  ],
+  "final_cta": "Get an ad account audit",
+  "title": "Google Ads Agency for Brands That Track Revenue, Not Clicks | Ascend Growth Partners",
+  "desc": "Search, Shopping, Performance Max, and YouTube campaigns built around revenue and pipeline - not click-through rates. Every dollar in, every dollar out.",
+  "canonical": "https://ascendgpartners.com/services/google-ads"
  }
 }

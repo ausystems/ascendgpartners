@@ -170,6 +170,22 @@ h2.sv-h { font-size: clamp(2rem, 4.4vw, 4.2rem); }
 /* ---------- close ---------- */
 .sv-final { padding: clamp(7rem, 17vh, 12rem) 0 clamp(8rem, 20vh, 14rem); text-align: center; }
 
+/* ---------- Google Ads: Material motion ----------
+   That page uses Google's own motion system rather than this one: the
+   emphasized easing curve, and a longer duration on the large moving element.
+   No Google mark, wordmark or brand colour appears anywhere on it.           */
+.ga { --ease: cubic-bezier(0.2, 0, 0, 1); }
+.ga-hero { width: 100%; height: auto; display: block; }
+.ga-hero .ga-ad { transform: translateY(384px); }
+.ga-hero .ga-row { transform: translateY(-128px); }
+.ga-hero .ga-chip { opacity: 0; }
+.ga-hero .ga-ad, .ga-hero .ga-row { transition: transform 760ms cubic-bezier(0.2, 0, 0, 1); }
+.ga-hero .ga-row:nth-of-type(2) { transition-delay: 40ms; }
+.ga-hero .ga-row:nth-of-type(3) { transition-delay: 80ms; }
+.ga-hero .ga-chip { transition: opacity 320ms 640ms linear; }
+.ga-hero.is-in .ga-ad, .ga-hero.is-in .ga-row { transform: none; }
+.ga-hero.is-in .ga-chip { opacity: 1; }
+
 /* ---------- the one reveal ---------- */
 .rv { opacity: 0; transform: translateY(18px); }
 .rv.is-in { opacity: 1; transform: none; transition: opacity 0.9s var(--ease), transform 1s var(--ease); }
@@ -182,5 +198,7 @@ h2.sv-h { font-size: clamp(2rem, 4.4vw, 4.2rem); }
 }
 @media (prefers-reduced-motion: reduce) {
   .rv { opacity: 1; transform: none; }
+  .ga-hero .ga-ad, .ga-hero .ga-row { transform: none; transition: none; }
+  .ga-hero .ga-chip { opacity: 1; transition: none; }
   .sv-btn, .sv-btn span, .sv-link span, .sv-q .pm, .sv-a, .sv-a p { transition: none; }
 }

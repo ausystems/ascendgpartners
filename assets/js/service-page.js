@@ -11,15 +11,24 @@
   if (reduce || !('IntersectionObserver' in window)) {
     targets.forEach(function (el) { el.classList.add('is-in'); });
   } else {
+    var show = function (el) {
+      var d = parseFloat(el.getAttribute('data-rv')) || 0;
+      setTimeout(function () { el.classList.add('is-in'); }, d);
+    };
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         io.unobserve(en.target);
-        var d = parseFloat(en.target.getAttribute('data-rv')) || 0;
-        setTimeout(function () { en.target.classList.add('is-in'); }, d);
+        show(en.target);
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
-    targets.forEach(function (el) { io.observe(el); });
+    targets.forEach(function (el) {
+      // Anything already on the first screen plays on arrival rather than
+      // waiting for a scroll it may never get — a tall hero can sit below the
+      // observer's threshold while being the first thing anybody looks at.
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.92) { show(el); return; }
+      io.observe(el);
+    });
   }
 
   // ── 2 · the turn ──────────────────────────────────────────────────────────

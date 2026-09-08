@@ -17,6 +17,7 @@ ART = {
  'content-creation': ('content', 'cc-hero-3',    ['cc-demand-2', 'cc-field-3', 'cc-pipe-2'], 2),
  'email-marketing':  ('email',   'em-hero-3',    ['em-rev-2', 'em-field-3', 'em-sms', 'em-creators'], 2),
  'paid-social':      ('social',  'ps-hero',      ['ps-creative', 'ps-funnel', 'ps-scale'], 2),
+ 'google-ads':       ('ads',     None,           ['ga-intent', 'ga-tracking', 'ga-scale', 'ga-buyers'], 2),
 }
 ALT = {
  'hero-active': 'The index complete: every layer aligned and the strongest at the top',
@@ -44,16 +45,22 @@ ALT = {
  'ps-creative': 'Five variants of the same ad, and the one that carried',
  'ps-funnel': 'Prospecting, retargeting and retention, each speaking to a smaller audience',
  'ps-scale': 'Spend climbing while efficiency is held level, with creative refreshed along the way',
+ 'ga-intent': 'The purchase-intent terms funded, and the broad ones cut',
+ 'ga-tracking': 'A page, a server, a conversion store, and the value taught back to bidding',
+ 'ga-scale': 'The spend that converts separated from the spend that does not, then scaled',
+ 'ga-buyers': 'Five kinds of brand, each needing its own campaign shape',
 }
 NAV_SELF = {
  'seo': 'SEO', 'link-building': 'Link Building', 'geo': 'GEO',
  'content-creation': 'Content Creation', 'email-marketing': 'Email &amp; SMS',
  'paid-social': 'Paid Social',
+ 'google-ads': 'Google Ads',
 }
 SIBLING_HREF = {
  'SEO': '../seo/', 'GEO': '../geo/', 'Link Building': '../link-building/',
  'Content Creation': '../content-creation/', 'Email &amp; SMS': '../email-marketing/',
  'Paid Social': '../paid-social/',
+ 'Google Ads': '../google-ads/',
 }
 E = lambda s: html.escape(s, quote=False).replace('&amp;#', '&#')
 
@@ -86,6 +93,11 @@ def art_size(folder, name):
     src = open(os.path.join(ROOT, 'uploads', folder, name + '.svg'), encoding='utf-8').read()
     m = re.search(r'viewBox="[\d.-]+ [\d.-]+ ([\d.]+) ([\d.]+)"', src)
     return (round(float(m.group(1))), round(float(m.group(2)))) if m else (1600, 1000)
+
+INLINE_HERO = {'google-ads': 'tools/google-ads-hero.svg'}
+
+def inline_hero(slug):
+    return '<div class="sv-stage">%s</div>' % open(os.path.join(ROOT, INLINE_HERO[slug]), encoding='utf-8').read()
 
 def stage(folder, name, eager=False):
     w, h = art_size(folder, name)
@@ -138,10 +150,11 @@ def build(slug, d):
       '<meta property="og:title" content="%s">\n<meta property="og:description" content="%s">\n'
       '<meta property="og:type" content="website">\n<meta property="og:url" content="%s">\n'
       '<script type="application/ld+json">%s</script>\n'
-      '</head>\n<body class="cs-page">\n') % (
-        E(d['title']), d['desc'], d['canonical'], folder, hero_img,
+      '</head>\n<body class="cs-page%s">\n') % (
+        E(d['title']), d['desc'], d['canonical'], folder, hero_img or chap_imgs[0],
         E(d['title']), E(d['lede'][:180]), d['canonical'],
-        json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False))
+        json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False),
+        ' ga' if slug in INLINE_HERO else '')
 
     hero = ('\n<main class="sv">\n\n'
       '<section class="sv-hero" id="top">\n  <div class="sv-in">\n'
@@ -153,7 +166,7 @@ def build(slug, d):
       '    </div>\n'
       '  </div>\n  %s\n</section>\n') % (
         E(d['label']), E(d['h1']), E(d['lede']), E(d['cta']),
-        stage(folder, hero_img, eager=True))
+        inline_hero(slug) if slug in INLINE_HERO else stage(folder, hero_img, eager=True))
 
     figs = ''.join('<div class="sv-fig"><strong>%s</strong><span>%s</span></div>' % (E(f['value']), E(f['cap']))
                    for f in d['figures'])
