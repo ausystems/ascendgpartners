@@ -99,6 +99,18 @@ h2.sv-h { font-size: clamp(2rem, 4.4vw, 4.2rem); }
   font-size: 0.95rem; line-height: 1.5; color: var(--fg-2);
 }
 
+/* The display size is tuned for short numerals. Past about seven characters a
+   value no longer fits the column, and because the column stops growing at the
+   container's max width while a vw-based size does not, the widest screens are
+   where it breaks first. Longer values step down instead of wrapping; a value
+   that is a roster rather than a number drops to reading size and wraps as the
+   list it is. */
+.sv-fig.is-mid strong  { font-size: clamp(2.2rem, 4.2vw, 3.3rem); }
+.sv-fig.is-long strong { font-size: clamp(1.9rem, 3.3vw, 2.7rem); letter-spacing: -0.04em; }
+.sv-fig.is-text strong {
+  font-size: clamp(1.45rem, 2.1vw, 2rem); letter-spacing: -0.02em; line-height: 1.24;
+}
+
 /* ---------- chapters ---------- */
 .sv-chapter { padding: clamp(6rem, 15vh, 11rem) 0; }
 .sv-chapter + .sv-chapter { padding-top: 0; }

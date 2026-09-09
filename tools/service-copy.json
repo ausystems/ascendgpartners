@@ -783,5 +783,118 @@
   "title": "AI Solutions Built for Real Business Growth | Ascend Growth Partners",
   "desc": "Custom AI integrations, automation workflows, and intelligent systems that multiply your team’s output.",
   "canonical": "https://ascendgpartners.com/services/ai-solutions"
+ },
+ "press-pr": {
+  "label": "Press & Public Relations",
+  "h1": "The PR firm behind brands you already know.",
+  "lede": "Earned media, founder positioning, and narrative engineering for the people and companies the world is already watching. Trusted by Mel Robbins, Ed Mylett, Tim Grover, Gymshark, BKFC, Toyota, and Keller Williams.",
+  "cta": "Get A PR Strategy",
+  "figures": [
+   {
+    "value": "500+",
+    "cap": "Tier 1 media secured"
+   },
+   {
+    "value": "30-60 days",
+    "cap": "Typical window to first Tier 1 placement"
+   },
+   {
+    "value": "Forbes • WSJ • Bloomberg • TechCrunch • Inc.",
+    "cap": "Outlets we place clients in regularly"
+   }
+  ],
+  "chapters": [
+   {
+    "label": "Step 01 — Brand Audit",
+    "h2": "Before we pitch a single journalist, we read the room.",
+    "body": "Most PR engagements fail in week one — not because of bad pitching, but because no one mapped the story landscape first. We audit your current media footprint, public perception, search results, AI citations, and competitor narrative share. We find the stories already being told about you (the good and the ugly), the stories that should be told, and the open lanes where your brand can own the conversation. That map becomes the entire campaign brief."
+   },
+   {
+    "label": "Step 02 — Comms Readiness",
+    "h2": "Most brands break the moment the press shows up.",
+    "body": "Spokespeople who haven’t been media-trained. Press kits that don’t exist. Messaging that contradicts itself across channels. Founder bios that are three years out of date. We rebuild the communications infrastructure before we go to market — press kits, founder positioning, message hierarchy, response protocols, and crisis playbooks — so when the story lands, your brand is ready to capitalize on it instead of fumble it."
+   },
+   {
+    "label": "Step 03 — Story & Pitching",
+    "h2": "Journalists don’t write about products. They write about stories.",
+    "body": "This is where most PR firms quietly fail — they send press releases pretending to be stories. We engineer actual narrative angles: contrarian takes journalists are itching to publish, data-backed trends with original research behind them, founder origin stories with real stakes, and cultural moments your brand has earned the right to be part of. Then we pitch them through relationships, not blast lists. Our team places clients in Forbes, WSJ, Bloomberg, TechCrunch, Inc., Fast Company, Business Insider, and the verticals that matter for your category."
+   },
+   {
+    "label": "Step 04 — Engineered Opportunity",
+    "h2": "The best PR moments aren’t waited for. They’re built.",
+    "body": "Reactive PR - waiting for press to come find you - is a losing game. We forecast upcoming news cycles, industry inflection points, awards seasons, and cultural conversations where your brand can insert itself credibly. Then we build the moments: original research drops, founder bylines, expert commentary at the right time, partnership announcements, and tied-to-the-news Op-Eds."
+   },
+   {
+    "label": "Why Ascend",
+    "h2": "Founded by the youngest PR agency founder on record. Trusted by some of the biggest names in business.",
+    "body": "Ascend Growth Partners was founded by Kamran Zahid recognized as the youngest PR agency founder on record on a single conviction: traditional PR is too slow, too relationship-locked, and too disconnected from the speed brands actually move at today. We’ve since run earned media, narrative strategy, and founder positioning for clients including Mel Robbins, Ed Mylett, Tim Grover, Gymshark, BKFC, Toyota, and Keller Williams. We’re a six-person team operating from Toronto and Miami. We work globally. And we don’t pretend to be Edelman — we’re built for the brands and personalities the legacy firms move too slowly for."
+   }
+  ],
+  "list_label": "Features",
+  "list_h2": "What you get",
+  "list": [
+   {
+    "title": "Earned Media & Tier 1 Placements",
+    "desc": "Pitching, placement, and relationship-driven outreach to Forbes, WSJ, Bloomberg, TechCrunch, Inc., Fast Company, and the verticals that matter in your category."
+   },
+   {
+    "title": "Founder & Executive Positioning",
+    "desc": "Bylines, podcast tours, keynote opportunities, and thought-leadership programs that turn founders into recognized industry voices — and recognized voices into category leaders."
+   },
+   {
+    "title": "Crisis Communications",
+    "desc": "Proactive crisis playbooks, rapid-response support, and reputation defense when the conversation turns. Available on retainer or emergency engagement."
+   },
+   {
+    "title": "Personal Brand PR",
+    "desc": "PR built specifically for thought leaders, athletes, authors, and creators. Book launches, podcast cross-promotion, keynote rollouts, and the long-arc media strategy personal brands actually need."
+   },
+   {
+    "title": "Original Research & Data PR",
+    "desc": "Surveys, reports, and data drops engineered for media pickup — the highest-yield content type in modern earned media, and one almost no PR agency executes well."
+   },
+   {
+    "title": "Brand Auditing & Narrative Strategy",
+    "desc": "Media footprint analysis, narrative-share-of-voice tracking, and competitive coverage mapping — the strategic floor that everything else is built on."
+   }
+  ],
+  "faq": [
+   {
+    "q": "How long does it take to land Tier 1 media coverage?",
+    "a": "Most Ascend clients see their first Tier 1 placement within 60–90 days. The first month is spent on brand audit, narrative development, comms readiness, and quietly warming the right journalist relationships — going to market on day one with a half-built story is how PR campaigns die. Once we’re pitching, placements compound from there."
+   },
+   {
+    "q": "What counts as a Tier 1 media placement?",
+    "a": "Tier 1 placements are earned editorial coverage in major national and international outlets: Forbes, The Wall Street Journal, Bloomberg, Reuters, Business Insider, Fast Company, TechCrunch, Inc., and the leading vertical publications in your industry. Sponsored content, paid placements, and contributor pieces in low-authority outlets don’t count — and any agency telling you they do is the wrong agency."
+   },
+   {
+    "q": "Does Ascend guarantee placements?",
+    "a": "No ethical PR firm guarantees specific placements — and any firm that does is either lying or paying for them. What Ascend guarantees is process: a real audit, a real story, the right journalist relationships, the right moments to pitch into, and the persistence to land coverage that actually moves the needle. The proof is the client roster."
+   },
+   {
+    "q": "How is PR different from paid advertising or influencer marketing?",
+    "a": "Paid ads disappear the moment the budget stops. Earned media is permanent — it gets indexed by Google, cited by ChatGPT, Claude, and Perplexity, and carries third-party editorial credibility that no ad can replicate. Influencer marketing rents a creator’s audience; PR builds your own. The brands that win the long game invest in all three, but PR is the only one that compounds."
+   },
+   {
+    "q": "Can Ascend handle crisis communications?",
+    "a": "Yes — crisis communications is a core practice at Ascend Growth Partners. We build proactive crisis playbooks for brands before they need them, and we provide rapid-response support when something breaks. The brands we work with — public-facing personalities, combat sports, consumer brands with active social audiences — operate in environments where reputational risk is constant, so we’re built for it."
+   },
+   {
+    "q": "Who does Ascend’s PR work best for?",
+    "a": "Ascend works best for founders, personal brands, athletes, authors, challenger companies, and category-defining startups — the people and brands the legacy PR firms move too slowly for. Our roster includes Mel Robbins, Ed Mylett, Tim Grover, Gymshark, BKFC, Toyota, and Keller Williams. We’re not the right firm for clients who want the BCG of PR. We’re the firm for clients who want the agency that ships."
+   },
+   {
+    "q": "What’s the difference between Ascend and a traditional PR agency?",
+    "a": "Three things. One: speed — we ship in days where legacy firms ship in weeks, partly because the founder built the firm specifically against that constraint. Two: integration — Ascend runs PR alongside SEO, GEO, and AI solutions, so earned coverage compounds across every channel automatically. Three: specialization — we work specifically with founders, personal brands, and challenger companies; we’re not trying to also be a Fortune 500 corporate comms firm."
+   },
+   {
+    "q": "Where is Ascend Growth Partners located, and do you work globally?",
+    "a": "Ascend is headquartered in Toronto and Miami, with a six-person team that works with clients globally. The dual-HQ setup gives us coverage across both Canadian and U.S. media markets, and we regularly run campaigns across U.S., Canadian, and international press for clients in any geography."
+   }
+  ],
+  "final_cta": "Get A PR Strategy",
+  "title": "PR Agency for Founders, Personal Brands & Challenger Co’s | Ascend Growth Partners",
+  "desc": "Earned media, founder positioning, and narrative engineering for the people and companies the world is already watching.",
+  "canonical": "https://ascendgpartners.com/services/press-pr"
  }
 }

@@ -20,6 +20,7 @@ ART = {
  'google-ads':       ('ads',     None,           ['ga-intent', 'ga-tracking', 'ga-scale', 'ga-buyers'], 2),
  'creative':         ('creative','cr-hero',      ['cr-angle', 'cr-system', 'cr-refresh'], 2),
  'ai-solutions':     ('ai',      'ai-hero',      ['ai-drain', 'ai-build', 'ai-adopt'], 2),
+ 'press-pr':         ('pr',      'pr-hero',      ['pr-audit', 'pr-readiness', 'pr-story', 'pr-moment', 'pr-speed'], 2),
 }
 ALT = {
  'hero-active': 'The index complete: every layer aligned and the strongest at the top',
@@ -59,6 +60,12 @@ ALT = {
  'ai-drain': 'Five workflows ranked by the hours each one takes',
  'ai-build': 'An AI layer joining the tools the team already works in',
  'ai-adopt': 'Output climbing as more of the team picks the system up',
+ 'pr-hero': 'One placement standing in front of the coverage behind it',
+ 'pr-audit': 'Four lanes of the conversation already taken, and the one still open',
+ 'pr-readiness': 'One message, carried the same way across every channel',
+ 'pr-story': 'A press release beside a story, and the difference between them',
+ 'pr-moment': 'A news cycle forecast, and the moment built into it',
+ 'pr-speed': 'The same ground covered, arriving a third of the way in',
 }
 NAV_SELF = {
  'seo': 'SEO', 'link-building': 'Link Building', 'geo': 'GEO',
@@ -67,6 +74,7 @@ NAV_SELF = {
  'google-ads': 'Google Ads',
  'creative': 'Creative',
  'ai-solutions': 'AI Solutions',
+ 'press-pr': 'Press & PR',
 }
 SIBLING_HREF = {
  'SEO': '../seo/', 'GEO': '../geo/', 'Link Building': '../link-building/',
@@ -75,6 +83,7 @@ SIBLING_HREF = {
  'Google Ads': '../google-ads/',
  'Creative': '../creative/',
  'AI Solutions': '../ai-solutions/',
+ 'Press & PR': '../press-pr/',
 }
 E = lambda s: html.escape(s, quote=False).replace('&amp;#', '&#')
 
@@ -186,7 +195,11 @@ def build(slug, d):
         E(d['label']), E(d['h1']), E(d['lede']), cta_href, E(d['cta']),
         inline_hero(slug) if slug in INLINE_HERO else stage(folder, hero_img, eager=True))
 
-    figs = ''.join('<div class="sv-fig"><strong>%s</strong><span>%s</span></div>' % (E(f['value']), E(f['cap']))
+    def figsize(v):
+        n = len(v)
+        return '' if n <= 7 else ' is-mid' if n <= 11 else ' is-long' if n <= 16 else ' is-text'
+    figs = ''.join('<div class="sv-fig%s"><strong>%s</strong><span>%s</span></div>'
+                   % (figsize(f['value']), E(f['value']), E(f['cap']))
                    for f in d['figures'])
     figures = ('\n<section class="sv-figures">\n  <div class="sv-in">\n'
                '    <div class="sv-figrow rv">%s</div>\n  </div>\n</section>\n') % figs
@@ -203,9 +216,11 @@ def build(slug, d):
       for i, x in enumerate(d['list']))
     lst = ('\n<section class="sv-list" id="deliverables" aria-labelledby="svList">\n  <div class="sv-in">\n'
            '    <div class="sv-list-head rv">\n'
-           '      <span class="sv-label is-accent">What You Get</span>\n'
-           '      <h2 class="sv-h" id="svList">The pieces needed to scale cleanly.</h2>\n'
-           '    </div>\n    %s\n  </div>\n</section>\n') % rows
+           '      <span class="sv-label is-accent">%s</span>\n'
+           '      <h2 class="sv-h" id="svList">%s</h2>\n'
+           '    </div>\n    %s\n  </div>\n</section>\n') % (
+             E(d.get('list_label', 'What You Get')),
+             E(d.get('list_h2', 'The pieces needed to scale cleanly.')), rows)
 
     faq_html = ''
     if faq:
