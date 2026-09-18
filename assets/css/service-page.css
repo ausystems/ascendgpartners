@@ -29,6 +29,11 @@
   background: var(--paper);
   color: var(--ink);
 }
+/* The shared header starts transparent so it can sit over the homepage's dark
+   hero. On a paper page that leaves white type on a light ground until the
+   first scroll, so here it begins in its scrolled state. Its look is unchanged;
+   only the moment it appears is. */
+body.paper-page .nav { background: rgba(10, 15, 40, 0.97); }
 .sv-in { max-width: var(--shell); margin: 0 auto; padding: 0 var(--gap); }
 .sv-mid { max-width: 860px; margin: 0 auto; text-align: center; }
 

@@ -21,6 +21,8 @@ ART = {
  'creative':         ('creative','cr-hero',      ['cr-angle', 'cr-system', 'cr-refresh'], 2),
  'ai-solutions':     ('ai',      'ai-hero',      ['ai-drain', 'ai-build', 'ai-adopt'], 2),
  'press-pr':         ('pr',      'pr-hero',      ['pr-audit', 'pr-readiness', 'pr-story', 'pr-moment', 'pr-speed'], 2),
+ 'affiliate-marketing': ('affiliate', 'af-hero',  ['af-model', 'af-recruit', 'af-quality'], 2),
+ 'web-design':       ('webdesign', 'wd-hero',    ['wd-journey', 'wd-build', 'wd-measure'], 2),
 }
 ALT = {
  'hero-active': 'The index complete: every layer aligned and the strongest at the top',
@@ -66,6 +68,14 @@ ALT = {
  'pr-story': 'A press release beside a story, and the difference between them',
  'pr-moment': 'A news cycle forecast, and the moment built into it',
  'pr-speed': 'The same ground covered, arriving a third of the way in',
+ 'af-hero': 'Revenue from the existing channels, and the slice partners add on top',
+ 'af-model': 'Three partner tiers, and the margin none of their commissions cross',
+ 'af-recruit': 'Eight candidate partners measured for fit, and the three chosen',
+ 'af-quality': 'Partner revenue tracked over time, with the traffic that never counted filtered out',
+ 'wd-hero': 'A page laid out on its grid: headline, copy, one action, one image',
+ 'wd-journey': 'Four sections in the order a visitor reads them, ending at the action',
+ 'wd-build': 'Design, copy, structure and performance landing as one finished page',
+ 'wd-measure': 'A page with the attention it received mapped across it',
 }
 NAV_SELF = {
  'seo': 'SEO', 'link-building': 'Link Building', 'geo': 'GEO',
@@ -75,6 +85,8 @@ NAV_SELF = {
  'creative': 'Creative',
  'ai-solutions': 'AI Solutions',
  'press-pr': 'Press & PR',
+ 'affiliate-marketing': 'Affiliate Marketing',
+ 'web-design': 'Web Design',
 }
 SIBLING_HREF = {
  'SEO': '../seo/', 'GEO': '../geo/', 'Link Building': '../link-building/',
@@ -84,6 +96,8 @@ SIBLING_HREF = {
  'Creative': '../creative/',
  'AI Solutions': '../ai-solutions/',
  'Press & PR': '../press-pr/',
+ 'Affiliate Marketing': '../affiliate-marketing/',
+ 'Web Design': '../web-design/',
 }
 E = lambda s: html.escape(s, quote=False).replace('&amp;#', '&#')
 
@@ -100,6 +114,12 @@ def shared_chrome():
         # the source lost the opening angle bracket of the footer comment, which
         # leaves its text rendering as a stray line above the footer
         foot = foot.replace('\n!-- FOOTER', '\n<!-- FOOTER')
+        nav = nav.replace('<a href="./" class="nav-link">Services', '<a href="../../services/" class="nav-link">Services')
+        # the menu's thumbnails are ~100px wide; the 2400px case-study photos behind
+        # them cost 600KB a page, so interior pages use 600px copies of the same images
+        nav = re.sub(r'src="\.\./\.\./uploads/(bkfc-david-feldman|dr-harrison-lee-1|dr-harrison-lee-2)\.webp"', r'src="../../uploads/nav/\1.webp"', nav)
+        foot = re.sub(r'<a href="\.\./\.\./contact/">(\s*SEO &(?:amp;)? GEO\s*)</a>', r'<a href="../../services/seo/">\1</a>', foot)
+        foot = re.sub(r'<a href="\.\./\.\./contact/">(\s*Web Design &(?:amp;)? Dev\s*)</a>', r'<a href="../../services/web-design/">\1</a>', foot)
         _CHROME = (nav, foot)
     return _CHROME
 
@@ -177,7 +197,7 @@ def build(slug, d):
       '<meta property="og:title" content="%s">\n<meta property="og:description" content="%s">\n'
       '<meta property="og:type" content="website">\n<meta property="og:url" content="%s">\n'
       '<script type="application/ld+json">%s</script>\n'
-      '</head>\n<body class="cs-page%s">\n') % (
+      '</head>\n<body class="cs-page paper-page%s">\n') % (
         E(d['title']), d['desc'], d['canonical'], folder, hero_img or chap_imgs[0],
         E(d['title']), E(d['lede'][:180]), d['canonical'],
         json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False),
@@ -245,7 +265,8 @@ def build(slug, d):
     scripts = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>\n'
                '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>\n'
                '<script src="../../assets/js/case-studies.js"></script>\n'
-               '<script src="../../assets/js/service-page.js"></script>\n</body>\n</html>\n')
+               '<script src="../../assets/js/service-page.js"></script>\n'
+               '<script src="../../assets/js/forms.js" data-root="../../"></script>\n</body>\n</html>\n')
 
     doc = head + nav_for(slug, nav) + hero + figures + before + turn + after + lst + faq_html + final + foot + scripts
     out = os.path.join(ROOT, 'services', slug, 'index.html')

@@ -1,113 +1,75 @@
-# Ascend Growth Partners — Homepage
+# Ascend Growth Partners
 
-A pixel-exact recreation of the Ascend Growth Partners homepage
-(https://ascendgpartners.com/), homepage only, since evolved with
-client-directed changes on top of the faithful base:
+The Ascend Growth Partners site as a static build: the approved homepage,
+untouched, plus every interior page on the quiet system. Deploys from `main`
+to Vercel (ascendgpartners.vercel.app) and to GitHub Pages.
 
-- Hero: left-aligned headline/copy/CTA (no logomark), concise SEO-focused
-  paragraph, WebGL particle-wave background (from a video reference) recolored
-  to a rich blue / deep navy / black system over layered gradient depth with a
-  soft left scrim, larger type, arrow-only scroll indicator.
-- "AI-powered strategies" section: rebuilt as a split layout (text left, two
-  opposing vertical logo-card columns right) from a video layout reference,
-  replacing the original centered headline + 6-column logo grid.
-- The horizontal logo ticker between the hero and the strategies section was
-  removed; the strategies deck now caps the hero directly. Section decks stack
-  with rounded caps from the hero down; the scroll indicator rides the hero
-  parallax and fades on scroll.
-- The services section was rebuilt (from a video layout reference) as a cream
-  deck with scroll-stacked cards: four service cards in brand colors pin in
-  place, hold, then toss up over each other with a spring tilt while upcoming
-  cards fan out as slim peeks below. Note: the body-level overflow-x clip was
-  moved to <html> only, since a body clip container disables position: sticky
-  page-wide.
-
-Everything else remains verbatim from the live page, including the SVG
-stroke-draw loading screen.
-
-Note: `logos/clearstem.png` as served by the live site is a fully transparent
-PNG (blank). The logo-card columns render Clearstem as a styled wordmark
-instead; the horizontal ticker keeps the original (blank) asset for fidelity.
-
-## Structure
+## Pages
 
 ```
-index.html                  Homepage markup (verbatim from the live page)
-assets/css/styles.css       All page styles (both original style blocks, cascade order preserved)
-assets/js/main.js           Preloader, custom cursor, nav, mobile drawer, reveal
-                            observers, hero parallax, stats counters, testimonials
-assets/js/hero-wave.js      Hero background: WebGL particle-wave field recreated
-                            from the client's reference video (no dependencies)
-assets/js/services-stack.js  Services: scroll-driven stacked cards (spring
-                            follow with tilt, fanned peeks, no dependencies)
-favicon.png                 Site favicon (original asset)
-logos/                      12 client logos (original assets)
-uploads/                    3 case-study images (original assets)
+/                              Homepage (approved; preserved byte for byte apart from two footer
+                               destinations and one script tag, see "Homepage" below)
+/services/                     Index of the twelve practices
+/services/<slug>/              seo, geo, link-building, content-creation, email-marketing,
+                               paid-social, google-ads, creative, ai-solutions, press-pr,
+                               affiliate-marketing, web-design
+/case-studies/                 Index, plus bare-knuckle-fc, dr-harrison-lee, jason-wojo
+/company/about/  /company/reviews/  /company/press/
+/blog/                         Index, plus the four published posts
+/contact/                      The contact form (see "Forms")
+/privacy-policy/  /terms-of-use/
+/api/forms/submit              Vercel function: relays the forms to the production intake
+sitemap.xml  robots.txt
 ```
 
-### Hero background
+Copy on every interior page is the production site's, verbatim, held in
+`tools/service-copy.json` (service pages) and `tools/site-copy.json` (the rest).
+The generators only lay it out:
 
-The hero renders a real-time particle-wave field (`assets/js/hero-wave.js`,
-raw WebGL, zero dependencies, ~60fps): a dotted sheet displaced by layered
-simplex noise, drawn with additive blending so perspective-folded rows stack
-into glowing cyan caustic strings. All constants were measured from the
-reference video (1338×1206, 5.18s): palette ramp rgb(8,25,40) → rgb(40,87,100)
-→ rgb(79,173,177) → rgb(86,220,219), ~6.7px dots, ~15px face-on string pitch,
-374px fold amplitude, ~1.5%/s lateral drift, static camera. The morph runs at
-roughly 45% of the reference's measured rate and slightly darker, per client
-direction (smoother, more subtle). Geometry is anchored to reference pixels
-(scaled by viewport width ÷ 1338) so the effect reads as a cover-fit of the
-video at any viewport. Hover adds only a heavily-eased few-px camera drift.
-If WebGL is unavailable the canvas hides and the hero falls back to its plain
-black background.
+```
+python3 tools/build-service-pages.py     # the twelve service pages
+python3 tools/build-site-pages.py        # services index, company, blog, contact, legal, sitemap
+```
 
-The content deck stacks over the hero with the site's rounded-cap motif (the
-strategies section rounds 24px over the wave, as every later section does over
-its predecessor), and the hero's scroll indicator rides the content parallax
-and fades out as scrolling begins, so nothing collides at any viewport height.
+Both lift the header, footer and cursor from a built page and never edit them.
+The case studies are hand-built pages (`assets/css/study.css`, `assets/js/study.js`).
 
-External runtime dependencies:
+## The system
 
-- Google Fonts — Instrument Sans (400/500/600/700) + Instrument Serif
-  (italic 400 only); loaded with preconnect + display=swap
-- (GSAP was removed along with the original pinned services animation; the
-  page is now fully dependency-free JavaScript)
+Service pages (`assets/css/service-page.css`, `assets/js/service-page.js`): one
+image per chapter, one reveal, and one turn where the page moves from paper to
+graphite and back. Company, blog, contact and legal pages (`assets/css/pages.css`)
+share the same palette and type but each has its own composition. The only
+typefaces are the site's: Instrument Sans and Instrument Serif italic.
 
-### Typography system
+Every drawing under `uploads/` is hand-authored flat vector, produced by the
+`tools/build-*-art.py` scripts on top of `tools/dsl.py`. Nothing is generated by
+an image model.
 
-Instrument Sans is the primary voice (`--font-primary`): body 400, nav and
-small labels 500, buttons/headings 600, hero H1 and stat numbers 700, with
-tight negative tracking on display sizes. Instrument Serif Italic
-(`--font-editorial`) appears only as an editorial accent: the hero word
-"Dominate", the orange highlight phrases ("unleash your brand", "$50M in
-revenue"), the testimonials heading and rotating quote, and "Ascend." in the
-closing CTA.
+## Forms
 
-## Run
+The contact form and the footer newsletter post JSON to `/api/forms/submit`. On
+Vercel that is `api/forms/submit.js`, which forwards the submission, as the
+multipart form the production site's own pages send, to
+`https://ascendgpartners.com/api/forms/submit` and returns that intake's answer.
+A page reports "sent" only when the intake accepted the submission; on any
+other outcome it says so and gives hello@ascendgpartners.com. GitHub Pages
+cannot run the function, so on that host the forms show the honest failure
+state.
 
-Serve the project root over HTTP (paths are root-relative, as on the live site):
+## Homepage
+
+The homepage is locked. The only changes since it was approved: the footer's
+"SEO & GEO" and "Web Design & Dev" links now lead to those services instead of
+the contact page, and `assets/js/forms.js` is loaded so the footer's Subscribe
+button works. Nothing visible changed; the shared header and footer are the
+same markup and styles on every page.
+
+## Run locally
 
 ```
 python3 -m http.server 4173
 ```
 
-Then open http://localhost:4173/. A preview config is also provided in
-`.claude/launch.json` (name: `ascend-homepage`).
-
-## Fidelity notes
-
-- The CSS/JS were split out of the original single-file page for
-  maintainability. The split was verified lossless: re-inlining the four
-  extracted blocks reconstructs the live HTML byte-for-byte.
-- Script order and blocking semantics are unchanged (`main.js` at the end of
-  `<body>` before the GSAP CDN tags; `services-scroll.js` after them), so the
-  loading screen, reveal timing, and scroll behavior match the live page.
-- Verified against the live site with full-page screenshot diffs at
-  1440×900, 768×1024, and 375×812: 0 differing pixels at all three sizes,
-  identical section offsets/heights, and identical ScrollTrigger pin geometry.
-  Interactive states (three nav dropdowns incl. the case-studies mega-menu,
-  mobile drawer + Services accordion, and a mid-scrub frame of the pinned
-  services animation) also diff at 0 pixels.
-- The only thing intentionally not reproduced is the Cloudflare analytics
-  beacon the live host injects at the edge; it has no visual or behavioral
-  effect on the page.
+Then open http://localhost:4173/. The `.claude/launch.json` preview config
+(`ascend-homepage`) does the same.

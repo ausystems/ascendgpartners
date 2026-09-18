@@ -22,12 +22,22 @@
         show(en.target);
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    // A block taller than the screen can never show 8% of itself at once, so
+    // it is watched for any intersection at all; otherwise a long article on a
+    // small phone would never reveal.
+    var ioTall = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        ioTall.unobserve(en.target);
+        show(en.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
     targets.forEach(function (el) {
       // Anything already on the first screen plays on arrival rather than
       // waiting for a scroll it may never get — a tall hero can sit below the
       // observer's threshold while being the first thing anybody looks at.
       if (el.getBoundingClientRect().top < window.innerHeight * 0.92) { show(el); return; }
-      io.observe(el);
+      (el.offsetHeight > window.innerHeight * 0.6 ? ioTall : io).observe(el);
     });
   }
 

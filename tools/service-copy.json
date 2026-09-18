@@ -896,5 +896,167 @@
   "title": "PR Agency for Founders, Personal Brands & Challenger Co’s | Ascend Growth Partners",
   "desc": "Earned media, founder positioning, and narrative engineering for the people and companies the world is already watching.",
   "canonical": "https://ascendgpartners.com/services/press-pr"
+ },
+ "affiliate-marketing": {
+  "label": "Affiliate Marketing",
+  "h1": "Affiliate Marketing That Scales Revenue.",
+  "lede": "Build a high-performance affiliate program that drives incremental revenue without cannibalizing your existing channels.",
+  "cta": "Get Your Affiliate Strategy",
+  "figures": [
+   {
+    "value": "+250%",
+    "cap": "Average partner revenue growth"
+   },
+   {
+    "value": "500+",
+    "cap": "Publisher relationships"
+   },
+   {
+    "value": "18%",
+    "cap": "Average revenue from affiliates"
+   }
+  ],
+  "chapters": [
+   {
+    "label": "Step 01",
+    "h2": "Design the partner model",
+    "body": "We define the commission structure, partner types, rules, and incentives that protect margin while encouraging growth."
+   },
+   {
+    "label": "Step 02",
+    "h2": "Recruit the right affiliates",
+    "body": "We prioritize partners with relevant audiences, strong intent, and real influence - not coupon spam."
+   },
+   {
+    "label": "Step 03",
+    "h2": "Manage performance and quality",
+    "body": "We track partner value, fraud risk, incremental revenue, and optimization opportunities so the program scales cleanly."
+   }
+  ],
+  "list": [
+   {
+    "title": "Program Strategy",
+    "desc": "Commission models, rules, partner tiers, and launch planning."
+   },
+   {
+    "title": "Partner Recruitment",
+    "desc": "Outreach to publishers, creators, communities, and strategic partners."
+   },
+   {
+    "title": "Affiliate Ops",
+    "desc": "Approvals, assets, communication, and partner support."
+   },
+   {
+    "title": "Fraud Control",
+    "desc": "Guardrails to reduce low-quality traffic and non-incremental revenue."
+   },
+   {
+    "title": "Publisher Relationships",
+    "desc": "Build long-term partner relationships that keep producing."
+   },
+   {
+    "title": "Revenue Reporting",
+    "desc": "Track partner performance, contribution margin, and incrementality."
+   }
+  ],
+  "faq": [
+   {
+    "q": "Is affiliate marketing right for every business?",
+    "a": "No. It works best when margins, offer, tracking, and partner fit are strong enough to support a real program."
+   },
+   {
+    "q": "Do affiliates cannibalize existing sales?",
+    "a": "They can if unmanaged. We design rules and reporting to focus on incremental revenue."
+   },
+   {
+    "q": "Can you manage an existing program?",
+    "a": "Yes. We can audit, clean up, recruit, optimize, and manage current affiliate programs."
+   }
+  ],
+  "final_cta": "Get Your Affiliate Strategy",
+  "title": "Affiliate Marketing That Scales Revenue | Ascend Growth Partners",
+  "desc": "Build a high-performance affiliate program that drives incremental revenue without cannibalizing your existing channels.",
+  "canonical": "https://ascendgpartners.com/services/affiliate-marketing"
+ },
+ "web-design": {
+  "label": "Web Design",
+  "h1": "Websites Built to Convert and Perform.",
+  "lede": "Conversion-engineered web design that looks world-class and delivers measurable results.",
+  "cta": "Start Your Project",
+  "figures": [
+   {
+    "value": "+85%",
+    "cap": "Average conversion rate lift"
+   },
+   {
+    "value": "<1.5s",
+    "cap": "Average load time"
+   },
+   {
+    "value": "99",
+    "cap": "Lighthouse performance score"
+   }
+  ],
+  "chapters": [
+   {
+    "label": "Step 01",
+    "h2": "Design around the buyer journey",
+    "body": "We map what visitors need to understand, believe, and do before they convert."
+   },
+   {
+    "label": "Step 02",
+    "h2": "Build fast, clear, and polished pages",
+    "body": "Design, copy, structure, and performance work together so the site feels premium and moves users forward."
+   },
+   {
+    "label": "Step 03",
+    "h2": "Measure and improve conversion",
+    "body": "We use analytics, heatmaps, forms, and funnel data to keep improving the site after launch."
+   }
+  ],
+  "list": [
+   {
+    "title": "UX Strategy",
+    "desc": "Information architecture and user flows built around conversion."
+   },
+   {
+    "title": "Visual Design",
+    "desc": "Premium pages that fit the brand and feel credible fast."
+   },
+   {
+    "title": "Conversion Copy",
+    "desc": "Clear messaging that explains value and removes friction."
+   },
+   {
+    "title": "Performance",
+    "desc": "Fast loading pages with technical foundations that support SEO."
+   },
+   {
+    "title": "CMS Setup",
+    "desc": "Editable pages and content structures so the site can evolve."
+   },
+   {
+    "title": "Launch Support",
+    "desc": "QA, analytics, redirects, and launch details handled cleanly."
+   }
+  ],
+  "faq": [
+   {
+    "q": "Do you design and build?",
+    "a": "Yes. We can handle strategy, design, copy, development, CMS structure, and launch."
+   },
+   {
+    "q": "Will the site be editable?",
+    "a": "Yes. The goal is a site you can manage without needing a developer for every text change."
+   },
+   {
+    "q": "Do you handle SEO during redesigns?",
+    "a": "Yes. We protect redirects, metadata, content structure, performance, and crawlability."
+   }
+  ],
+  "final_cta": "Start Your Project",
+  "title": "Websites Built to Convert and Perform | Ascend Growth Partners",
+  "desc": "Conversion-engineered web design that looks world-class and delivers measurable results.",
+  "canonical": "https://ascendgpartners.com/services/web-design"
  }
 }
