@@ -49,7 +49,8 @@
   // eye reads as "the page going dark" is the panel opening.
   var turn = document.querySelector('.sv-turn');
   if (turn) {
-    var INSET = 46, RADIUS = 30;
+    // the panel arrives inset; on a phone the inset is a share of the screen, not a fixed 46px
+    var INSET = Math.min(46, Math.round(window.innerWidth * 0.05)), RADIUS = Math.min(30, Math.round(window.innerWidth * 0.045));
     var setPanel = function (open) {
       var k = 1 - open;
       turn.style.setProperty('--turn-x', (INSET * k).toFixed(1) + 'px');

@@ -166,10 +166,13 @@
     // the hero image drifts a little slower than the page
     var art = document.querySelector('.sv-hero .sv-stage > img, .sv-hero .sv-stage > svg');
     if (art && typeof ScrollTrigger !== 'undefined') gsap.to(art, { yPercent: -7, ease: 'none', scrollTrigger: { trigger: hero || art, start: 'top top', end: 'bottom top', scrub: true } });
-    document.querySelectorAll('.pg-portrait').forEach(function (img, i) {
-      if (typeof ScrollTrigger === 'undefined') return;
-      gsap.to(img, { yPercent: i % 2 ? -5 : -9, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } });
-    });
+    // portraits drift a little inside their frame on wide screens; the picture is
+    // held slightly larger than the frame so the drift never shows an edge
+    if (typeof ScrollTrigger !== 'undefined' && fine && !window.matchMedia('(max-width: 1024px)').matches) {
+      document.querySelectorAll('.pg-portrait').forEach(function (img, i) {
+        gsap.fromTo(img, { yPercent: i % 2 ? 2 : 3, scale: 1.08 }, { yPercent: i % 2 ? -2 : -3, scale: 1.08, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } });
+      });
+    }
   }
   var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
   var started = false, start = function () { if (started) return; started = true; arrive(); };

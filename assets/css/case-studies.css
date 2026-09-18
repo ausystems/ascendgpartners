@@ -235,3 +235,9 @@ figure.ed-fig {
 .ed-ch p.ed-name { font-family: var(--font-primary); font-weight: 600; font-size: clamp(2.2rem, 3.8vw, 3.8rem); line-height: 1.02; letter-spacing: -0.035em; color: var(--navy); margin: 0 0 1.4rem; }
 .ed-ch h3.ed-deck-line { font-family: var(--font-serif-text); font-weight: 400; font-size: clamp(1.28rem, 1.75vw, 1.65rem); line-height: 1.35; letter-spacing: 0.002em; color: rgba(15, 21, 53, 0.86); margin: 0 0 1.4rem; }
 @media (max-width: 860px) { .ed-hero { grid-template-columns: 1fr; } .ed-strip-grid { grid-template-columns: 1fr; } }
+
+/* phones: chips, kickers and run lines at a legible floor */
+@media (max-width: 720px) {
+  .ed-kicker, .ed-label, .cs-chip, .ed-feat, .ed-run, .ed-run .cats, .ed-run span, .bk-run, .bk-run span, .bk-run a, .bk-label, .bk-tape span, .wj-nums span, .ed-cta-stat span { font-size: 0.76rem; }
+  .cs-chip { padding: 0.3rem 0.6rem; }
+}

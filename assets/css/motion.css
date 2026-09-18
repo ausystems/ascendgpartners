@@ -34,7 +34,7 @@ html.mo.mo-lifted .mo-curtain { animation: none; }
 .mo-w { display: inline; }
 
 /* ---------- images ---------- */
-.sv-stage > img, .pg-portrait { will-change: clip-path, transform; }
+/* will-change is left to GSAP while a tween runs; static hints cost memory on phones */
 
 /* ---------- links draw their line ---------- */
 .pg .pg-link {
@@ -54,7 +54,6 @@ html.mo.mo-lifted .mo-curtain { animation: none; }
 .pg-field:not(fieldset):focus-within::after { transform: scaleX(1); }
 
 /* ---------- buttons answer the cursor ---------- */
-.sv-btn, .pg-btn { will-change: transform; }
 
 /* ---------- the preview that follows the cursor over the services index ---------- */
 .mo-preview {
@@ -66,7 +65,6 @@ html.mo.mo-lifted .mo-curtain { animation: none; }
 @media (hover: none), (max-width: 1024px) { .mo-preview { display: none; } }
 
 /* ---------- rows and entries settle as they arrive ---------- */
-.pg-entries > li, .sv-figrow > *, .pg-checks > * { will-change: transform, opacity; }
 
 @media (prefers-reduced-motion: reduce) {
   .mo-line-in, .sv-btn, .pg-btn, .mo-preview { transition: none !important; transform: none !important; }
@@ -74,5 +72,4 @@ html.mo.mo-lifted .mo-curtain { animation: none; }
 }
 
 /* ---------- the drawing, before it draws ---------- */
-html.mo .sv-draw path, html.mo .sv-draw line, html.mo .sv-draw rect, html.mo .sv-draw circle { will-change: stroke-dashoffset, opacity, transform; }
 @media (prefers-reduced-motion: reduce) { .sv-draw * { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; opacity: 1 !important; transform: none !important; } }

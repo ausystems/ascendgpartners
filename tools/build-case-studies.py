@@ -24,10 +24,10 @@ COVER = {
   'jason-wojo':       {'name': 'Jason <em>Wojo</em>', 'num': '03', 'date': 'Feb 27, 2026', 'read': '5 min read'},
 }
 SRCSET = {
-  '/uploads/1780807010051-e0533e87-0227-4f90-909d-e542cbc58ed9-david-feldman.webp': '/uploads/bkfc-david-feldman.webp 2400w, /uploads/bkfc-david-feldman-4k.webp 3840w, /uploads/bkfc-david-feldman-8k.webp 7680w',
-  '/uploads/1777958907409-dr-harrison-lee-1.png': '/uploads/dr-harrison-lee-1.webp 2400w, /uploads/dr-harrison-lee-1-4k.webp 3840w, /uploads/dr-harrison-lee-1-8k.webp 7680w',
-  '/uploads/1780775065036-dr-harrison-lee-2.png': '/uploads/dr-harrison-lee-2.webp 2400w, /uploads/dr-harrison-lee-2-4k.webp 3840w, /uploads/dr-harrison-lee-2-8k.webp 7680w',
-  '/uploads/1777957397635-wojo-media-cover.jpg': '/uploads/jason-wojo.webp 2400w, /uploads/jason-wojo-4k.webp 3840w, /uploads/jason-wojo-8k.webp 7680w',
+  '/uploads/1780807010051-e0533e87-0227-4f90-909d-e542cbc58ed9-david-feldman.webp': '/uploads/bkfc-david-feldman-800.webp 800w, /uploads/bkfc-david-feldman-1200.webp 1200w, /uploads/bkfc-david-feldman.webp 2400w, /uploads/bkfc-david-feldman-4k.webp 3840w, /uploads/bkfc-david-feldman-8k.webp 7680w',
+  '/uploads/1777958907409-dr-harrison-lee-1.png': '/uploads/dr-harrison-lee-1-800.webp 800w, /uploads/dr-harrison-lee-1-1200.webp 1200w, /uploads/dr-harrison-lee-1.webp 2400w, /uploads/dr-harrison-lee-1-4k.webp 3840w, /uploads/dr-harrison-lee-1-8k.webp 7680w',
+  '/uploads/1780775065036-dr-harrison-lee-2.png': '/uploads/dr-harrison-lee-2-800.webp 800w, /uploads/dr-harrison-lee-2-1200.webp 1200w, /uploads/dr-harrison-lee-2.webp 2400w, /uploads/dr-harrison-lee-2-4k.webp 3840w, /uploads/dr-harrison-lee-2-8k.webp 7680w',
+  '/uploads/1777957397635-wojo-media-cover.jpg': '/uploads/jason-wojo-800.webp 800w, /uploads/jason-wojo-1200.webp 1200w, /uploads/jason-wojo.webp 2400w, /uploads/jason-wojo-4k.webp 3840w, /uploads/jason-wojo-8k.webp 7680w',
 }
 
 # ---------- chrome, from a built service page ----------

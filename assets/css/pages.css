@@ -144,7 +144,7 @@ body.paper-page .nav { background: rgba(10, 15, 40, 0.97); }
 .pg-person:nth-child(2) { grid-column: 7 / 11; padding-top: clamp(3rem, 9vh, 7rem); }
 .pg-person:nth-child(3) { grid-column: 2 / 6; }
 .pg-person:nth-child(4) { grid-column: 7 / 12; padding-top: clamp(2rem, 6vh, 5rem); }
-.pg-portrait { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; background: #121a3a; }
+.pg-portrait { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; background: #121a3a; }
 .pg-person figcaption { margin-top: 1rem; display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
 .pg-person figcaption strong { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
 .pg-person figcaption span { font-size: 0.82rem; color: var(--ink-3); letter-spacing: 0.02em; }
@@ -410,3 +410,19 @@ body.paper-page .nav { background: rgba(10, 15, 40, 0.97); }
 .pg-soon.is-dark .pg-lede { color: var(--on-dark-2); }
 .pg-soon.is-dark .pg-link { color: var(--on-dark); background-image: linear-gradient(var(--accent), var(--accent)), linear-gradient(var(--hair-dark), var(--hair-dark)); }
 .pg-soon.is-dark .pg-btn { background: var(--accent); color: #fff; }
+
+/* ---------- phones: nothing under 12px, and the panel and viewport units behave ---------- */
+@media (max-width: 720px) {
+  .pg-label, .pg-post-meta .pg-cat, .pg-article-meta .pg-cat, .pg-field label, .pg-field legend, .pg-press-meta strong, .pg-row b, .pg-entry b { font-size: 0.75rem; }
+  .pg-post-meta, .pg-article-meta, .pg-small, .pg-press-meta, .pg-review figcaption, .pg-person figcaption span { font-size: 0.85rem; }
+  .pg-soon { min-height: 100svh; }
+}
+
+/* ---------- phones: the team as a two-up grid, with a gentle offset ---------- */
+@media (max-width: 720px) {
+  .pg-team-grid { grid-template-columns: 1fr 1fr; column-gap: 0.85rem; row-gap: 1.6rem; }
+  .pg-person:nth-child(n) { grid-column: auto; padding-top: 0; }
+  .pg-person:nth-child(even) { grid-column: auto; padding-top: 1.6rem; }
+  .pg-person figcaption { flex-direction: column; gap: 0.15rem; align-items: flex-start; margin-top: 0.7rem; }
+  .pg-person figcaption h3 { font-size: 0.98rem; }
+}

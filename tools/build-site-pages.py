@@ -250,12 +250,22 @@ def build_blog():
     for p in d['posts']:
         build_post(p, d)
 
+IMG_DIMS = {'ai-solutions-for-business': (2500, 1400), 'ascend-growth-partners-ai-pr-agency': (1024, 1024),
+            'what-does-a-growth-marketing-agency-do': (1600, 800), 'what-is-an-ai-marketing-agency': (2200, 1238)}
+IMG_SMALL = {'ai-solutions-for-business': (800, 1400), 'ascend-growth-partners-ai-pr-agency': (800, 1024),
+             'what-does-a-growth-marketing-agency-do': (800, 1400), 'what-is-an-ai-marketing-agency': (800, 1400)}
+def srcset_for(slug, src):
+    """Production's picture stays the src; phones get width-faithful webp copies of the same picture."""
+    a, b = IMG_SMALL[slug]; w, h = IMG_DIMS[slug]
+    return ' srcset="/uploads/blog/%s-%d.webp %dw, /uploads/blog/%s-%d.webp %dw, %s %dw"' % (slug, a, a, slug, b, b, A(src), w)
+
 def post_img(p, cls):
     if not p.get('images'): return ''
-    i = p['images'][0]
-    return '<img class="%s" src="%s" alt="%s" width="1200" height="630" loading="lazy" decoding="async">' % (cls, A(i['src']), A(i['alt']))
+    i = p['images'][0]; w, h = IMG_DIMS[p['slug']]
+    sizes = '(max-width: 720px) 92vw, 40vw' if cls == 'pg-featured-img' else '(max-width: 720px) 92vw, 22vw'
+    return '<img class="%s" src="%s"%s sizes="%s" alt="%s" width="%d" height="%d" loading="lazy" decoding="async">' % (cls, A(i['src']), srcset_for(p['slug'], i['src']), sizes, A(i['alt']), w, h)
 
-def render_blocks(blocks, page_dir, date_text, title, images=None):
+def render_blocks(blocks, page_dir, date_text, title, images=None, slug=None):
     out = []
     used = 0
     for b in blocks:
@@ -265,7 +275,14 @@ def render_blocks(blocks, page_dir, date_text, title, images=None):
             # the same pictures the production page shows, at the same addresses, with the same alt
             if images and used < len(images):
                 i = images[used]; used += 1
-                out.append('<figure class="pg-figure"><img src="%s" alt="%s" loading="%s" decoding="async"></figure>' % (A(i['src']), A(i['alt']), 'eager' if used == 1 else 'lazy'))
+                if used == 1 and slug in IMG_DIMS:
+                    w, h = IMG_DIMS[slug]
+                    out.append('<figure class="pg-figure"><img src="%s"%s sizes="(max-width: 720px) 92vw, 68ch" alt="%s" width="%d" height="%d" fetchpriority="high" decoding="async"></figure>' % (A(i['src']), srcset_for(slug, i['src']), A(i['alt']), w, h))
+                elif 'images.unsplash.com' in i['src']:
+                    base = i['src'].split('?')[0]
+                    out.append('<figure class="pg-figure"><img src="%s" srcset="%s?q=80&amp;w=800&amp;auto=format&amp;fit=crop 800w, %s?q=80&amp;w=1400&amp;auto=format&amp;fit=crop 1400w, %s 2232w" sizes="(max-width: 720px) 92vw, 68ch" alt="%s" width="2232" height="1255" loading="lazy" decoding="async"></figure>' % (A(i['src']), base, base, A(i['src']), A(i['alt'])))
+                else:
+                    out.append('<figure class="pg-figure"><img src="%s" alt="%s" loading="lazy" decoding="async"></figure>' % (A(i['src']), A(i['alt'])))
             continue
         if t == 'p' and b['x'].strip() == date_text: continue
         if t == 'p' and b['x'].strip() == title: continue
@@ -299,7 +316,7 @@ def build_post(p, d):
             '<aside class="pg-post-cta rv"><h3>Ready to grow?</h3><p>Let\'s build a growth strategy tailored to your business.</p>'
             '<a class="pg-btn" href="/contact">Work With Us</a></aside></div></div>\n</section>\n</article>\n') % (
         E(p['title']), E(p['category']), iso(p['date']), E(p['date']), E(d['author']),
-        render_blocks(p['blocks'], page_dir, p['date'], p['title'], p.get('images')))
+        render_blocks(p['blocks'], page_dir, p['date'], p['title'], p.get('images'), p['slug']))
     meta = {'title': '%s | %s' % (p['title'], BRAND), 'desc': p['desc'], 'canonical': CANON + '/blog/' + p['slug'], 'crumb': p['title']}
     ld = [{"@type": "BlogPosting", "headline": p['title'], "datePublished": iso(p['date']), "description": p['desc'],
            "author": {"@type": "Organization", "name": BRAND}, "publisher": {"@type": "Organization", "name": BRAND},

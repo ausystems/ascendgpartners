@@ -229,3 +229,10 @@ h2.sv-h { font-size: clamp(2rem, 4.4vw, 4.2rem); }
   .ga-hero .ga-chip { opacity: 1; transition: none; }
   .sv-btn, .sv-btn span, .sv-link span, .sv-q .pm, .sv-a, .sv-a p { transition: none; }
 }
+
+/* phones: labels at a legible floor; the rows and figures breathe */
+@media (max-width: 720px) {
+  .sv-label { font-size: 0.75rem; }
+  .sv-row b { font-size: 0.8rem; }
+  .sv-fig span { font-size: 0.92rem; }
+}
