@@ -60,6 +60,10 @@ You locked the homepage as it appears on ascendgpartners.vercel.app. Production'
 10. `/404.html` exists as a page (production renders its 404 in-app).
 11. The `/blog` and `/case-studies` card links wrap category, date and title in the anchor (production's wrap image, title, author, category). Same destinations.
 
+### C2. Reproduced but unloadable in browsers
+
+12a. `/company/press` shows the Vents Magazine article picture with production's exact `src` (a hotlink to `ventsmagazine.com`). Their server sends `Cross-Origin-Resource-Policy: same-origin`, so browsers refuse to render it on any other site, production included (crawlers are not subject to that header, which is why the reference is kept). The frame hides itself if the picture fails, and the page logs one blocked request.
+
 ### D. Pages not migrated
 
 12. `/storefront`: a `noindex, nofollow` demo of a Whop checkout with placeholder products and non-functional "Buy" buttons. Not rebuilt; it returns 404 here. It carries no index value (noindex on production) and rebuilding it would mean shipping fake purchase flows.
