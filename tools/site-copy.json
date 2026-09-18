@@ -9,22 +9,26 @@
    {
     "name": "Kamran Zahid",
     "role": "Founder, CEO",
-    "img": "kamran-zahid"
+    "img": "kamran-zahid",
+    "src": "/uploads/1787631393691-chatgpt-image-aug-24-2026-11-26-35-pm.png?v=1787631393691-chatgpt-image-aug-24-2026-11-26-35-pm.png"
    },
    {
     "name": "Pranav Singh",
     "role": "CMO",
-    "img": "pranav-singh"
+    "img": "pranav-singh",
+    "src": "/uploads/1787631367047-chatgpt-image-aug-24-2026-11-51-12-pm.png?v=1787631367047-chatgpt-image-aug-24-2026-11-51-12-pm.png"
    },
    {
     "name": "Andrew Powell",
     "role": "VP of Revenue",
-    "img": "andrew-powell"
+    "img": "andrew-powell",
+    "src": "/uploads/1787631379952-chatgpt-image-aug-24-2026-11-41-26-pm.png?v=1787631379952-chatgpt-image-aug-24-2026-11-41-26-pm.png"
    },
    {
     "name": "Eileen Campbell",
     "role": "VP of Operations",
-    "img": "eileen-campbell"
+    "img": "eileen-campbell",
+    "src": "/uploads/1787631384550-chatgpt-image-aug-24-2026-11-39-45-pm.png?v=1787631384550-chatgpt-image-aug-24-2026-11-39-45-pm.png"
    }
   ],
   "mv_h2": "Mission & Vision",
@@ -151,10 +155,12 @@
   "items": [
    {
     "outlet": "Vents Magazine",
-    "headline": "Kamran Zahid Launches Ascend Growth Partners to Modernize a Broken Industry",
+    "headline": "Kamran Zahid Launches Ascend Growth Partners to Modernize a Broken Industry - Vents MagaZine",
     "date": "May 20, 2026",
-    "excerpt": "Kamran Zahid launched his first PR company at 17.",
-    "url": "https://ventsmagazine.com/2026/05/20/kamran-zahid-launches-ascend-growth-partners-to-modernize-a-broken-industry/"
+    "excerpt": "Kamran Zahid launched his first PR company at 17. Now, with Ascend Growth Partners, the Toronto-base",
+    "url": "https://ventsmagazine.com/2026/05/20/kamran-zahid-launches-ascend-growth-partners-to-modernize-a-broken-industry/",
+    "image": "https://ventsmagazine.com/wp-content/uploads/2026/05/image1.jpg.jpeg",
+    "image_alt": "Kamran Zahid Launches Ascend Growth Partners to Modernize a Broken Industry - Vents MagaZine"
    }
   ],
   "inquiries_email": "hello@ascendgpartners.com",
@@ -1300,12 +1306,27 @@
       "x": "*Ascend Growth Partners is a full-service growth agency helping ambitious businesses scale with AI solutions, PR, SEO, GEO, paid media, and web design across North America.*"
      },
      {
+      "t": "img",
+      "src": "https://images.unsplash.com/photo-1694903089438-bf28d4697d9a?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "alt": "What Is an AI Marketing Agency? Services, Benefits & How to Choose One in 2026"
+     },
+     {
       "t": "h3",
       "x": "Ready to grow?"
      },
      {
       "t": "p",
       "x": "Let's build a growth strategy tailored to your business."
+     }
+    ],
+    "images": [
+     {
+      "src": "/uploads/1787606436276-igor-omilaev-fhgwfzddaos-unsplash.jpg?v=1787606436276-igor-omilaev-fhgwfzddaos-unsplash.jpg",
+      "alt": "What Is an AI Marketing Agency? Services, Benefits & How to Choose One in 2026"
+     },
+     {
+      "src": "https://images.unsplash.com/photo-1694903089438-bf28d4697d9a?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "alt": "What Is an AI Marketing Agency? Services, Benefits & How to Choose One in 2026"
      }
     ]
    },
@@ -1541,6 +1562,12 @@
       "t": "p",
       "x": "Let's build a growth strategy tailored to your business."
      }
+    ],
+    "images": [
+     {
+      "src": "/uploads/1777650650241-profile-picture-2.png?v=1777650650241-profile-picture-2.png",
+      "alt": "Why Ascend Growth Partners Is the AI and PR Agency Built for How Business Actually Works in 2026"
+     }
     ]
    },
    {
@@ -1771,6 +1798,12 @@
       "t": "p",
       "x": "Let's build a growth strategy tailored to your business."
      }
+    ],
+    "images": [
+     {
+      "src": "/uploads/1779803516739-digital-marketing-101-an-introduction-to-seo.png?v=1779803516739-digital-marketing-101-an-introduction-to-seo.png",
+      "alt": "What Does a Growth Marketing Agency Actually Do? (And How to Pick the Right One)"
+     }
     ]
    },
    {
@@ -1976,6 +2009,12 @@
      {
       "t": "p",
       "x": "Let's build a growth strategy tailored to your business."
+     }
+    ],
+    "images": [
+     {
+      "src": "/uploads/1779562849665-ai-for-small-business-featured-lemfpm-tmp.webp?v=1779562849665-ai-for-small-business-featured-lemfpm-tmp.webp",
+      "alt": "How AI Solutions Are Helping Small and Mid-Size Businesses Compete in 2026"
      }
     ]
    }

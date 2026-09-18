@@ -5,12 +5,19 @@ The header, footer and cursor are lifted from a built service page and
 re-based for each page's depth, so every page carries the same chrome.
 Run:  python3 tools/build-site-pages.py
 """
-import json, os, re, html, posixpath
+import json, os, re, html, posixpath, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from seo_head import head as seo_head
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = json.load(open(os.path.join(ROOT, 'tools/site-copy.json'), encoding='utf-8'))
 SVC = json.load(open(os.path.join(ROOT, 'tools/service-copy.json'), encoding='utf-8'))
+import importlib.util as _ilu
+_spec = _ilu.spec_from_file_location('svcgen', os.path.join(ROOT, 'tools/build-service-pages.py'))
+_svcgen = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_svcgen)
+ART = _svcgen.ART                       # which drawing opens each service page
 E = lambda s: html.escape(s, quote=False)
+A = lambda s: html.escape(s, quote=True)
 BRAND = 'Ascend Growth Partners'
 CANON = 'https://ascendgpartners.com'
 
@@ -21,50 +28,32 @@ FOOT = _src[_src.index('</main>') + len('</main>'):_src.index('<script src="http
 CHROME_DIR = '/services/seo/'
 
 def rebase(h, from_dir, to_dir):
-    """Rewrite every relative href/src so it resolves the same from to_dir."""
+    """Every address is root-relative and slash-free, as on the production site,
+       so the chrome is the same string on every page."""
     def fix(m):
         attr, q, url = m.group(1), m.group(2), m.group(3)
-        if url == '' or re.match(r'^(https?:|mailto:|tel:|#|data:|javascript:)', url): return m.group(0)
-        abs_path = posixpath.normpath(posixpath.join(from_dir, url))
-        if url.endswith('/') and not abs_path.endswith('/'): abs_path += '/'
-        rel = posixpath.relpath(abs_path, to_dir)
-        if abs_path.endswith('/') and not rel.endswith('/'): rel += '/'
-        if rel in ('.', './'): rel = './'
-        return '%s=%s%s%s' % (attr, q, rel, q)
+        if url == '' or re.match(r'^(https?:|mailto:|tel:|#|data:|javascript:|//)', url): return m.group(0)
+        p = posixpath.normpath(posixpath.join(from_dir, url))
+        if url.endswith('/') and not p.endswith('/'): p += '/'
+        if p != '/' and p.endswith('/'): p = p[:-1]
+        return '%s=%s%s%s' % (attr, q, p, q)
     return re.sub(r'\b(href|src)=(["\'])([^"\']*)\2', fix, h)
 
 # ---------- page shell ----------
 def shell(path_dir, d, body, kind='WebPage', extra_ld=None, og_image=None):
-    """path_dir is the site path of the page, e.g. '/company/about/'."""
-    root = '../' * len([p for p in path_dir.split('/') if p])
-    graph = [{"@type": "BreadcrumbList", "itemListElement": crumbs(path_dir, d)}]
-    if kind != 'BlogPosting':          # a post's own node comes in through extra_ld
-        graph.insert(0, {"@type": kind, "name": d['title'], "url": d['canonical'], "description": d['desc'],
-                         "isPartOf": {"@type": "WebSite", "name": BRAND, "url": CANON + '/'}})
-    if extra_ld: graph.extend(extra_ld)
-    og = og_image or (root + 'uploads/index/og-seo.png')
-    head = ('<!DOCTYPE html>\n<html lang="en">\n<head>\n'
-      '<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
-      '<title>%s</title>\n<meta name="description" content="%s">\n'
-      '<link rel="canonical" href="%s">\n'
-      '<link rel="icon" href="%sfavicon.png">\n<link rel="apple-touch-icon" href="%sfavicon.png">\n'
-      '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
-      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-      '<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">\n'
-      '<link rel="stylesheet" href="%sassets/css/styles.css">\n'
-      '<link rel="stylesheet" href="%sassets/css/case-studies.css">\n'
-      '<link rel="stylesheet" href="%sassets/css/pages.css">\n'
-      '<meta property="og:title" content="%s">\n<meta property="og:description" content="%s">\n'
-      '<meta property="og:type" content="%s">\n<meta property="og:url" content="%s">\n'
-      '<meta property="og:image" content="%s">\n'
-      '<script type="application/ld+json">%s</script>\n'
-      '</head>\n<body class="cs-page paper-page">\n') % (
-        E(d['title']), E(d['desc']), d['canonical'], root, root, root, root, root,
-        E(d['title']), E(d['desc']), 'article' if kind == 'BlogPosting' else 'website', d['canonical'], og,
-        json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False))
-    scripts = ('<script src="%sassets/js/case-studies.js"></script>\n'
-               '<script src="%sassets/js/service-page.js"></script>\n'
-               '<script src="%sassets/js/forms.js" data-root="%s"></script>\n</body>\n</html>\n') % (root, root, root, root or './')
+    """path_dir is the directory the page is written to, e.g. '/company/about/'.
+       Its address, and the record its head comes from, is the same without the slash."""
+    path = path_dir if path_dir == '/' else path_dir.rstrip('/')
+    extra = ('<link rel="stylesheet" href="/assets/css/motion.css">\n'
+             '<script>document.documentElement.classList.add("mo")</script>')
+    head = seo_head(path, ['/assets/css/styles.css', '/assets/css/case-studies.css', '/assets/css/pages.css'], extra)
+    head += '<body class="cs-page paper-page">\n<div class="mo-curtain" aria-hidden="true"></div>\n'
+    scripts = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>\n'
+               '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>\n'
+               '<script src="/assets/js/case-studies.js"></script>\n'
+               '<script src="/assets/js/motion.js"></script>\n'
+               '<script src="/assets/js/service-page.js"></script>\n'
+               '<script src="/assets/js/forms.js" data-root="/"></script>\n</body>\n</html>\n')
     nav = rebase(NAV, CHROME_DIR, path_dir); foot = rebase(FOOT, CHROME_DIR, path_dir)
     return head + nav + '\n<main class="pg">\n' + body + '\n</main>\n' + foot + scripts
 
@@ -80,11 +69,12 @@ def crumbs(path_dir, d):
     return items
 
 def final(root):
-    return ('\n<section class="pg-final" aria-labelledby="pgReady">\n  <div class="pg-in">\n    <div class="rv">\n'
+    # the production pages this closes have no closing heading, so the line is a paragraph
+    return ('\n<section class="pg-final" aria-label="Ready?">\n  <div class="pg-in">\n    <div class="rv">\n'
             '      <span class="pg-label is-accent">Ready?</span>\n'
-            '      <h2 class="pg-h" id="pgReady">Let’s build the system that grows with you.</h2>\n'
-            '      <a class="pg-btn" href="%scontact/">Work With Us <span aria-hidden="true">&#8594;</span></a>\n'
-            '    </div>\n  </div>\n</section>\n') % root
+            '      <p class="pg-h" id="pgReady">Let’s build the system that grows with you.</p>\n'
+            '      <a class="pg-btn" href="/contact">Work With Us <span aria-hidden="true">&#8594;</span></a>\n'
+            '    </div>\n  </div>\n</section>\n')
 
 def rows(items, key_t='t', key_d='d'):
     return '<div class="pg-rows">' + ''.join(
@@ -109,8 +99,7 @@ def inline(text, page_dir):
         if url.startswith('/'):
             path = url if url.endswith('/') else url + '/'
             if path in LOCAL_PATHS:
-                rel = posixpath.relpath(path, page_dir); rel = ('' if rel == '.' else rel) + '/'
-                return '<a href="%s">%s</a>' % (rel if rel != '/' else '../../', label)
+                return '<a href="%s">%s</a>' % (path if path == '/' else path.rstrip('/'), label)
             # a post the production site never published: the sentence keeps its
             # words, but there is nothing honest to point them at
             if path.startswith('/blog/'): return label
@@ -132,8 +121,10 @@ def build_services():
         entries = ''
         for it in g['items']:
             n += 1
-            entries += ('<li><a class="pg-entry" href="%s/"><b>%02d</b><div><h3>%s</h3><p>%s</p></div>'
-                        '<span class="pg-entry-arrow" aria-hidden="true">&#8594;</span></a></li>') % (it['slug'], n, E(it['name']), E(it['h1']))
+            folder, hero_img, chap_imgs = ART[it['slug']][0], ART[it['slug']][1], ART[it['slug']][2]
+            preview = ' data-preview="/uploads/%s/%s.svg"' % (folder, hero_img or chap_imgs[0])
+            entries += ('<li><a class="pg-entry" href="/services/%s"%s data-title="%s"><b>%02d</b><div><h3>%s</h3><p>%s</p></div>'
+                        '<span class="pg-entry-arrow" aria-hidden="true">&#8594;</span></a></li>') % (it['slug'], preview, E(it['name']), n, E(it['name']), E(it['h1']))
         groups += ('<div class="pg-group rv"><div class="pg-group-name"><h2 class="pg-label">%s</h2></div>'
                    '<ol class="pg-entries">%s</ol></div>') % (E(g['name']), entries)
     body = ('<section class="pg-hero is-split">\n  <div class="pg-in pg-grid rv">\n'
@@ -149,8 +140,8 @@ def build_services():
 def build_about():
     d = SITE['about']; root = '../../'
     people = ''.join(
-        '<figure class="pg-person rv" data-rv="%d"><img class="pg-portrait" src="%suploads/team/%s.webp" alt="%s, %s" width="960" height="1200" loading="lazy" decoding="async">'
-        '<figcaption><strong>%s</strong><span>%s</span></figcaption></figure>' % (i * 80, root, p['img'], E(p['name']), E(p['role']), E(p['name']), E(p['role']))
+        '<figure class="pg-person rv" data-rv="%d"><img class="pg-portrait" src="%s" srcset="/uploads/team/%s.webp 960w" sizes="(max-width: 720px) 92vw, 40vw" alt="%s" width="960" height="1200" loading="lazy" decoding="async">'
+        '<figcaption><h3>%s</h3><span>%s</span></figcaption></figure>' % (i * 80, A(p['src']), p['img'], E(p['name']), E(p['name']), E(p['role']))
         for i, p in enumerate(d['people']))
     story = ''.join('<p>%s</p>' % E(p) for p in d['story'])
     body = ('<section class="pg-hero is-split">\n  <div class="pg-in pg-grid rv">\n'
@@ -160,9 +151,9 @@ def build_about():
             '    <div class="rv"><span class="pg-label">%s</span><h2 class="pg-h is-md" id="pgTeam">%s</h2></div>\n'
             '    <div class="pg-team-grid">%s</div>\n  </div>\n</section>\n'
             '<section class="pg-mv" aria-labelledby="pgMv">\n  <div class="pg-in pg-grid rv">\n'
-            '    <span class="pg-label" id="pgMv">%s</span>\n'
-            '    <div class="pg-statement"><h3>Mission</h3><p>%s</p></div>\n'
-            '    <div class="pg-statement"><h3>Vision</h3><p>%s</p></div>\n  </div>\n</section>\n'
+            '    <h2 class="pg-label" id="pgMv">%s</h2>\n'
+            '    <div class="pg-statement"><span class="pg-statement-k">Mission</span><p>%s</p></div>\n'
+            '    <div class="pg-statement"><span class="pg-statement-k">Vision</span><p>%s</p></div>\n  </div>\n</section>\n'
             '<section class="pg-story" aria-labelledby="pgStory">\n  <div class="pg-in pg-grid">\n'
             '    <span class="pg-label rv">%s</span>\n    <h2 class="pg-h rv" id="pgStory">%s</h2>\n'
             '    <div class="pg-story-body rv" data-rv="80">%s</div>\n  </div>\n</section>\n'
@@ -203,18 +194,19 @@ def build_reviews():
 def build_press():
     d = SITE['press']; root = '../../'
     items = ''.join(
-        '<article class="pg-press-item rv"><div class="pg-press-meta"><strong>%s</strong><time datetime="%s">%s</time></div>'
-        '<div><h2><a href="%s" rel="noopener" target="_blank">%s</a></h2><p>%s</p>'
+        '<article class="pg-press-item rv"><div class="pg-press-meta"><strong>%s</strong><time datetime="%s">%s</time>'
+        '<a class="pg-press-fig" href="%s" rel="noopener" target="_blank"><img src="%s" alt="%s" loading="lazy" decoding="async"></a></div>'
+        '<div><h3><a href="%s" rel="noopener" target="_blank">%s</a></h3><p>%s</p>'
         '<a class="pg-link is-ext" href="%s" rel="noopener" target="_blank">Read it at %s</a></div></article>'
-        % (E(it['outlet']), iso(it['date']), E(it['date']), it['url'], E(it['headline']), E(it['excerpt']), it['url'], E(it['outlet'])) for it in d['items'])
+        % (E(it['outlet']), iso(it['date']), E(it['date']), it['url'], A(it['image']), A(it['image_alt']), it['url'], E(it['headline']), E(it['excerpt']), it['url'], E(it['outlet'])) for it in d['items'])
     body = ('<section class="pg-hero">\n  <div class="pg-in pg-grid rv">\n'
             '    <span class="pg-label is-accent">%s</span>\n    <h1 class="pg-h is-xl">%s</h1>\n  </div>\n</section>\n'
             '<section class="pg-press" aria-label="Coverage">\n  <div class="pg-in">\n    %s\n'
             '    <div class="pg-press-more rv"><span class="pg-label">Press inquiries</span><div>'
             '<p>Working on a story? Write to <a class="pg-link" href="mailto:%s">%s</a>.</p>'
-            '<p>For the work behind the coverage, see <a class="pg-link" href="%sservices/press-pr/">our Press &amp; PR practice</a> and the <a class="pg-link" href="%scase-studies/">case studies</a>.</p>'
+            '<p>For the work behind the coverage, see <a class="pg-link" href="/services/press-pr">our Press &amp; PR practice</a> and the <a class="pg-link" href="/case-studies">case studies</a>.</p>'
             '</div></div>\n  </div>\n</section>\n') % (
-        E(d['eyebrow']), E(d['h1']), items, d['inquiries_email'], d['inquiries_email'], root, root) + final(root)
+        E(d['eyebrow']), E(d['h1']), items, d['inquiries_email'], d['inquiries_email']) + final(root)
     write('/company/press/', shell('/company/press/', dict(d, crumb='Press'), body))
 
 MONTHS = {m: i + 1 for i, m in enumerate(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])}
@@ -235,17 +227,17 @@ def build_blog():
     chips = ''.join('<li><button type="button" class="pg-chip" data-filter="%s" aria-pressed="%s">%s</button></li>'
                     % (E(c), 'true' if c == 'All' else 'false', E(c)) for c in cats)
     feat = next(p for p in d['posts'] if p['slug'] == d['featured'])
-    featured = ('<a class="pg-featured-link rv" href="%s/">%s<div class="pg-featured-body"><h2>%s</h2><p>%s</p>'
+    featured = ('<a class="pg-featured-link rv" href="/blog/%s" data-title="Blog">%s<div class="pg-featured-body">%s<h3>%s</h3><p>%s</p>'
                 '<span class="pg-read">Read the post <span aria-hidden="true">&#8594;</span></span></div></a>'
-                % (feat['slug'], post_meta(feat, root), E(feat['title']), E(d['featured_excerpt'])))
+                % (feat['slug'], post_meta(feat, root), post_img(feat, 'pg-featured-img'), E(feat['title']), E(d['featured_excerpt'])))
     posts = ''.join(
-        '<li data-cat="%s"><a class="pg-post-link rv" href="%s/">%s<div class="pg-post-body"><h3>%s</h3><p>%s</p></div></a></li>'
-        % (E(p['category']), p['slug'], post_meta(p, root), E(p['title']), E(p['desc'])) for p in d['posts'])
+        '<li data-cat="%s"><a class="pg-post-link rv" href="/blog/%s" data-title="Blog">%s<div class="pg-post-body"><h3>%s</h3><p>%s</p></div>%s</a></li>'
+        % (E(p['category']), p['slug'], post_meta(p, root), E(p['title']), E(p['desc']), post_img(p, 'pg-post-thumb')) for p in d['posts'])
     body = ('<section class="pg-hero">\n  <div class="pg-in pg-grid rv">\n'
             '    <span class="pg-label is-accent">Blog</span>\n    <h1 class="pg-h is-xl">%s</h1>\n'
             '    <ul class="pg-filters" aria-label="Filter posts by category">%s</ul>\n  </div>\n</section>\n'
-            '<section class="pg-featured" aria-labelledby="pgFeat">\n  <div class="pg-in"><span class="pg-label rv" id="pgFeat">Featured Post</span>%s</div>\n</section>\n'
-            '<section class="pg-all" aria-labelledby="pgAll">\n  <div class="pg-in"><span class="pg-label rv" id="pgAll">All Posts</span>'
+            '<section class="pg-featured" aria-labelledby="pgFeat">\n  <div class="pg-in"><h2 class="pg-label rv" id="pgFeat">Featured Post</h2>%s</div>\n</section>\n'
+            '<section class="pg-all" aria-labelledby="pgAll">\n  <div class="pg-in"><h2 class="pg-label rv" id="pgAll">All Posts</h2>'
             '<ol class="pg-posts" id="pgPosts">%s</ol><p class="pg-empty" id="pgEmpty" hidden>No posts in this category yet.</p></div>\n</section>\n') % (
         E(d['h1']), chips, featured, posts) + final(root)
     script = ('<script>(function(){var chips=document.querySelectorAll(".pg-chip"),rows=document.querySelectorAll("#pgPosts li"),empty=document.getElementById("pgEmpty");'
@@ -258,13 +250,28 @@ def build_blog():
     for p in d['posts']:
         build_post(p, d)
 
-def render_blocks(blocks, page_dir, date_text, title):
+def post_img(p, cls):
+    if not p.get('images'): return ''
+    i = p['images'][0]
+    return '<img class="%s" src="%s" alt="%s" width="1200" height="630" loading="lazy" decoding="async">' % (cls, A(i['src']), A(i['alt']))
+
+def render_blocks(blocks, page_dir, date_text, title, images=None):
     out = []
+    used = 0
     for b in blocks:
         t = b['t']
-        if t in ('h1', 'img'): continue
+        if t == 'h1': continue
+        if t == 'img':
+            # the same pictures the production page shows, at the same addresses, with the same alt
+            if images and used < len(images):
+                i = images[used]; used += 1
+                out.append('<figure class="pg-figure"><img src="%s" alt="%s" loading="%s" decoding="async"></figure>' % (A(i['src']), A(i['alt']), 'eager' if used == 1 else 'lazy'))
+            continue
         if t == 'p' and b['x'].strip() == date_text: continue
         if t == 'p' and b['x'].strip() == title: continue
+        # production's closing box is rendered by the page itself, not as article text
+        if t == 'h3' and b['x'].strip() == 'Ready to grow?': continue
+        if t == 'p' and b['x'].strip() in ("Let's build a growth strategy tailored to your business.", 'Work With Us'): continue
         if t in ('p', 'h2', 'h3', 'h4'):
             out.append('<%s>%s</%s>' % (t, inline(b['x'], page_dir), t))
         elif t in ('ul', 'ol'):
@@ -282,15 +289,17 @@ def build_post(p, d):
     page_dir = '/blog/%s/' % p['slug']; root = '../../'
     others = [q for q in d['posts'] if q['slug'] != p['slug']]
     more = ''.join(
-        '<li data-cat="%s"><a class="pg-post-link rv" href="../%s/">%s<div class="pg-post-body"><h3>%s</h3><p>%s</p></div></a></li>'
-        % (E(q['category']), q['slug'], post_meta(q, root), E(q['title']), E(q['desc'])) for q in others)
+        '<li data-cat="%s"><a class="pg-post-link rv" href="/blog/%s" data-title="Blog">%s<div class="pg-post-body"><h3>%s</h3><p>%s</p></div>%s</a></li>'
+        % (E(q['category']), q['slug'], post_meta(q, root), E(q['title']), E(q['desc']), post_img(q, 'pg-post-thumb')) for q in others)
     body = ('<article class="pg-article">\n<section class="pg-hero">\n  <div class="pg-in pg-grid rv">\n'
+            '    <a class="pg-back" href="/blog">&#8592; Back to Blog</a>\n'
             '    <h1 class="pg-h">%s</h1>\n'
             '    <div class="pg-article-meta"><span class="pg-cat">%s</span><time datetime="%s">%s</time><span>By %s</span></div>\n  </div>\n</section>\n'
-            '<section class="pg-prose-wrap">\n  <div class="pg-in pg-grid"><div class="pg-prose rv">%s</div></div>\n</section>\n</article>\n'
-            '<section class="pg-more" aria-labelledby="pgMore">\n  <div class="pg-in"><span class="pg-label rv" id="pgMore">More from the blog</span><ol class="pg-posts">%s</ol></div>\n</section>\n') % (
+            '<section class="pg-prose-wrap">\n  <div class="pg-in pg-grid"><div class="pg-prose rv">%s'
+            '<aside class="pg-post-cta rv"><h3>Ready to grow?</h3><p>Let\'s build a growth strategy tailored to your business.</p>'
+            '<a class="pg-btn" href="/contact">Work With Us</a></aside></div></div>\n</section>\n</article>\n') % (
         E(p['title']), E(p['category']), iso(p['date']), E(p['date']), E(d['author']),
-        render_blocks(p['blocks'], page_dir, p['date'], p['title']), more) + final(root)
+        render_blocks(p['blocks'], page_dir, p['date'], p['title'], p.get('images')))
     meta = {'title': '%s | %s' % (p['title'], BRAND), 'desc': p['desc'], 'canonical': CANON + '/blog/' + p['slug'], 'crumb': p['title']}
     ld = [{"@type": "BlogPosting", "headline": p['title'], "datePublished": iso(p['date']), "description": p['desc'],
            "author": {"@type": "Organization", "name": BRAND}, "publisher": {"@type": "Organization", "name": BRAND},
@@ -334,13 +343,13 @@ def build_contact():
             '        <div class="pg-form-foot"><button class="pg-btn" type="submit">%s <span aria-hidden="true">&#8594;</span></button>'
             '<p class="pg-form-status" data-form-status role="status" aria-live="polite"></p></div>\n'
             '      </div>\n'
-            '      <div class="pg-form-done" data-form-done hidden><h2 class="pg-h is-md">Sent.</h2><p></p>'
-            '<a class="pg-link" href="%sservices/">While you wait, see what we do</a></div>\n'
+            '      <div class="pg-form-done" data-form-done hidden><p class="pg-h is-md">Sent.</p><p></p>'
+            '<a class="pg-link" href="/services">While you wait, see what we do</a></div>\n'
             '    </form>\n'
             '    <p class="pg-contact-alt">Prefer email? <a class="pg-link" href="mailto:%s">%s</a></p>\n'
             '  </div>\n</section>\n') % (
         E(d['eyebrow']), bullets, E(q['text']), E(q['name']), E(q['role']),
-        f['id'], E(f['success']), fields, E(f['submit']), root, d['email'], d['email'])
+        f['id'], E(f['success']), fields, E(f['submit']), d['email'], d['email'])
     write('/contact/', shell('/contact/', dict(d, crumb='Contact'), body, kind='ContactPage'))
 
 # ============================================================
@@ -359,6 +368,28 @@ def build_legal(key, path_dir, crumb):
     write(path_dir, shell(path_dir, dict(d, crumb=crumb), body))
 
 # ============================================================
+# /services/coming-soon and the 404 page: the production pages, word for word
+# ============================================================
+def build_coming_soon():
+    body = ('<section class="pg-hero pg-soon">\n  <div class="pg-in pg-grid rv">\n'
+            '    <span class="pg-label is-accent">Coming Soon</span>\n'
+            '    <h1 class="pg-h is-xl">Something great<br><span class="pg-serif">is ascending.</span></h1>\n'
+            '    <p class="pg-lede">We’re hard at work crafting something worth the wait. In the meantime, let’s talk about how we can help your business grow.</p>\n'
+            '    <div class="pg-soon-actions"><a class="pg-btn is-accent" href="/#contact">Work With Us</a>'
+            '<a class="pg-link" href="/">&#8592; Back to Home</a></div>\n  </div>\n</section>\n')
+    write('/services/coming-soon/', shell('/services/coming-soon/', {'title': 'Coming Soon', 'desc': '', 'canonical': ''}, body))
+
+def build_404():
+    body = ('<section class="pg-hero pg-soon">\n  <div class="pg-in pg-grid rv">\n'
+            '    <span class="pg-label is-accent">404</span>\n'
+            '    <h1 class="pg-h is-xl">This page could not be found.</h1>\n'
+            '    <p class="pg-lede">The address may have changed, or it never existed. Everything we do is one step from here.</p>\n'
+            '    <div class="pg-soon-actions"><a class="pg-btn" href="/">Back to Home</a><a class="pg-link" href="/services">See our services</a>'
+            '<a class="pg-link" href="/contact">Work with us</a></div>\n  </div>\n</section>\n')
+    doc = shell('/404/', {'title': 'Page Not Found', 'desc': '', 'canonical': ''}, body)
+    open(os.path.join(ROOT, '404.html'), 'w', encoding='utf-8').write(doc); print('%-42s %6d chars' % ('/404.html', len(doc)))
+
+# ============================================================
 # sitemap + robots
 # ============================================================
 def build_sitemap(paths):
@@ -375,4 +406,5 @@ if __name__ == '__main__':
                        ['/case-studies/%s/' % c for c in ('bare-knuckle-fc', 'dr-harrison-lee', 'jason-wojo')])
     build_services(); build_about(); build_reviews(); build_press(); build_blog(); build_contact()
     build_legal('privacy-policy', '/privacy-policy/', 'Privacy Policy'); build_legal('terms-of-use', '/terms-of-use/', 'Terms of Use')
-    build_sitemap(sorted(LOCAL_PATHS))
+    build_coming_soon(); build_404()
+    # sitemap.xml and robots.txt are the production site's own files, copied verbatim; nothing generates them

@@ -4,7 +4,21 @@ One image per chapter, one reveal, one turn from paper to graphite.
 Copy is passed in verbatim; this file only lays it out.
 Run:  python3 tools/build-service-pages.py
 """
-import json, os, re, html
+import json, os, re, html, posixpath, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from seo_head import head as seo_head
+
+def rootify(h, from_dir):
+    """Every href/src becomes root-relative, and page addresses lose their
+       trailing slash, which is the form the production site links with."""
+    def fix(m):
+        attr, q, url = m.group(1), m.group(2), m.group(3)
+        if url == '' or re.match(r'^(https?:|mailto:|tel:|#|data:|javascript:|//)', url): return m.group(0)
+        p = posixpath.normpath(posixpath.join(from_dir, url))
+        if url.endswith('/') and not p.endswith('/'): p += '/'
+        if p != '/' and p.endswith('/'): p = p[:-1]
+        return '%s=%s%s%s' % (attr, q, p, q)
+    return re.sub(r'\b(href|src)=(["\'])([^"\']*)\2', fix, h)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COPY = json.load(open(os.environ.get('COPY_JSON', os.path.join(ROOT, 'tools/service-copy.json')), encoding='utf-8'))
@@ -114,25 +128,21 @@ def shared_chrome():
         # the source lost the opening angle bracket of the footer comment, which
         # leaves its text rendering as a stray line above the footer
         foot = foot.replace('\n!-- FOOTER', '\n<!-- FOOTER')
-        nav = nav.replace('<a href="./" class="nav-link">Services', '<a href="../../services/" class="nav-link">Services')
+        nav, foot = rootify(nav, '/services/seo/'), rootify(foot, '/services/seo/')
+        nav = nav.replace('<a href="/services/seo" class="nav-link">Services', '<a href="/services" class="nav-link">Services')
         # the menu's thumbnails are ~100px wide; the 2400px case-study photos behind
         # them cost 600KB a page, so interior pages use 600px copies of the same images
-        nav = re.sub(r'src="\.\./\.\./uploads/(bkfc-david-feldman|dr-harrison-lee-1|dr-harrison-lee-2)\.webp"', r'src="../../uploads/nav/\1.webp"', nav)
-        foot = re.sub(r'<a href="\.\./\.\./contact/">(\s*SEO &(?:amp;)? GEO\s*)</a>', r'<a href="../../services/seo/">\1</a>', foot)
-        foot = re.sub(r'<a href="\.\./\.\./contact/">(\s*Web Design &(?:amp;)? Dev\s*)</a>', r'<a href="../../services/web-design/">\1</a>', foot)
+        nav = re.sub(r'src="/uploads/(bkfc-david-feldman|dr-harrison-lee-1|dr-harrison-lee-2)\.webp"', r'src="/uploads/nav/\1.webp"', nav)
+        # footer destinations follow the production site's footer for the same labels
+        foot = re.sub(r'<a href="/contact">(\s*SEO &(?:amp;)? GEO\s*)</a>', r'<a href="/services/seo">\1</a>', foot)
+        foot = re.sub(r'<a href="/contact">(\s*Web Design &(?:amp;)? Dev\s*)</a>', r'<a href="/services/web-design">\1</a>', foot)
         _CHROME = (nav, foot)
     return _CHROME
 
 def nav_for(slug, nav):
-    """Point every service link at its sibling, and the current page at itself."""
-    out = nav
-    for label, href in SIBLING_HREF.items():
-        out = out.replace('<a href="../../services/%s/">%s</a>' % (href.strip('./'), label),
-                          '<a href="%s">%s</a>' % (href, label))
-    out = out.replace('<a href="./">SEO</a>', '<a href="../seo/">SEO</a>')
-    me = NAV_SELF[slug]
-    out = out.replace('<a href="%s">%s</a>' % (SIBLING_HREF[me], me), '<a href="./">%s</a>' % me)
-    return out
+    """The header is the same on every page: every link is the page's one address,
+       as on the production site, including the link to the page itself."""
+    return nav
 
 def art_size(folder, name):
     """Intrinsic size from the artwork itself, so the layout never shifts."""
@@ -148,60 +158,36 @@ def inline_hero(slug):
 def stage(folder, name, eager=False):
     w, h = art_size(folder, name)
     return ('<div class="sv-stage rv" data-rv="120">'
-            '<img src="../../uploads/%s/%s.svg" alt="%s" width="%d" height="%d" '
+            '<img src="/uploads/%s/%s.svg" alt="%s" width="%d" height="%d" '
             '%s decoding="async">'
             '</div>') % (folder, name, E(ALT.get(name, '')), w, h,
                          'fetchpriority="high"' if eager else 'loading="lazy"')
 
 def chapter(c, folder, img, dark=False):
+    link = ('\n      <a class="sv-link" href="%s">%s</a>' % (E(c['link']['href']), E(c['link']['text']))) if c.get('link') else ''
     return ('<section class="sv-chapter">\n'
             '  <div class="sv-in">\n'
             '    <div class="sv-mid rv">\n'
             '      <span class="sv-label">%s</span>\n'
             '      <h2 class="sv-h">%s</h2>\n'
-            '      <p class="sv-body">%s</p>\n'
+            '      <p class="sv-body">%s</p>%s\n'
             '    </div>\n'
             '    %s\n'
             '  </div>\n'
-            '</section>') % (E(c['label']), E(c['h2']), E(c['body']), stage(folder, img))
+            '</section>') % (E(c['label']), c.get('h2_html') or E(c['h2']), E(c['body']), link, stage(folder, img))
 
 def build(slug, d):
     folder, hero_img, chap_imgs, dark_at = ART[slug]
-    cta_href = d.get('cta_href', '../../contact/')
+    cta_href = d.get('cta_href', '/contact')
     nav, foot = shared_chrome()
     faq = d.get('faq') or []
 
-    graph = [{"@type": "Service", "name": d['label'],
-              "provider": {"@type": "Organization", "name": "Ascend Growth Partners", "url": "https://ascendgpartners.com/"},
-              "areaServed": "North America", "url": d['canonical'], "description": d['lede']},
-             {"@type": "BreadcrumbList", "itemListElement": [
-               {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://ascendgpartners.com/"},
-               {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://ascendgpartners.com/services"},
-               {"@type": "ListItem", "position": 3, "name": d['label'], "item": d['canonical']}]}]
-    if faq:
-        graph.append({"@type": "FAQPage", "mainEntity": [
-            {"@type": "Question", "name": q['q'], "acceptedAnswer": {"@type": "Answer", "text": q['a']}} for q in faq]})
-
-    head = ('<!DOCTYPE html>\n<html lang="en">\n<head>\n'
-      '<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
-      '<title>%s</title>\n<meta name="description" content="%s">\n'
-      '<link rel="canonical" href="%s">\n'
-      '<link rel="icon" href="../../favicon.png">\n<link rel="apple-touch-icon" href="../../favicon.png">\n'
-      '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
-      '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-      '<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">\n'
-      '<link rel="stylesheet" href="../../assets/css/styles.css">\n'
-      '<link rel="stylesheet" href="../../assets/css/case-studies.css">\n'
-      '<link rel="stylesheet" href="../../assets/css/service-page.css">\n'
-      '<link rel="preload" as="image" href="../../uploads/%s/%s.svg" fetchpriority="high">\n'
-      '<meta property="og:title" content="%s">\n<meta property="og:description" content="%s">\n'
-      '<meta property="og:type" content="website">\n<meta property="og:url" content="%s">\n'
-      '<script type="application/ld+json">%s</script>\n'
-      '</head>\n<body class="cs-page paper-page%s">\n') % (
-        E(d['title']), d['desc'], d['canonical'], folder, hero_img or chap_imgs[0],
-        E(d['title']), E(d['lede'][:180]), d['canonical'],
-        json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False),
-        ' ga' if slug in INLINE_HERO else '')
+    path = '/services/%s' % slug
+    extra = ('<link rel="preload" as="image" href="/uploads/%s/%s.svg" fetchpriority="high">\n'
+             '<link rel="stylesheet" href="/assets/css/motion.css">\n'
+             '<script>document.documentElement.classList.add("mo")</script>') % (folder, hero_img or chap_imgs[0])
+    head = seo_head(path, ['/assets/css/styles.css', '/assets/css/case-studies.css', '/assets/css/service-page.css'], extra)
+    head += '<body class="cs-page paper-page%s">\n<div class="mo-curtain" aria-hidden="true"></div>\n' % (' ga' if slug in INLINE_HERO else '')
 
     hero = ('\n<main class="sv">\n\n'
       '<section class="sv-hero" id="top">\n  <div class="sv-in">\n'
@@ -212,7 +198,7 @@ def build(slug, d):
       '      <a class="sv-btn" href="%s">%s <span aria-hidden="true">&#8594;</span></a>\n'
       '    </div>\n'
       '  </div>\n  %s\n</section>\n') % (
-        E(d['label']), E(d['h1']), E(d['lede']), cta_href, E(d['cta']),
+        E(d['label']), d.get('h1_html') or E(d['h1']), E(d['lede']), cta_href, E(d['cta']),
         inline_hero(slug) if slug in INLINE_HERO else stage(folder, hero_img, eager=True))
 
     def figsize(v):
@@ -239,8 +225,8 @@ def build(slug, d):
            '      <span class="sv-label is-accent">%s</span>\n'
            '      <h2 class="sv-h" id="svList">%s</h2>\n'
            '    </div>\n    %s\n  </div>\n</section>\n') % (
-             E(d.get('list_label', 'What You Get')),
-             E(d.get('list_h2', 'The pieces needed to scale cleanly.')), rows)
+             E(d.get('list_label') or 'What You Get'),
+             d.get('list_h2_html') or E(d.get('list_h2', 'The pieces needed to scale cleanly.')), rows)
 
     faq_html = ''
     if faq:
@@ -252,21 +238,22 @@ def build(slug, d):
         faq_html = ('\n<section class="sv-faq" id="faq" aria-labelledby="svFaq">\n  <div class="sv-in">\n'
                     '    <div class="sv-faq-head rv">\n'
                     '      <span class="sv-label is-accent">FAQ</span>\n'
-                    '      <h2 class="sv-h" id="svFaq">Common questions.</h2>\n'
-                    '    </div>\n    <div class="rv">%s</div>\n  </div>\n</section>\n') % qs
+                    '      <h2 class="sv-h" id="svFaq">%s</h2>\n'
+                    '    </div>\n    <div class="rv">%s</div>\n  </div>\n</section>\n') % (d.get('faq_h2_html') or 'Common questions.', qs)
 
     final = ('\n<section class="sv-final" id="ready" aria-labelledby="svReady">\n  <div class="sv-in">\n'
              '    <div class="sv-mid rv">\n'
              '      <span class="sv-label is-accent">Ready?</span>\n'
-             '      <h2 class="sv-h" id="svReady">Let’s build the system that grows with you.</h2>\n'
+             '      <h2 class="sv-h" id="svReady">%s</h2>\n'
              '      <a class="sv-btn" href="%s">%s <span aria-hidden="true">&#8594;</span></a>\n'
-             '    </div>\n  </div>\n</section>\n\n</main>\n') % (cta_href, E(d['final_cta']))
+             '    </div>\n  </div>\n</section>\n\n</main>\n') % (d.get('final_h2_html') or 'Let\'s build the system that grows with you.', cta_href, E(d['final_cta']))
 
     scripts = ('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>\n'
                '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>\n'
-               '<script src="../../assets/js/case-studies.js"></script>\n'
-               '<script src="../../assets/js/service-page.js"></script>\n'
-               '<script src="../../assets/js/forms.js" data-root="../../"></script>\n</body>\n</html>\n')
+               '<script src="/assets/js/case-studies.js"></script>\n'
+               '<script src="/assets/js/motion.js"></script>\n'
+               '<script src="/assets/js/service-page.js"></script>\n'
+               '<script src="/assets/js/forms.js" data-root="/"></script>\n</body>\n</html>\n')
 
     doc = head + nav_for(slug, nav) + hero + figures + before + turn + after + lst + faq_html + final + foot + scripts
     out = os.path.join(ROOT, 'services', slug, 'index.html')

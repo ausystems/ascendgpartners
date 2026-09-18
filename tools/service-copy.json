@@ -14,7 +14,7 @@
     "cap": "Average authority of links we earn"
    },
    {
-    "value": "7 figure",
+    "value": "7-figure",
     "cap": "Client rosters we've protected from algorithm shifts"
    }
   ],
@@ -22,17 +22,24 @@
    {
     "label": "Technical SEO",
     "h2": "The foundation Google rewards before it reads a single word.",
+    "h2_html": "The foundation Google rewards before it reads a single word.",
     "body": "Most \"SEO problems\" are actually plumbing problems. Slow Core Web Vitals. Broken structured data. Wasted crawl budget. Internal links pointing at dead pages. We audit every technical signal that determines whether your content even gets a fair shot at ranking — then we fix them, ship them, and verify them. The brands we work with don't have time to wait six months to find out their hreflang tags were wrong."
    },
    {
     "label": "Content Strategy",
-    "h2": "Content that earns rankings, trust, and revenue, in that order.",
+    "h2": "Content that earns rankings, trust, and revenue — in that order.",
+    "h2_html": "Content that earns rankings, trust, and revenue — in that order.",
     "body": "Most content marketing dies because it tries to convert before it earns the right to. We map the full keyword universe around your brand, identify the gaps your competitors haven't filled, and build a publishing engine that captures intent at every funnel stage. Every piece is written to rank first, convert second, and outlive the trend cycle. We've done it for personal brands with millions of followers and for challenger companies nobody had heard of yet."
    },
    {
     "label": "Link Building & Digital PR",
     "h2": "Authority no competitor can quietly buy.",
-    "body": "Backlinks are still the most powerful ranking signal in SEO - and the hardest to fake. We build authority through digital PR, founder thought leadership, and original-data campaigns that earn placements in the publications your customers actually read. Because we're a PR agency before we're an SEO agency, we get coverage other SEO shops literally can't get to. That's the unfair advantage."
+    "h2_html": "Authority no competitor can quietly buy.",
+    "body": "Backlinks are still the most powerful ranking signal in SEO - and the hardest to fake. We build authority through digital PR, founder thought leadership, and original-data campaigns that earn placements in the publications your customers actually read. Because we're a PR agency before we're an SEO agency, we get coverage other SEO shops literally can't get to. That's the unfair advantage.",
+    "link": {
+     "text": "See our PR services",
+     "href": "/#contact"
+    }
    }
   ],
   "list": [
@@ -96,7 +103,12 @@
   "desc": "We do SEO for the brands and personalities the world already follows — and the ones about to. Behind clients like Mel Robbins, Gymshark & BKFC.",
   "canonical": "https://ascendgpartners.com/services/seo",
   "link_label": "See our PR services",
-  "link_href": "https://ascendgpartners.com/services/press-pr"
+  "link_href": "https://ascendgpartners.com/services/press-pr",
+  "h1_html": "Rank higher.<br><em>Grow faster.</em>",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "link-building": {
   "label": "Link Building",
@@ -105,15 +117,15 @@
   "cta": "Get Your Link Strategy",
   "figures": [
    {
-    "value": "+180%",
-    "cap": "Organic traffic growth"
-   },
-   {
     "value": "DR 70+",
     "cap": "Average publication authority"
    },
    {
-    "value": "92 %",
+    "value": "+180%",
+    "cap": "Organic traffic growth"
+   },
+   {
+    "value": "92%",
     "cap": "Links from editorial sources"
    }
   ],
@@ -121,16 +133,19 @@
    {
     "label": "Step 01",
     "h2": "Find the authority gap",
+    "h2_html": "Find the authority gap",
     "body": "We audit your backlink profile, competitors, and ranking goals to identify what type of authority your site is missing."
    },
    {
     "label": "Step 02",
     "h2": "Create reasons to earn links",
+    "h2_html": "Create reasons to earn links",
     "body": "Journalists and publishers need a reason to cite you. We build linkable assets, data angles, and story hooks that deserve coverage."
    },
    {
     "label": "Step 03",
     "h2": "Earn links that matter",
+    "h2_html": "Earn links that matter",
     "body": "We prioritize editorial relevance, authority, and long-term ranking impact over cheap volume."
    }
   ],
@@ -179,12 +194,17 @@
   "desc": "High-authority backlinks from DR 50+ publications - earned through digital PR, strategic partnerships, and content journalists actually want to cover.",
   "canonical": "https://ascendgpartners.com/services/link-building",
   "link_label": "See our SEO services",
-  "link_href": "../seo/"
+  "link_href": "../seo/",
+  "h1_html": "Link Building That<br>Builds Real Authority.",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "geo": {
   "label": "Generative Engine Optimization",
-  "h1": "When AI gets asked, you’re the answer.",
-  "lede": "ChatGPT, Claude, Perplexity, and Google’s AI Overviews are now where customers research, compare, and decide. Ascend’s GEO practice gets your brand cited in those answers — and proves the revenue when it does.",
+  "h1": "When AI gets asked, you're the answer.",
+  "lede": "ChatGPT, Claude, Perplexity, and Google's AI Overviews are now where customers research, compare, and decide. Ascend's GEO practice gets your brand cited in those answers — and proves the revenue when it does.",
   "cta": "Get Your GEO Audit",
   "figures": [
    {
@@ -196,7 +216,7 @@
     "cap": "AI-driven revenue growth"
    },
    {
-    "value": "60 %+",
+    "value": "60%+",
     "cap": "Of consumers now use AI in purchase research"
    }
   ],
@@ -204,17 +224,20 @@
    {
     "label": "AI Visibility",
     "h2": "Engineered to be the answer AI hands back.",
-    "body": "AI search engines don’t crawl the web the way Google does — and they don’t rank the way Google does either. They pattern-match against trusted sources, structured data, and citation density. We restructure your site, schema, and authority signals so ChatGPT, Claude, and Perplexity parse your brand correctly, cite you confidently, and recommend you when it matters. Your expertise stops being buried on page two, and starts being the answer."
+    "h2_html": "Engineered to be the answer AI hands back.",
+    "body": "AI search engines don't crawl the web the way Google does — and they don't rank the way Google does either. They pattern-match against trusted sources, structured data, and citation density. We restructure your site, schema, and authority signals so ChatGPT, Claude, and Perplexity parse your brand correctly, cite you confidently, and recommend you when it matters. Your expertise stops being buried on page two, and starts being the answer."
    },
    {
     "label": "Citation Authority",
     "h2": "AI engines cite the brands the internet already trusts.",
-    "body": "Large language models are trained and grounded on a finite set of trusted sources - major publications, Wikipedia, Reddit, expert-led blogs, structured directories. We engineer your presence across those exact source types through digital PR, original research, founder bylines, and Wikipedia-grade entity work. The result: when someone asks an AI “who’s the best [your category],” your name is one of the few it has the data to confidently surface."
+    "h2_html": "AI engines cite the brands the internet already trusts.",
+    "body": "Large language models are trained and grounded on a finite set of trusted sources - major publications, Wikipedia, Reddit, expert-led blogs, structured directories. We engineer your presence across those exact source types through digital PR, original research, founder bylines, and Wikipedia-grade entity work. The result: when someone asks an AI \"who's the best [your category],\" your name is one of the few it has the data to confidently surface."
    },
    {
     "label": "Revenue Attribution",
     "h2": "The first GEO practice that proves what it earned.",
-    "body": "Most agencies that “do GEO” can’t tell you whether it worked. We can. We deploy server-side tracking, AI-referrer detection, and conversion stitching to attribute revenue back to ChatGPT, Perplexity, Claude, and Google AI Overview sessions. You get a real dashboard showing AI-sourced traffic, conversions, and revenue — not vibes about how AI search “is the future.”"
+    "h2_html": "The first GEO practice that proves what it earned.",
+    "body": "Most agencies that \"do GEO\" can't tell you whether it worked. We can. We deploy server-side tracking, AI-referrer detection, and conversion stitching to attribute revenue back to ChatGPT, Perplexity, Claude, and Google AI Overview sessions. You get a real dashboard showing AI-sourced traffic, conversions, and revenue — not vibes about how AI search \"is the future.\""
    }
   ],
   "list": [
@@ -249,7 +272,11 @@
   "desc": "ChatGPT, Claude, Perplexity, and Google's AI Overviews are where customers research, compare, and decide. Ascend's GEO practice gets your brand cited in those answers - and proves the revenue when it does.",
   "canonical": "https://ascendgpartners.com/services/geo",
   "link_label": "See our SEO services",
-  "link_href": "../seo/"
+  "link_href": "../seo/",
+  "h1_html": "When AI gets asked, <em>you're the answer.</em>",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "content-creation": {
   "label": "Content Creation",
@@ -262,7 +289,7 @@
     "cap": "Average organic traffic lift"
    },
    {
-    "value": "3.5 x",
+    "value": "3.5x",
     "cap": "Content ROI"
    },
    {
@@ -274,16 +301,19 @@
    {
     "label": "Step 01",
     "h2": "Map demand before writing",
+    "h2_html": "Map demand before writing",
     "body": "We identify what your buyers search, compare, ask, and need before we write a single article."
    },
    {
     "label": "Step 02",
     "h2": "Build topic authority",
+    "h2_html": "Build topic authority",
     "body": "We create clusters that cover the full buyer journey so your site becomes the obvious answer in your category."
    },
    {
     "label": "Step 03",
     "h2": "Turn content into pipeline",
+    "h2_html": "Turn content into pipeline",
     "body": "Every piece has a job: rank, educate, convert, earn links, or support sales. No filler."
    }
   ],
@@ -332,7 +362,12 @@
   "desc": "Strategy-led content engineered to capture demand at every stage of the funnel - and built to earn authority for years.",
   "canonical": "https://ascendgpartners.com/services/content-creation",
   "link_label": "See our SEO services",
-  "link_href": "../seo/"
+  "link_href": "../seo/",
+  "h1_html": "Content That Ranks,<br>Converts, and Compounds.",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "email-marketing": {
   "label": "Email & SMS Marketing",
@@ -357,21 +392,25 @@
    {
     "label": "Email Revenue",
     "h2": "Email is still the highest-ROI channel in marketing. We make sure yours acts like it.",
+    "h2_html": "Email is still the highest-ROI channel in marketing. We make sure yours acts like it.",
     "body": "Email gets dismissed because most brands run it badly. Generic blasts. Untested subject lines. Flows that haven't been touched in two years. We rebuild your program around revenue per send, lifetime value, and attributed flow performance — not opens, not impressions, not vanity. Whether you're an ecommerce brand running on Klaviyo or a personal brand with a list of 500K, the math is the same: a properly engineered list outperforms every paid channel you have."
    },
    {
     "label": "Segmentation & Personalization",
     "h2": "Personal at scale. Cookie-cutter, never.",
+    "h2_html": "Personal at scale. Cookie-cutter, never.",
     "body": "A 50,000-person list is not one audience — it's twenty. New subscribers, dormant subscribers, repeat buyers, lapsed VIPs, content-only readers, high-intent browsers. We build segmentation logic, content variants, and send-time strategy so every subscriber gets a message that actually fits where they are. The result is the part nobody talks about: lower unsubscribes, higher inbox placement, and revenue that compounds because subscribers stop tuning you out."
    },
    {
     "label": "SMS Marketing",
     "h2": "SMS is a scalpel, not a hammer.",
+    "h2_html": "SMS is a scalpel, not a hammer.",
     "body": "SMS open rates clear 95% — which means it works exactly twice before subscribers opt out if you abuse it. We use SMS for the moments that genuinely warrant it: cart recovery, drop launches, time-bound offers, VIP-only access, and high-urgency announcements. Layered correctly with email, SMS adds 15-25% on top of total lifecycle revenue. Deployed badly, it tanks your list health permanently. We do the former."
    },
    {
     "label": "For Personal Brands & Creators",
     "h2": "Built for creators who treat their list like an asset.",
+    "h2_html": "Built for creators who treat their list like an asset.",
     "body": "Personal-brand email is its own discipline and it's nothing like e-commerce email. Newsletter monetization, course launches, podcast cross-promotion, book launches, ticketed events, paid memberships each requires a fundamentally different lifecycle strategy. We've run email programs for some of the largest personal brands in the world, and we know how to scale a creator's list without making it feel transactional. If you're a thought leader, athlete, author, or founder building an audience, your email list is the most valuable thing you own. We treat it that way."
    }
   ],
@@ -436,7 +475,12 @@
   "desc": "Email and SMS programs engineered for ecommerce brands and personal brands alike - turning subscribers into revenue, retention, and superfans.",
   "canonical": "https://ascendgpartners.com/services/email-marketing",
   "link_label": "See our content services",
-  "link_href": "../content-creation/"
+  "link_href": "../content-creation/",
+  "h1_html": "Your list is the only audience <em>you actually own.</em>",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "paid-social": {
   "label": "Paid Social",
@@ -461,16 +505,19 @@
    {
     "label": "Step 01",
     "h2": "Find the message that moves buyers",
+    "h2_html": "Find the message that moves buyers",
     "body": "We test hooks, offers, angles, and formats until the account has creative that can pull attention and convert it into revenue."
    },
    {
     "label": "Step 02",
     "h2": "Build a full-funnel media system",
+    "h2_html": "Build a full-funnel media system",
     "body": "Prospecting, retargeting, retention, and creative sequencing work together so paid social does more than chase cheap clicks."
    },
    {
     "label": "Step 03",
     "h2": "Scale without breaking efficiency",
+    "h2_html": "Scale without breaking efficiency",
     "body": "We scale budget around winning signals, refresh creative before fatigue sets in, and keep reporting tied to business impact."
    }
   ],
@@ -517,17 +564,22 @@
   "final_cta": "Get Your Social Strategy",
   "title": "Paid Social Agency for Meta & TikTok | Ascend Growth Partners",
   "desc": "Full-funnel paid social strategy across Meta, TikTok, and beyond - creative-led, data-driven, and built to compound.",
-  "canonical": "https://ascendgpartners.com/services/paid-social"
+  "canonical": "https://ascendgpartners.com/services/paid-social",
+  "h1_html": "Paid Social That<br>Scales Your Brand.",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "google-ads": {
   "label": "Google Ads",
   "h1": "Google Ads engineered to pay for themselves.",
-  "lede": "Search, Shopping, Performance Max, and YouTube campaigns built around revenue and pipeline — not click-through rates and “engagement.” We track every dollar in, every dollar out, and we don’t hide behind dashboard vanity metrics.",
+  "lede": "Search, Shopping, Performance Max, and YouTube campaigns built around revenue and pipeline — not click-through rates and \"engagement.\" We track every dollar in, every dollar out, and we don't hide behind dashboard vanity metrics.",
   "cta": "Get an ad account audit",
   "figures": [
    {
     "value": "Day 14",
-    "cap": "When you’ll see your first audit findings"
+    "cap": "When you'll see your first audit findings"
    },
    {
     "value": "5 channels",
@@ -542,32 +594,36 @@
    {
     "label": "Step 01 — High-Intent Demand",
     "h2": "Win the buyers already typing your offer into Google.",
-    "body": "The single highest-ROI ad spend on the internet is search ads in front of high-intent buyers. The catch is that 80% of accounts blow that budget on broad match terms, low-intent keywords, and search themes Google’s algorithm thinks are “related” but aren’t. We rebuild campaigns around the actual purchase-intent terms — branded, competitor, bottom-funnel category — and structure the account so budget compounds toward the cleanest conversion paths instead of leaking into clicks that never close."
+    "h2_html": "Win the buyers already typing your offer into Google.",
+    "body": "The single highest-ROI ad spend on the internet is search ads in front of high-intent buyers. The catch is that 80% of accounts blow that budget on broad match terms, low-intent keywords, and search themes Google's algorithm thinks are \"related\" but aren't. We rebuild campaigns around the actual purchase-intent terms — branded, competitor, bottom-funnel category — and structure the account so budget compounds toward the cleanest conversion paths instead of leaking into clicks that never close."
    },
    {
     "label": "Step 02 — Tracking & Attribution",
-    "h2": "Bad data is the reason your ads aren’t working.",
-    "body": "Most “underperforming” ad accounts aren’t actually underperforming — they’re just sending Google bad signals. Broken conversion tracking, missing offline conversion imports, every form fill counted as a “lead” regardless of quality, no GA4 server-side tagging. We rebuild the measurement stack first: clean event tracking, server-side tagging, offline conversion imports, value-based bidding, and revenue feedback loops. Once Google knows what a real conversion looks like in your business, the algorithm starts working for you instead of against you."
+    "h2": "Bad data is the reason your ads aren't working.",
+    "h2_html": "Bad data is the reason your ads aren't working.",
+    "body": "Most \"underperforming\" ad accounts aren't actually underperforming — they're just sending Google bad signals. Broken conversion tracking, missing offline conversion imports, every form fill counted as a \"lead\" regardless of quality, no GA4 server-side tagging. We rebuild the measurement stack first: clean event tracking, server-side tagging, offline conversion imports, value-based bidding, and revenue feedback loops. Once Google knows what a real conversion looks like in your business, the algorithm starts working for you instead of against you."
    },
    {
     "label": "Step 03 — Scale Without Waste",
-    "h2": "Cut the spend that’s lying to you. Scale the spend that isn’t.",
-    "body": "Every Google Ads account has two budgets running at once: the part that’s actually generating revenue, and the part Google’s auto-bidding has quietly inflated to chase clicks that don’t convert. We separate them. Search term mining, negative keyword sculpting, asset group optimization in Performance Max, audience layering, and landing-page conversion-rate work — all aimed at one thing: more revenue from the same spend, or the same revenue from less. Then we scale the winners hard."
+    "h2": "Cut the spend that's lying to you. Scale the spend that isn't.",
+    "h2_html": "Cut the spend that's lying to you. Scale the spend that isn't.",
+    "body": "Every Google Ads account has two budgets running at once: the part that's actually generating revenue, and the part Google's auto-bidding has quietly inflated to chase clicks that don't convert. We separate them. Search term mining, negative keyword sculpting, asset group optimization in Performance Max, audience layering, and landing-page conversion-rate work — all aimed at one thing: more revenue from the same spend, or the same revenue from less. Then we scale the winners hard."
    },
    {
     "label": "Built For Specific Buyers",
-    "h2": "We don’t run Google Ads for everyone. We run them for specific kinds of brands.",
+    "h2": "We don't run Google Ads for everyone. We run them for specific kinds of brands.",
+    "h2_html": "We don't run Google Ads for everyone. We run them for specific kinds of brands.",
     "body": "Personal brands launching books, courses, and high-ticket programs. Ecommerce challengers fighting for market share against entrenched competitors. Direct-response businesses where every click has to pay for itself within 30 days. Local market expansions where geographic targeting is the entire game. Founder-led B2B brands selling premium offers that need conversion volume without the Edelman-tier ad agency price tag. The brands we work with — Mel Robbins, Ed Mylett, Tim Grover, Gymshark, BKFC, Keller Williams — span every one of those buckets, which is why our playbooks are built around buyer psychology, not industry verticals."
    }
   ],
   "list": [
    {
     "title": "Account Architecture",
-    "desc": "Campaign structures built around buyer intent, margin tier, and funnel stage — not whatever Google Ads “campaign creation flow” suggests when you click the blue button."
+    "desc": "Campaign structures built around buyer intent, margin tier, and funnel stage — not whatever Google Ads \"campaign creation flow\" suggests when you click the blue button."
    },
    {
     "title": "Conversion Tracking & Server-Side Tagging",
-    "desc": "GA4, GTM server-side, offline conversion imports, enhanced conversions, and value-based bidding. The plumbing every account needs and most accounts don’t have."
+    "desc": "GA4, GTM server-side, offline conversion imports, enhanced conversions, and value-based bidding. The plumbing every account needs and most accounts don't have."
    },
    {
     "title": "Keyword & Search Term Strategy",
@@ -583,50 +639,55 @@
    },
    {
     "title": "Revenue Reporting & Attribution",
-    "desc": "Dashboards tied to pipeline, sales, and ROAS — not clicks and CTR. Monthly strategy calls walk through what shipped, what moved, and what’s next. No PDFs nobody opens."
+    "desc": "Dashboards tied to pipeline, sales, and ROAS — not clicks and CTR. Monthly strategy calls walk through what shipped, what moved, and what's next. No PDFs nobody opens."
    }
   ],
   "faq": [
    {
     "q": "How fast does Google Ads start working?",
-    "a": "You’ll see early signal — clicks, impressions, initial conversions — within the first 1–2 weeks. Stable, optimizable performance typically takes 4–6 weeks of data collection, testing, and bid algorithm learning. Anyone promising “results in 7 days” is either lying or burning your budget on broad match to fake the curve. We’d rather build something that compounds than spike a vanity number in week one."
+    "a": "You'll see early signal — clicks, impressions, initial conversions — within the first 1–2 weeks. Stable, optimizable performance typically takes 4–6 weeks of data collection, testing, and bid algorithm learning. Anyone promising \"results in 7 days\" is either lying or burning your budget on broad match to fake the curve. We'd rather build something that compounds than spike a vanity number in week one."
    },
    {
     "q": "Does Ascend manage Shopping and Performance Max campaigns?",
-    "a": "Yes — Ascend manages the full Google Ads stack: Search, Shopping, Performance Max, YouTube, Demand Gen, Discovery, and remarketing. Performance Max in particular has become non-negotiable for most ecommerce accounts, but it’s also the campaign type most agencies run badly because the asset group structure is unforgiving. We’re built for it."
+    "a": "Yes — Ascend manages the full Google Ads stack: Search, Shopping, Performance Max, YouTube, Demand Gen, Discovery, and remarketing. Performance Max in particular has become non-negotiable for most ecommerce accounts, but it's also the campaign type most agencies run badly because the asset group structure is unforgiving. We're built for it."
    },
    {
-    "q": "Can you fix a Google Ads account that’s wasting spend?",
-    "a": "Yes — and account remediation is one of the most common ways clients start working with us. We audit account structure first, then conversion tracking, then search terms, then bidding strategy, then landing pages, then creative. Most “broken” accounts have 2–3 leaks doing the bulk of the damage, not 30 small ones — finding and patching those quickly is usually where the first ROAS lift comes from."
+    "q": "Can you fix a Google Ads account that's wasting spend?",
+    "a": "Yes — and account remediation is one of the most common ways clients start working with us. We audit account structure first, then conversion tracking, then search terms, then bidding strategy, then landing pages, then creative. Most \"broken\" accounts have 2–3 leaks doing the bulk of the damage, not 30 small ones — finding and patching those quickly is usually where the first ROAS lift comes from."
    },
    {
-    "q": "What’s the minimum ad spend Ascend works with?",
-    "a": "Our Google Ads engagements are typically a fit for brands spending $10K/month and up on paid media — that’s the spend level where the work we do (server-side tracking, value-based bidding, dedicated optimization cycles) actually pays for itself. Below that, the management fee outweighs the upside, and we’ll usually point smaller accounts toward DIY resources or different solutions until they’re ready."
+    "q": "What's the minimum ad spend Ascend works with?",
+    "a": "Our Google Ads engagements are typically a fit for brands spending $10K/month and up on paid media — that's the spend level where the work we do (server-side tracking, value-based bidding, dedicated optimization cycles) actually pays for itself. Below that, the management fee outweighs the upside, and we'll usually point smaller accounts toward DIY resources or different solutions until they're ready."
    },
    {
     "q": "Do you work with personal brands, course creators, and authors — or only ecommerce?",
-    "a": "Both, and they’re different playbooks. Course launches, book launches, and high-ticket personal-brand offers run on a launch-cycle model with very different bidding strategies than evergreen ecommerce. Ascend has run paid media for some of the largest personal brands in the world alongside our ecommerce clients, and we don’t try to force one playbook onto the other."
+    "a": "Both, and they're different playbooks. Course launches, book launches, and high-ticket personal-brand offers run on a launch-cycle model with very different bidding strategies than evergreen ecommerce. Ascend has run paid media for some of the largest personal brands in the world alongside our ecommerce clients, and we don't try to force one playbook onto the other."
    },
    {
-    "q": "How does Google Ads fit with Ascend’s other services?",
-    "a": "Tightly. Paid ads at Ascend run alongside SEO, PR, content, and email — which means our Google Ads clients get audience signals (PR-driven brand searches), landing page support (web design), and lifecycle capture (email and SMS) that pure-PPC agencies can’t deliver. Most of our paid clients started with one service and expanded inside six months because the channels compound when they talk to each other."
+    "q": "How does Google Ads fit with Ascend's other services?",
+    "a": "Tightly. Paid ads at Ascend run alongside SEO, PR, content, and email — which means our Google Ads clients get audience signals (PR-driven brand searches), landing page support (web design), and lifecycle capture (email and SMS) that pure-PPC agencies can't deliver. Most of our paid clients started with one service and expanded inside six months because the channels compound when they talk to each other."
    },
    {
-    "q": "What’s the difference between hiring Ascend vs. a typical PPC agency?",
+    "q": "What's the difference between hiring Ascend vs. a typical PPC agency?",
     "a": "Three things. One: we lead with measurement — server-side tracking, offline conversions, and revenue-based bidding before we touch a campaign. Two: we run paid as part of an integrated stack with PR, SEO, content, and email, so the channels reinforce each other. Three: we work specifically with founders, personal brands, and challenger companies, so our playbooks are tuned for direct-response and brand-led work — not enterprise lead-gen funnels nobody buys from anyway."
    }
   ],
   "final_cta": "Get an ad account audit",
   "title": "Google Ads Agency for Brands That Track Revenue, Not Clicks | Ascend Growth Partners",
   "desc": "Search, Shopping, Performance Max, and YouTube campaigns built around revenue and pipeline - not click-through rates. Every dollar in, every dollar out.",
-  "canonical": "https://ascendgpartners.com/services/google-ads"
+  "canonical": "https://ascendgpartners.com/services/google-ads",
+  "h1_html": "Google Ads engineered to <em>pay for themselves.</em>",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "creative": {
   "label": "Creative",
   "h1": "Creative That Cuts Through the Noise.",
   "lede": "Brand storytelling, ad creative, and content assets engineered to stop the scroll and drive action.",
   "cta": "See Our Creative Work",
-  "cta_href": "../../case-studies/",
+  "cta_href": "/case-studies",
   "figures": [
    {
     "value": "3x",
@@ -645,16 +706,19 @@
    {
     "label": "Step 01",
     "h2": "Find the angle",
+    "h2_html": "Find the angle",
     "body": "We uncover the hooks, pain points, proof, and positioning that make people care quickly."
    },
    {
     "label": "Step 02",
     "h2": "Build creative systems",
+    "h2_html": "Build creative systems",
     "body": "We create reusable concepts, scripts, visuals, and formats that can be tested across channels."
    },
    {
     "label": "Step 03",
     "h2": "Refresh before fatigue hits",
+    "h2_html": "Refresh before fatigue hits",
     "body": "Creative performance decays. We keep new assets moving so campaigns do not run out of oxygen."
    }
   ],
@@ -701,12 +765,17 @@
   "final_cta": "See Our Creative Work",
   "title": "Creative That Cuts Through the Noise | Ascend Growth Partners",
   "desc": "Brand storytelling, ad creative, and content assets engineered to stop the scroll and drive action.",
-  "canonical": "https://ascendgpartners.com/services/creative"
+  "canonical": "https://ascendgpartners.com/services/creative",
+  "h1_html": "Creative That Cuts<br>Through the Noise.",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "ai-solutions": {
   "label": "AI Solutions",
   "h1": "AI Solutions Built for Real Business Growth.",
-  "lede": "Custom AI integrations, automation workflows, and intelligent systems that multiply your team’s output.",
+  "lede": "Custom AI integrations, automation workflows, and intelligent systems that multiply your team's output.",
   "cta": "Explore AI Solutions",
   "figures": [
    {
@@ -726,16 +795,19 @@
    {
     "label": "Step 01",
     "h2": "Map the work that drains time",
+    "h2_html": "Map the work that drains time",
     "body": "We find the repetitive, expensive, or slow workflows where AI can create immediate leverage without adding chaos."
    },
    {
     "label": "Step 02",
     "h2": "Build useful AI into the workflow",
+    "h2_html": "Build useful AI into the workflow",
     "body": "We connect AI to the tools your team already uses so it can draft, classify, summarize, route, and support real work."
    },
    {
     "label": "Step 03",
     "h2": "Measure output and adoption",
+    "h2_html": "Measure output and adoption",
     "body": "AI is only valuable if people use it. We track saved time, quality, adoption, and business outcomes."
    }
   ],
@@ -782,7 +854,12 @@
   "final_cta": "Explore AI Solutions",
   "title": "AI Solutions Built for Real Business Growth | Ascend Growth Partners",
   "desc": "Custom AI integrations, automation workflows, and intelligent systems that multiply your team’s output.",
-  "canonical": "https://ascendgpartners.com/services/ai-solutions"
+  "canonical": "https://ascendgpartners.com/services/ai-solutions",
+  "h1_html": "AI Solutions Built<br>for Real Business Growth.",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "press-pr": {
   "label": "Press & Public Relations",
@@ -807,27 +884,32 @@
    {
     "label": "Step 01 — Brand Audit",
     "h2": "Before we pitch a single journalist, we read the room.",
+    "h2_html": "Before we pitch a single journalist, we read the room.",
     "body": "Most PR engagements fail in week one — not because of bad pitching, but because no one mapped the story landscape first. We audit your current media footprint, public perception, search results, AI citations, and competitor narrative share. We find the stories already being told about you (the good and the ugly), the stories that should be told, and the open lanes where your brand can own the conversation. That map becomes the entire campaign brief."
    },
    {
     "label": "Step 02 — Comms Readiness",
     "h2": "Most brands break the moment the press shows up.",
-    "body": "Spokespeople who haven’t been media-trained. Press kits that don’t exist. Messaging that contradicts itself across channels. Founder bios that are three years out of date. We rebuild the communications infrastructure before we go to market — press kits, founder positioning, message hierarchy, response protocols, and crisis playbooks — so when the story lands, your brand is ready to capitalize on it instead of fumble it."
+    "h2_html": "Most brands break the moment the press shows up.",
+    "body": "Spokespeople who haven't been media-trained. Press kits that don't exist. Messaging that contradicts itself across channels. Founder bios that are three years out of date. We rebuild the communications infrastructure before we go to market — press kits, founder positioning, message hierarchy, response protocols, and crisis playbooks — so when the story lands, your brand is ready to capitalize on it instead of fumble it."
    },
    {
     "label": "Step 03 — Story & Pitching",
-    "h2": "Journalists don’t write about products. They write about stories.",
+    "h2": "Journalists don't write about products. They write about stories.",
+    "h2_html": "Journalists don't write about products. They write about stories.",
     "body": "This is where most PR firms quietly fail — they send press releases pretending to be stories. We engineer actual narrative angles: contrarian takes journalists are itching to publish, data-backed trends with original research behind them, founder origin stories with real stakes, and cultural moments your brand has earned the right to be part of. Then we pitch them through relationships, not blast lists. Our team places clients in Forbes, WSJ, Bloomberg, TechCrunch, Inc., Fast Company, Business Insider, and the verticals that matter for your category."
    },
    {
     "label": "Step 04 — Engineered Opportunity",
-    "h2": "The best PR moments aren’t waited for. They’re built.",
+    "h2": "The best PR moments aren't waited for. They're built.",
+    "h2_html": "The best PR moments aren't waited for. They're built.",
     "body": "Reactive PR - waiting for press to come find you - is a losing game. We forecast upcoming news cycles, industry inflection points, awards seasons, and cultural conversations where your brand can insert itself credibly. Then we build the moments: original research drops, founder bylines, expert commentary at the right time, partnership announcements, and tied-to-the-news Op-Eds."
    },
    {
     "label": "Why Ascend",
     "h2": "Founded by the youngest PR agency founder on record. Trusted by some of the biggest names in business.",
-    "body": "Ascend Growth Partners was founded by Kamran Zahid recognized as the youngest PR agency founder on record on a single conviction: traditional PR is too slow, too relationship-locked, and too disconnected from the speed brands actually move at today. We’ve since run earned media, narrative strategy, and founder positioning for clients including Mel Robbins, Ed Mylett, Tim Grover, Gymshark, BKFC, Toyota, and Keller Williams. We’re a six-person team operating from Toronto and Miami. We work globally. And we don’t pretend to be Edelman — we’re built for the brands and personalities the legacy firms move too slowly for."
+    "h2_html": "Founded by the youngest PR agency founder on record. Trusted by some of the biggest names in business.",
+    "body": "Ascend Growth Partners was founded by Kamran Zahid recognized as the youngest PR agency founder on record on a single conviction: traditional PR is too slow, too relationship-locked, and too disconnected from the speed brands actually move at today. We've since run earned media, narrative strategy, and founder positioning for clients including Mel Robbins, Ed Mylett, Tim Grover, Gymshark, BKFC, Toyota, and Keller Williams. We're a six-person team operating from Toronto and Miami. We work globally. And we don't pretend to be Edelman — we're built for the brands and personalities the legacy firms move too slowly for."
    }
   ],
   "list_label": "Features",
@@ -861,11 +943,11 @@
   "faq": [
    {
     "q": "How long does it take to land Tier 1 media coverage?",
-    "a": "Most Ascend clients see their first Tier 1 placement within 60–90 days. The first month is spent on brand audit, narrative development, comms readiness, and quietly warming the right journalist relationships — going to market on day one with a half-built story is how PR campaigns die. Once we’re pitching, placements compound from there."
+    "a": "Most Ascend clients see their first Tier 1 placement within 60–90 days. The first month is spent on brand audit, narrative development, comms readiness, and quietly warming the right journalist relationships — going to market on day one with a half-built story is how PR campaigns die. Once we're pitching, placements compound from there."
    },
    {
     "q": "What counts as a Tier 1 media placement?",
-    "a": "Tier 1 placements are earned editorial coverage in major national and international outlets: Forbes, The Wall Street Journal, Bloomberg, Reuters, Business Insider, Fast Company, TechCrunch, Inc., and the leading vertical publications in your industry. Sponsored content, paid placements, and contributor pieces in low-authority outlets don’t count — and any agency telling you they do is the wrong agency."
+    "a": "Tier 1 placements are earned editorial coverage in major national and international outlets: Forbes, The Wall Street Journal, Bloomberg, Reuters, Business Insider, Fast Company, TechCrunch, Inc., and the leading vertical publications in your industry. Sponsored content, paid placements, and contributor pieces in low-authority outlets don't count — and any agency telling you they do is the wrong agency."
    },
    {
     "q": "Does Ascend guarantee placements?",
@@ -873,19 +955,19 @@
    },
    {
     "q": "How is PR different from paid advertising or influencer marketing?",
-    "a": "Paid ads disappear the moment the budget stops. Earned media is permanent — it gets indexed by Google, cited by ChatGPT, Claude, and Perplexity, and carries third-party editorial credibility that no ad can replicate. Influencer marketing rents a creator’s audience; PR builds your own. The brands that win the long game invest in all three, but PR is the only one that compounds."
+    "a": "Paid ads disappear the moment the budget stops. Earned media is permanent — it gets indexed by Google, cited by ChatGPT, Claude, and Perplexity, and carries third-party editorial credibility that no ad can replicate. Influencer marketing rents a creator's audience; PR builds your own. The brands that win the long game invest in all three, but PR is the only one that compounds."
    },
    {
     "q": "Can Ascend handle crisis communications?",
-    "a": "Yes — crisis communications is a core practice at Ascend Growth Partners. We build proactive crisis playbooks for brands before they need them, and we provide rapid-response support when something breaks. The brands we work with — public-facing personalities, combat sports, consumer brands with active social audiences — operate in environments where reputational risk is constant, so we’re built for it."
+    "a": "Yes — crisis communications is a core practice at Ascend Growth Partners. We build proactive crisis playbooks for brands before they need them, and we provide rapid-response support when something breaks. The brands we work with — public-facing personalities, combat sports, consumer brands with active social audiences — operate in environments where reputational risk is constant, so we're built for it."
    },
    {
-    "q": "Who does Ascend’s PR work best for?",
-    "a": "Ascend works best for founders, personal brands, athletes, authors, challenger companies, and category-defining startups — the people and brands the legacy PR firms move too slowly for. Our roster includes Mel Robbins, Ed Mylett, Tim Grover, Gymshark, BKFC, Toyota, and Keller Williams. We’re not the right firm for clients who want the BCG of PR. We’re the firm for clients who want the agency that ships."
+    "q": "Who does Ascend's PR work best for?",
+    "a": "Ascend works best for founders, personal brands, athletes, authors, challenger companies, and category-defining startups — the people and brands the legacy PR firms move too slowly for. Our roster includes Mel Robbins, Ed Mylett, Tim Grover, Gymshark, BKFC, Toyota, and Keller Williams. We're not the right firm for clients who want the BCG of PR. We're the firm for clients who want the agency that ships."
    },
    {
-    "q": "What’s the difference between Ascend and a traditional PR agency?",
-    "a": "Three things. One: speed — we ship in days where legacy firms ship in weeks, partly because the founder built the firm specifically against that constraint. Two: integration — Ascend runs PR alongside SEO, GEO, and AI solutions, so earned coverage compounds across every channel automatically. Three: specialization — we work specifically with founders, personal brands, and challenger companies; we’re not trying to also be a Fortune 500 corporate comms firm."
+    "q": "What's the difference between Ascend and a traditional PR agency?",
+    "a": "Three things. One: speed — we ship in days where legacy firms ship in weeks, partly because the founder built the firm specifically against that constraint. Two: integration — Ascend runs PR alongside SEO, GEO, and AI solutions, so earned coverage compounds across every channel automatically. Three: specialization — we work specifically with founders, personal brands, and challenger companies; we're not trying to also be a Fortune 500 corporate comms firm."
    },
    {
     "q": "Where is Ascend Growth Partners located, and do you work globally?",
@@ -895,7 +977,11 @@
   "final_cta": "Get A PR Strategy",
   "title": "PR Agency for Founders, Personal Brands & Challenger Co’s | Ascend Growth Partners",
   "desc": "Earned media, founder positioning, and narrative engineering for the people and companies the world is already watching.",
-  "canonical": "https://ascendgpartners.com/services/press-pr"
+  "canonical": "https://ascendgpartners.com/services/press-pr",
+  "h1_html": "The PR firm behind brands <em>you already know.</em>",
+  "list_h2_html": "What you get",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "affiliate-marketing": {
   "label": "Affiliate Marketing",
@@ -920,16 +1006,19 @@
    {
     "label": "Step 01",
     "h2": "Design the partner model",
+    "h2_html": "Design the partner model",
     "body": "We define the commission structure, partner types, rules, and incentives that protect margin while encouraging growth."
    },
    {
     "label": "Step 02",
     "h2": "Recruit the right affiliates",
+    "h2_html": "Recruit the right affiliates",
     "body": "We prioritize partners with relevant audiences, strong intent, and real influence - not coupon spam."
    },
    {
     "label": "Step 03",
     "h2": "Manage performance and quality",
+    "h2_html": "Manage performance and quality",
     "body": "We track partner value, fraud risk, incremental revenue, and optimization opportunities so the program scales cleanly."
    }
   ],
@@ -976,7 +1065,12 @@
   "final_cta": "Get Your Affiliate Strategy",
   "title": "Affiliate Marketing That Scales Revenue | Ascend Growth Partners",
   "desc": "Build a high-performance affiliate program that drives incremental revenue without cannibalizing your existing channels.",
-  "canonical": "https://ascendgpartners.com/services/affiliate-marketing"
+  "canonical": "https://ascendgpartners.com/services/affiliate-marketing",
+  "h1_html": "Affiliate Marketing<br>That Scales Revenue.",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  },
  "web-design": {
   "label": "Web Design",
@@ -1001,16 +1095,19 @@
    {
     "label": "Step 01",
     "h2": "Design around the buyer journey",
+    "h2_html": "Design around the buyer journey",
     "body": "We map what visitors need to understand, believe, and do before they convert."
    },
    {
     "label": "Step 02",
     "h2": "Build fast, clear, and polished pages",
+    "h2_html": "Build fast, clear, and polished pages",
     "body": "Design, copy, structure, and performance work together so the site feels premium and moves users forward."
    },
    {
     "label": "Step 03",
     "h2": "Measure and improve conversion",
+    "h2_html": "Measure and improve conversion",
     "body": "We use analytics, heatmaps, forms, and funnel data to keep improving the site after launch."
    }
   ],
@@ -1057,6 +1154,11 @@
   "final_cta": "Start Your Project",
   "title": "Websites Built to Convert and Perform | Ascend Growth Partners",
   "desc": "Conversion-engineered web design that looks world-class and delivers measurable results.",
-  "canonical": "https://ascendgpartners.com/services/web-design"
+  "canonical": "https://ascendgpartners.com/services/web-design",
+  "h1_html": "Websites Built to<br>Convert and Perform.",
+  "list_label": "What You Get",
+  "list_h2_html": "The pieces needed<br>to scale cleanly.",
+  "faq_h2_html": "Common<br>questions.",
+  "final_h2_html": "Let's build the system<br><em>that grows with you.</em>"
  }
 }

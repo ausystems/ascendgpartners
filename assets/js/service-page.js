@@ -7,7 +7,9 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ── 1 · reveal ────────────────────────────────────────────────────────────
-  var targets = [].slice.call(document.querySelectorAll('.rv'));
+  // When motion.js is present it owns the reveal (masked lines, image wipes);
+  // this is the plain fallback for when it is not.
+  var targets = window.MOTION ? [] : [].slice.call(document.querySelectorAll('.rv'));
   if (reduce || !('IntersectionObserver' in window)) {
     targets.forEach(function (el) { el.classList.add('is-in'); });
   } else {

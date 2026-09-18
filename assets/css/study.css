@@ -332,3 +332,25 @@ figure.hl-portrait {
   .wj-system > div, .wj-system > div:last-child { padding: 1.8rem 0; }
   .wj-system .plus { border-left: 0; border-right: 0; border-top: 1px solid var(--hair-dark); border-bottom: 1px solid var(--hair-dark); padding: 1rem 0; }
 }
+
+/* --- the case studies as production writes them: the full title is the h1 on the cover,
+       chapters follow production's headings, sub-heads are h3s, and the takeaways and
+       "more" sections keep their own headings --- */
+.bk-cover p.bk-display { margin-bottom: 1.2rem; }
+h1.bk-title { font-family: var(--font-serif-text); font-weight: 400; font-size: clamp(1.4rem, 2vw, 1.9rem); line-height: 1.32; letter-spacing: 0.002em; color: rgba(255, 255, 255, 0.9); margin: 0 0 1.2rem; }
+.bk-cover .hl-dossier { margin: 0 0 1.2rem; }
+.bk-cover .bk-intro { margin-top: 0.4rem; }
+.bk-h3 { font-family: var(--font-primary); font-weight: 600; font-size: clamp(1.25rem, 1.7vw, 1.55rem); letter-spacing: -0.02em; line-height: 1.2; color: var(--navy); margin: 2.4rem 0 1rem; }
+.bk-prose .bk-h3:first-child { margin-top: 0; }
+.bk-deck-navy .bk-h3 { color: #F7F8F8; }
+.bk-prose p.bk-lead { padding-left: 1.4rem; border-left: 2px solid var(--accent); }
+.bk-prose p.bk-lead strong { color: var(--navy); font-weight: 600; }
+.bk-prose p.bk-note { font-family: var(--font-serif-text); font-size: 1.05rem; color: var(--ink-mute); }
+.bk-list { margin: 0 0 1.6rem; padding-left: 1.3rem; max-width: 62ch; }
+.bk-list li { font-size: clamp(1.02rem, 1.2vw, 1.15rem); line-height: 1.6; color: var(--ink-soft); margin: 0 0 0.6rem; }
+.bk-list li::marker { color: var(--accent); }
+.bk-cta-card .bk-cta-p { margin: 1.4rem 0 0; font-size: 1.08rem; line-height: 1.6; color: rgba(255,255,255,0.8); max-width: 44ch; }
+.bk-cta-card .bk-cta-p a { color: #fff; border-bottom: 1px solid rgba(255,255,255,0.6); }
+.bk-takeaways .hl-rows h3 { font-family: var(--font-serif-text); font-weight: 400; font-size: clamp(1.15rem, 1.5vw, 1.4rem); line-height: 1.4; margin: 0; color: var(--navy); }
+.bk-more-head { display: block; }
+.bk-more-fig { aspect-ratio: 16 / 10; }

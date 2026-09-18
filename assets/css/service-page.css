@@ -43,6 +43,11 @@ body.paper-page .nav { background: rgba(10, 15, 40, 0.97); }
   margin: 0 0 clamp(1.4rem, 3vh, 2.2rem);
 }
 .sv-label.is-accent { color: var(--accent); }
+/* production sets part of some headings in the editorial italic; the same face here */
+.sv-h em { font-family: var(--font-editorial); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+.sv-link { display: inline-block; margin-top: 1.4rem; font-size: 0.95rem; font-weight: 500; color: var(--fg); border-bottom: 1px solid var(--rule); transition: color 0.3s var(--ease), border-color 0.3s var(--ease); }
+.sv-link:hover { color: var(--accent); border-color: var(--accent); }
+
 
 h1.sv-h, h2.sv-h {
   font-family: var(--font-primary); font-weight: 600; color: var(--fg);

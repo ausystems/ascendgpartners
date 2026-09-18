@@ -367,3 +367,32 @@ body.paper-page .nav { background: rgba(10, 15, 40, 0.97); }
   .pg-legal-body { grid-column: 1 / -1; }
   .pg-final .pg-h { max-width: none; }
 }
+
+/* ---------- pictures on the blog (the production site's images, at their addresses) ---------- */
+.pg-figure { margin: 0 0 2.2em; max-width: 68ch; }
+.pg-figure img { display: block; width: 100%; height: auto; border-radius: 6px; }
+.pg-featured-img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover; border-radius: 6px; margin-bottom: 1.6rem; }
+.pg-post-link { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.pg-post-link .pg-post-body { grid-column: 4 / 10; }
+.pg-post-thumb { grid-column: 10 / 13; display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 6px; align-self: start; }
+.pg-statement-k { display: block; margin: 0 0 0.9rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
+.pg-person figcaption h3 { margin: 0; font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; }
+@media (max-width: 720px) {
+  .pg-post-link .pg-post-body { grid-column: 1 / -1; }
+  .pg-post-thumb { grid-column: 1 / -1; margin-top: 1rem; }
+}
+
+/* ---------- coming soon / not found ---------- */
+.pg-soon { min-height: 72vh; display: flex; align-items: center; padding-bottom: clamp(4rem, 10vh, 7rem) !important; }
+.pg-soon .pg-h { grid-column: 1 / 10; }
+.pg-soon .pg-lede { grid-column: 1 / 8; margin-top: clamp(1.4rem, 3vh, 2.2rem); }
+.pg-soon-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 1.8rem; margin-top: clamp(1.8rem, 4vh, 2.6rem); }
+
+/* ---------- the post's back link and closing box, the press picture ---------- */
+.pg-back { grid-column: 1 / -1; display: inline-block; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); margin-bottom: clamp(1.2rem, 3vh, 2rem); transition: color 0.3s var(--ease); }
+.pg-back:hover { color: var(--accent); }
+.pg-post-cta { margin: clamp(3rem, 7vh, 5rem) 0 0; padding: clamp(1.8rem, 4vh, 2.6rem) 0 0; border-top: 1px solid var(--hair); max-width: 68ch; }
+.pg-post-cta h3 { margin: 0 0 0.6rem; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 600; letter-spacing: -0.03em; }
+.pg-post-cta p { margin: 0 0 1.4rem; color: var(--ink-2); font-size: 1.05rem; }
+.pg-press-fig { display: block; margin-top: 1.2rem; border-radius: 6px; overflow: hidden; aspect-ratio: 3 / 2; background: var(--card); }
+.pg-press-fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
