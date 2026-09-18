@@ -2,14 +2,14 @@
 
 The Ascend Growth Partners site as a static build: the approved homepage,
 untouched, plus every interior page on the quiet system. Deploys from `main`
-to Vercel (ascendgpartners.vercel.app) and to GitHub Pages.
+to Vercel (ascendgpartners.vercel.app).
 
 ## Pages
 
 ```
 /                              Homepage (approved; preserved byte for byte apart from two footer
                                destinations and one script tag, see "Homepage" below)
-/services/                     Index of the twelve practices
+/services/                     Index of the twelve practices (a new page; production answers 404 there)
 /services/<slug>/              seo, geo, link-building, content-creation, email-marketing,
                                paid-social, google-ads, creative, ai-solutions, press-pr,
                                affiliate-marketing, web-design
@@ -17,22 +17,32 @@ to Vercel (ascendgpartners.vercel.app) and to GitHub Pages.
 /company/about/  /company/reviews/  /company/press/
 /blog/                         Index, plus the four published posts
 /contact/                      The contact form (see "Forms")
-/privacy-policy/  /terms-of-use/
+/privacy-policy/  /terms-of-use/  /services/coming-soon/  404.html
 /api/forms/submit              Vercel function: relays the forms to the production intake
 sitemap.xml  robots.txt
 ```
+
+Every SEO-visible element (URLs, titles, descriptions, robots, canonicals,
+Open Graph, Twitter, headings, links, image addresses and alt text, sitemap,
+robots.txt, redirects) reproduces ascendgpartners.com, verified against its
+rendered DOM; `tools/seo-meta.json` is the frozen production record every
+`<head>` is built from, and `tools/seo-migration-audit.md` lists every
+remaining difference. Addresses are root-relative and slash-free, as on
+production; `vercel.json` sets the trailing-slash and www behaviour.
 
 Copy on every interior page is the production site's, verbatim, held in
 `tools/service-copy.json` (service pages) and `tools/site-copy.json` (the rest).
 The generators only lay it out:
 
 ```
+python3 tools/extract-service-copy.py    # service copy from production's rendered pages (tools/services-src/)
 python3 tools/build-service-pages.py     # the twelve service pages
-python3 tools/build-site-pages.py        # services index, company, blog, contact, legal, sitemap
+python3 tools/build-site-pages.py        # services index, company, blog, contact, legal, coming-soon, 404
+python3 tools/build-case-studies.py      # the case studies, from production's articles (tools/case-studies-src/)
 ```
 
-Both lift the header, footer and cursor from a built page and never edit them.
-The case studies are hand-built pages (`assets/css/study.css`, `assets/js/study.js`).
+All three lift the header, footer and cursor from a built page and never edit
+them. `sitemap.xml` and `robots.txt` are production's files, copied verbatim.
 
 ## The system
 
@@ -63,16 +73,19 @@ multipart form the production site's own pages send, to
 `https://ascendgpartners.com/api/forms/submit` and returns that intake's answer.
 A page reports "sent" only when the intake accepted the submission; on any
 other outcome it says so and gives hello@ascendgpartners.com. GitHub Pages
-cannot run the function, so on that host the forms show the honest failure
-state.
+cannot run the function or serve slash-free addresses; Vercel is the deployment
+target.
 
 ## Homepage
 
-The homepage is locked. The only changes since it was approved: the footer's
-"SEO & GEO" and "Web Design & Dev" links now lead to those services instead of
-the contact page, and `assets/js/forms.js` is loaded so the footer's Subscribe
-button works. Nothing visible changed; the shared header and footer are the
-same markup and styles on every page.
+The homepage is locked. The only changes since it was approved: addresses are
+root-relative and slash-free (`/services/seo`), the footer's "SEO & GEO" and
+"Web Design & Dev" links lead to those services instead of the contact page,
+the three case-study images carry production's alt text, the logo link has
+production's accessible name, and `assets/js/forms.js` is loaded so the
+footer's Subscribe button works. Nothing visible changed (pixel-diffed against
+a baseline at 1440, 768 and 375); the shared header and footer are the same
+markup and styles on every page.
 
 ## Run locally
 

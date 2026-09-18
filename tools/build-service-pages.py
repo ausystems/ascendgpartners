@@ -178,7 +178,7 @@ def chapter(c, folder, img, dark=False):
 
 def build(slug, d):
     folder, hero_img, chap_imgs, dark_at = ART[slug]
-    cta_href = d.get('cta_href', '/contact')
+    cta_href = d.get('cta_href', '/#contact')     # where production's service CTAs go
     nav, foot = shared_chrome()
     faq = d.get('faq') or []
 
@@ -239,6 +239,7 @@ def build(slug, d):
                     '    <div class="sv-faq-head rv">\n'
                     '      <span class="sv-label is-accent">FAQ</span>\n'
                     '      <h2 class="sv-h" id="svFaq">%s</h2>\n'
+                    '      <a class="sv-link" href="/#contact">Talk to Us</a>\n'
                     '    </div>\n    <div class="rv">%s</div>\n  </div>\n</section>\n') % (d.get('faq_h2_html') or 'Common questions.', qs)
 
     final = ('\n<section class="sv-final" id="ready" aria-labelledby="svReady">\n  <div class="sv-in">\n'
