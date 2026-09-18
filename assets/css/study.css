@@ -365,3 +365,17 @@ h1.bk-title { font-family: var(--font-serif-text); font-weight: 400; font-size: 
 .ed-card img, .ed-hero-fig img { transition: transform 1s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)); }
 .ed-card:hover img { transform: scale(1.04); }
 ::selection { background: #E8613C; color: #fff; }
+
+/* phones: no label under 12px (this sheet loads after case-studies.css, so its floor has to live here) */
+@media (max-width: 720px) {
+  .bk-label, .bk-run, .bk-run a, .bk-run span, .bk-tape span, .hl-dossier, .wj-sophia .mark small, .wj-spec .num, .wj-nums span, .bk-more-head a { font-size: 0.76rem; }
+}
+
+/* touch: the standalone links reach 44px without moving */
+@media (pointer: coarse) {
+  .bk-run a, .bk-more-head a { position: relative; }
+  .bk-run a::before, .bk-more-head a::before {
+    content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: max(100%, 44px); height: max(100%, 44px);
+  }
+}

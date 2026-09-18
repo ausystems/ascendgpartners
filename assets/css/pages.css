@@ -426,3 +426,13 @@ body.paper-page .nav { background: rgba(10, 15, 40, 0.97); }
   .pg-person figcaption { flex-direction: column; gap: 0.15rem; align-items: flex-start; margin-top: 0.7rem; }
   .pg-person figcaption h3 { font-size: 0.98rem; }
 }
+
+/* touch: the back link and the standalone links reach 44px without moving; fields are 44px tall */
+@media (pointer: coarse) {
+  .pg-back, :not(p) > .pg-link { position: relative; }
+  .pg-back::before, :not(p) > .pg-link::before {
+    content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: max(100%, 44px); height: max(100%, 44px);
+  }
+  .pg-field input, .pg-field select { min-height: 44px; }
+}

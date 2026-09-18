@@ -61,12 +61,14 @@ the pages are complete and still, and under `prefers-reduced-motion` nothing
 moves and nothing is hidden. The homepage keeps its own animations and loads
 none of this.
 
-Phones are a first-class layout, not a shrunk desktop: hit areas in the shared
-header and footer reach 44px through pseudo-elements (no pixel moves), every
-photo carries 800/1200px candidates so a phone never downloads a 2400px file,
-labels never drop under 12px, the newsletter field is 16px on phones so iOS
-does not zoom, the team is a two-up grid, and the dark turn's inset scales
-with the screen. `scratchpad/mobile-audit.js` (session workspace) measures
+Phones are a first-class layout, not a shrunk desktop: every link and control,
+in the shared header and footer and on the pages, reaches a 44px hit area
+through pseudo-elements (no pixel moves; the locked footer's stacked link rows
+and the drawer's rows stay their own 29px and 37px, which is where contiguous
+rows cap out), every photo carries 800/1200px candidates so a phone never
+downloads a 2400px file, no label drops under 12px, form fields are 44px tall
+and 16px on phones so iOS does not zoom, the team is a two-up grid, and the
+dark turn's inset scales with the screen. `scratchpad/mobile-audit.js` (session workspace) measures
 bytes, CLS, LCP, tap targets and word fits per page on an emulated device.
 
 Every drawing under `uploads/` is hand-authored flat vector, produced by the
@@ -90,10 +92,14 @@ The homepage is locked. The only changes since it was approved: addresses are
 root-relative and slash-free (`/services/seo`), the footer's "SEO & GEO" and
 "Web Design & Dev" links lead to those services instead of the contact page,
 the three case-study images carry production's alt text, the logo link has
-production's accessible name, and `assets/js/forms.js` is loaded so the
-footer's Subscribe button works. Nothing visible changed (pixel-diffed against
-a baseline at 1440, 768 and 375); the shared header and footer are the same
-markup and styles on every page.
+production's accessible name, `assets/js/forms.js` is loaded so the
+footer's Subscribe button works, and the photos carry 800px and 1200px
+`srcset` candidates so phones download smaller files. Nothing visible changed
+(pixel-diffed against a baseline at 1440, 768 and 375) with two exceptions
+that only touch devices see: the footer's newsletter field is 16px so iOS
+does not zoom into it (3px taller footer on phones), and the header and
+footer links carry invisible 44px hit areas. The shared header and footer are
+the same markup and styles on every page.
 
 ## Run locally
 

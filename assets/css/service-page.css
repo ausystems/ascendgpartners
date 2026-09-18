@@ -236,3 +236,12 @@ h2.sv-h { font-size: clamp(2rem, 4.4vw, 4.2rem); }
   .sv-row b { font-size: 0.8rem; }
   .sv-fig span { font-size: 0.92rem; }
 }
+
+/* touch: chapter and FAQ links reach 44px without moving */
+@media (pointer: coarse) {
+  .sv-link { position: relative; }
+  .sv-link::before {
+    content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: max(100%, 44px); height: max(100%, 44px);
+  }
+}

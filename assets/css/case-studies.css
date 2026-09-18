@@ -241,3 +241,12 @@ figure.ed-fig {
   .ed-kicker, .ed-label, .cs-chip, .ed-feat, .ed-run, .ed-run .cats, .ed-run span, .bk-run, .bk-run span, .bk-run a, .bk-label, .bk-tape span, .wj-nums span, .ed-cta-stat span { font-size: 0.76rem; }
   .cs-chip { padding: 0.3rem 0.6rem; }
 }
+
+/* touch: the filter chips and "Read the case study" reach 44px without moving */
+@media (pointer: coarse) {
+  .ed-link, .cs-filter { position: relative; }
+  .ed-link::before, .cs-filter::before {
+    content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: max(100%, 44px); height: max(100%, 44px);
+  }
+}
