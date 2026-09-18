@@ -195,7 +195,7 @@ def build_press():
     d = SITE['press']; root = '../../'
     items = ''.join(
         '<article class="pg-press-item rv"><div class="pg-press-meta"><strong>%s</strong><time datetime="%s">%s</time>'
-        '<a class="pg-press-fig" href="%s" rel="noopener" target="_blank"><img src="%s" alt="%s" loading="lazy" decoding="async"></a></div>'
+        '<a class="pg-press-fig" href="%s" rel="noopener" target="_blank"><img src="%s" alt="%s" loading="lazy" decoding="async" onerror="this.parentNode.hidden=true"></a></div>'
         '<div><h3><a href="%s" rel="noopener" target="_blank">%s</a></h3><p>%s</p>'
         '<a class="pg-link is-ext" href="%s" rel="noopener" target="_blank">Read it at %s</a></div></article>'
         % (E(it['outlet']), iso(it['date']), E(it['date']), it['url'], A(it['image']), A(it['image_alt']), it['url'], E(it['headline']), E(it['excerpt']), it['url'], E(it['outlet'])) for it in d['items'])
