@@ -91,14 +91,19 @@ h2.sv-h { font-size: clamp(2rem, 4.4vw, 4.2rem); }
 .sv-hero .sv-lede { margin-left: auto; margin-right: auto; }
 .sv-stage { margin: clamp(3.5rem, 9vh, 7rem) auto 0; max-width: 1240px; padding: 0 var(--gap); }
 .sv-hero .sv-stage { max-width: 1320px; }
-.sv-stage img { display: block; width: 100%; height: auto; }
+.sv-stage img, .sv-stage > svg { display: block; width: 100%; height: auto; }
 
 /* ---------- figures ---------- */
 .sv-figures { padding: clamp(4rem, 10vh, 8rem) 0; }
 .sv-figrow {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(2rem, 5vw, 5rem); border-top: 1px solid var(--rule); padding-top: clamp(2.4rem, 5vh, 3.6rem);
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); position: relative;
+  gap: clamp(2rem, 5vw, 5rem); padding-top: clamp(2.4rem, 5vh, 3.6rem);
 }
+/* the rule above the figures draws in from the left as they arrive */
+.sv-figrow::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--rule); transform: scaleX(0); transform-origin: left; transition: transform 1.4s var(--ease) 0.1s; }
+.sv-figrow.is-in::before { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) { .sv-figrow::before { transform: none; transition: none; } }
+.sv ::selection { background: var(--accent); color: #fff; }
 .sv-fig strong {
   display: block; font-family: var(--font-primary); font-weight: 600; color: var(--fg);
   font-size: clamp(2.6rem, 5.4vw, 4.6rem); letter-spacing: -0.05em; line-height: 1;

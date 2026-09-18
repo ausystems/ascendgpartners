@@ -343,8 +343,13 @@ h1.bk-title { font-family: var(--font-serif-text); font-weight: 400; font-size: 
 .bk-h3 { font-family: var(--font-primary); font-weight: 600; font-size: clamp(1.25rem, 1.7vw, 1.55rem); letter-spacing: -0.02em; line-height: 1.2; color: var(--navy); margin: 2.4rem 0 1rem; }
 .bk-prose .bk-h3:first-child { margin-top: 0; }
 .bk-deck-navy .bk-h3 { color: #F7F8F8; }
-.bk-prose p.bk-lead { padding-left: 1.4rem; border-left: 2px solid var(--accent); }
-.bk-prose p.bk-lead strong { color: var(--navy); font-weight: 600; }
+/* a placement or an outcome: the lead reads as a ledger entry, its name set large */
+.bk-prose p.bk-lead { padding: 1.4rem 0 1.5rem; margin: 0; border-top: 1px solid var(--hair-dark); max-width: 62ch; }
+.bk-prose p.bk-lead + p:not(.bk-lead) { margin-top: 1.4rem; }
+.bk-prose p.bk-lead:last-child { border-bottom: 1px solid var(--hair-dark); }
+.bk-prose p.bk-lead strong { display: block; font-family: var(--font-primary); font-weight: 600; font-size: clamp(1.2rem, 1.6vw, 1.5rem); letter-spacing: -0.025em; line-height: 1.22; color: var(--navy); margin: 0 0 0.45rem; }
+.bk-deck-navy .bk-prose p.bk-lead strong { color: #F7F8F8; }
+.bk-prose p.bk-lead strong a { border-bottom: 0; }
 .bk-prose p.bk-note { font-family: var(--font-serif-text); font-size: 1.05rem; color: var(--ink-mute); }
 .bk-list { margin: 0 0 1.6rem; padding-left: 1.3rem; max-width: 62ch; }
 .bk-list li { font-size: clamp(1.02rem, 1.2vw, 1.15rem); line-height: 1.6; color: var(--ink-soft); margin: 0 0 0.6rem; }
@@ -354,3 +359,9 @@ h1.bk-title { font-family: var(--font-serif-text); font-weight: 400; font-size: 
 .bk-takeaways .hl-rows h3 { font-family: var(--font-serif-text); font-weight: 400; font-size: clamp(1.15rem, 1.5vw, 1.4rem); line-height: 1.4; margin: 0; color: var(--navy); }
 .bk-more-head { display: block; }
 .bk-more-fig { aspect-ratio: 16 / 10; }
+
+/* pictures answer the cursor */
+.bk-more-card figure, .bk-hero-fig, .ed-card-fig { overflow: hidden; }
+.ed-card img, .ed-hero-fig img { transition: transform 1s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)); }
+.ed-card:hover img { transform: scale(1.04); }
+::selection { background: #E8613C; color: #fff; }

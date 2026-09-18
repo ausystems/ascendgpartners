@@ -396,3 +396,17 @@ body.paper-page .nav { background: rgba(10, 15, 40, 0.97); }
 .pg-post-cta p { margin: 0 0 1.4rem; color: var(--ink-2); font-size: 1.05rem; }
 .pg-press-fig { display: block; margin-top: 1.2rem; border-radius: 6px; overflow: hidden; aspect-ratio: 3 / 2; background: var(--card); }
 .pg-press-fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- pictures answer the cursor; the brand's selection colour ---------- */
+.pg-post-link, .pg-featured-link, .pg-press-fig { overflow: visible; }
+.pg-post-thumb, .pg-featured-img, .pg-press-fig img, .pg-portrait { transition: transform 1s var(--ease); }
+.pg-post-link:hover .pg-post-thumb, .pg-featured-link:hover .pg-featured-img, .pg-press-fig:hover img { transform: scale(1.03); }
+.pg-post-thumb, .pg-featured-img { overflow: hidden; }
+.pg-person { overflow: hidden; border-radius: 6px; }
+.pg-person:hover .pg-portrait { transform: scale(1.02); }
+.pg ::selection { background: var(--accent); color: #fff; }
+.pg-soon.is-dark { background: var(--graphite); color: var(--on-dark); min-height: 100vh; margin-bottom: -1px; }
+.pg-soon.is-dark .pg-h { color: var(--on-dark); }
+.pg-soon.is-dark .pg-lede { color: var(--on-dark-2); }
+.pg-soon.is-dark .pg-link { color: var(--on-dark); background-image: linear-gradient(var(--accent), var(--accent)), linear-gradient(var(--hair-dark), var(--hair-dark)); }
+.pg-soon.is-dark .pg-btn { background: var(--accent); color: #fff; }

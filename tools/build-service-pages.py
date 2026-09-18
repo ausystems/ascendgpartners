@@ -155,6 +155,14 @@ INLINE_HERO = {'google-ads': 'tools/google-ads-hero.svg'}
 def inline_hero(slug):
     return '<div class="sv-stage">%s</div>' % open(os.path.join(ROOT, INLINE_HERO[slug]), encoding='utf-8').read()
 
+def drawn_hero(folder, name):
+    """The hero drawing inline, so it can draw itself on arrival. Its alt text
+       becomes the accessible name; the drawing is otherwise the same file."""
+    svg = open(os.path.join(ROOT, 'uploads', folder, name + '.svg'), encoding='utf-8').read().strip()
+    svg = re.sub(r'^<\?xml[^>]*>\s*', '', svg)
+    svg = re.sub(r'<svg\b', '<svg class="sv-draw" aria-label="%s"' % E(ALT.get(name, '')), svg, count=1)
+    return '<div class="sv-stage rv" data-rv="120">%s</div>' % svg
+
 def stage(folder, name, eager=False):
     w, h = art_size(folder, name)
     return ('<div class="sv-stage rv" data-rv="120">'
@@ -183,9 +191,8 @@ def build(slug, d):
     faq = d.get('faq') or []
 
     path = '/services/%s' % slug
-    extra = ('<link rel="preload" as="image" href="/uploads/%s/%s.svg" fetchpriority="high">\n'
-             '<link rel="stylesheet" href="/assets/css/motion.css">\n'
-             '<script>document.documentElement.classList.add("mo")</script>') % (folder, hero_img or chap_imgs[0])
+    extra = ('<link rel="stylesheet" href="/assets/css/motion.css">\n'
+             '<script>document.documentElement.classList.add("mo")</script>')
     head = seo_head(path, ['/assets/css/styles.css', '/assets/css/case-studies.css', '/assets/css/service-page.css'], extra)
     head += '<body class="cs-page paper-page%s">\n<div class="mo-curtain" aria-hidden="true"></div>\n' % (' ga' if slug in INLINE_HERO else '')
 
@@ -199,7 +206,7 @@ def build(slug, d):
       '    </div>\n'
       '  </div>\n  %s\n</section>\n') % (
         E(d['label']), d.get('h1_html') or E(d['h1']), E(d['lede']), cta_href, E(d['cta']),
-        inline_hero(slug) if slug in INLINE_HERO else stage(folder, hero_img, eager=True))
+        inline_hero(slug) if slug in INLINE_HERO else drawn_hero(folder, hero_img))
 
     def figsize(v):
         n = len(v)

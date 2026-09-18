@@ -164,7 +164,8 @@ def render(slug):
             elif b.tag == 'p':
                 em_only = len(b.kids) == 1 and isinstance(b.kids[0], Node) and b.kids[0].tag == 'em'
                 lead = b.kids and isinstance(b.kids[0], Node) and b.kids[0].tag == 'strong'
-                cls = ' class="bk-pull"' if (first and not lead and not em_only) else (' class="bk-lead"' if lead else (' class="bk-note"' if em_only else ''))
+                short = len(b.text().strip()) <= 190          # a pull line, not a pull paragraph
+                cls = ' class="bk-pull"' if (first and short and not lead and not em_only) else (' class="bk-lead"' if lead else (' class="bk-note"' if em_only else ''))
                 inner.append('<p%s>%s</p>' % (cls, inline(b))); first = False
             elif b.tag in ('ul', 'ol'):
                 inner.append('<%s class="bk-list">%s</%s>' % (b.tag, ''.join('<li>%s</li>' % inline(li) for li in b.find_all('li')), b.tag))

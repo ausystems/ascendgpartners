@@ -54,7 +54,7 @@ You locked the homepage as it appears on ascendgpartners.vercel.app. Production'
 ### C. Additions (present on the new site, absent on production)
 
 6. `/services`: production returns 404 for the "Services" link in its own header. The new site has an index page there, with the site-wide default metadata production emits for pages without their own (default title, canonical to the homepage). Remove `services/index.html` and the record in `seo-meta.json` if you would rather keep the 404.
-7. The hand-drawn SVG illustrations on the twelve service pages (four to six per page, each with alt text). Production's service pages have no content images.
+7. The hand-drawn SVG illustrations on the twelve service pages: the hero drawing is inline SVG (labelled with `aria-label`, so it is not an `<img>`), the chapter drawings are `<img>` elements with alt text. Production's service pages have no content images.
 8. A closing "Ready? / Let's build the system that grows with you. / Work With Us" block on about, reviews, press, blog index and contact (a paragraph, not a heading, so outlines match). Production has no closing block on those pages; it adds one link to `/contact` per page.
 9. On `/company/press`: links to `/services/press-pr`, `/case-studies` and `mailto:hello@ascendgpartners.com`; on `/contact` and `/privacy-policy`: a `mailto:` link. Production has none of these.
 10. `/404.html` exists as a page (production renders its 404 in-app).

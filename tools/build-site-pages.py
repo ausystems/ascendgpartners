@@ -371,7 +371,7 @@ def build_legal(key, path_dir, crumb):
 # /services/coming-soon and the 404 page: the production pages, word for word
 # ============================================================
 def build_coming_soon():
-    body = ('<section class="pg-hero pg-soon">\n  <div class="pg-in pg-grid rv">\n'
+    body = ('<section class="pg-hero pg-soon is-dark">\n  <div class="pg-in pg-grid rv">\n'
             '    <span class="pg-label is-accent">Coming Soon</span>\n'
             '    <h1 class="pg-h is-xl">Something great<br><span class="pg-serif">is ascending.</span></h1>\n'
             '    <p class="pg-lede">We’re hard at work crafting something worth the wait. In the meantime, let’s talk about how we can help your business grow.</p>\n'

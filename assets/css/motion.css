@@ -72,3 +72,7 @@ html.mo.mo-lifted .mo-curtain { animation: none; }
   .mo-line-in, .sv-btn, .pg-btn, .mo-preview { transition: none !important; transform: none !important; }
   .pg .pg-link, .pg-field:not(fieldset)::after { transition: none !important; }
 }
+
+/* ---------- the drawing, before it draws ---------- */
+html.mo .sv-draw path, html.mo .sv-draw line, html.mo .sv-draw rect, html.mo .sv-draw circle { will-change: stroke-dashoffset, opacity, transform; }
+@media (prefers-reduced-motion: reduce) { .sv-draw * { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; opacity: 1 !important; transform: none !important; } }

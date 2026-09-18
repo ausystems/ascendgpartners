@@ -95,10 +95,40 @@
     });
   }
 
+  /* ---------- the drawing draws itself ----------
+     Strokes are dashed to their own length and offset out of sight, then let
+     run; filled shapes follow; the accent arrives last, as the conclusion. */
+  function draw(svg, delay) {
+    if (svg.__drawn) return; svg.__drawn = true;
+    var strokes = [], fills = [], accent = [];
+    [].slice.call(svg.querySelectorAll('path, line, rect, circle, polyline, ellipse')).forEach(function (el) {
+      var st = el.getAttribute('stroke'), fi = el.getAttribute('fill');
+      var isAccent = /e8613c/i.test(st || '') || /e8613c/i.test(fi || '');
+      if (st && st !== 'none') {
+        var len = 0; try { len = el.getTotalLength(); } catch (e) { len = 0; }
+        if (len > 0) { el.style.strokeDasharray = len; el.style.strokeDashoffset = len; strokes.push(el); }
+      }
+      if (fi && fi !== 'none' && !(st && st !== 'none')) { if (isAccent) accent.push(el); else fills.push(el); }
+      else if (isAccent && st) accent.push(el);
+    });
+    // a filled shape that is also the ground of the drawing stays as it is
+    fills = fills.filter(function (el) { var b = el.getBBox(); return !(b.width >= svg.viewBox.baseVal.width * 0.98 && b.height >= svg.viewBox.baseVal.height * 0.98); });
+    gsap.set(fills, { opacity: 0, transformOrigin: '50% 50%', scale: 0.92 });
+    gsap.set(accent.filter(function (e) { return strokes.indexOf(e) < 0; }), { opacity: 0, transformOrigin: '50% 50%', scale: 0.9 });
+    var tl = gsap.timeline({ delay: delay });
+    tl.to(strokes, { strokeDashoffset: 0, duration: 1.5, ease: 'power2.inOut', stagger: { each: 0.035, from: 'start' } }, 0)
+      .to(fills, { opacity: 1, scale: 1, duration: 0.8, ease: EASE, stagger: 0.03 }, 0.55)
+      .to(accent.filter(function (e) { return strokes.indexOf(e) < 0; }), { opacity: 1, scale: 1, duration: 0.9, ease: 'back.out(1.6)', stagger: 0.05 }, 1.05)
+      .add(function () { strokes.forEach(function (el) { el.style.strokeDasharray = ''; el.style.strokeDashoffset = ''; }); });
+    return tl;
+  }
+
   /* ---------- reveal: what a block does as it arrives ---------- */
   function reveal(el, delay) {
     delay = delay || 0;
     el.classList.add('is-in');
+    var drawn = el.matches('.sv-stage') ? el.querySelector('svg.sv-draw') : el.querySelector('.sv-stage > svg.sv-draw');
+    if (drawn) draw(drawn, delay + 0.15);
     var heads = el.matches('h1, h2, h3, p') ? [el] : [].slice.call(el.querySelectorAll('.sv-h, .pg-h, .pg-review p, .pg-statement p'));
     heads.forEach(function (h) {
       gsap.fromTo(lines(h), { yPercent: 112 }, { yPercent: 0, duration: 1.15, ease: EASE, stagger: 0.075, delay: delay });
